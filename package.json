@@ -1,0 +1,31 @@
+{
+  "name": "koupon",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "start": "",
+    "preinstall": "echo --- preinstall --- && cd server && npm install && cd ../client && npm install",
+    "dev": "concurrently \"npm run dev:server\" \"npm run dev:client\"",
+    "dev:srv": "cd server && npm run dev",
+    "dev:clt": "cd client && npm run start"
+  },
+  "engines": {
+    "node": "8.9.4"
+  },
+  "devDependencies": {
+    "eslint": "^6.8.0",
+    "eslint-config-standard": "^14.1.0",
+    "eslint-plugin-import": "^2.19.1",
+    "eslint-plugin-node": "^11.0.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-react": "^7.17.0",
+    "eslint-plugin-standard": "^4.0.1"
+  },
+  "dependencies": {
+    "concurrently": "^5.0.2"
+  },
+  "main": ".eslintrc.js",
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}

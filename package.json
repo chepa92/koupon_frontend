@@ -3,29 +3,23 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "start": "",
-    "preinstall": "echo --- preinstall --- && cd server && npm install && cd ../client && npm install",
-    "dev": "concurrently \"npm run dev:server\" \"npm run dev:client\"",
-    "dev:srv": "cd server && npm run dev",
-    "dev:clt": "cd client && npm run start"
+    "preinstall": "cd server && npm install && cd ../client && npm install && npm run build && cd ..",
+    "start": "cd server && npm start",
+    "dev:server": "cd server && npm run dev",
+    "dev:client": "cd client && npm run start"
   },
   "engines": {
-    "node": "8.9.4"
+    "node": "13.6.0"
   },
-  "devDependencies": {
-    "eslint": "^6.8.0",
-    "eslint-config-standard": "^14.1.0",
-    "eslint-plugin-import": "^2.19.1",
-    "eslint-plugin-node": "^11.0.0",
-    "eslint-plugin-promise": "^4.2.1",
-    "eslint-plugin-react": "^7.17.0",
-    "eslint-plugin-standard": "^4.0.1"
+  "dependencies": {},
+  "main": "index.js",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://bigeek@bitbucket.org/bigeek/koupon.git"
   },
-  "dependencies": {
-    "concurrently": "^5.0.2"
-  },
-  "main": ".eslintrc.js",
   "author": "",
   "license": "ISC",
+  "homepage": "https://bitbucket.org/bigeek/koupon#readme",
   "description": ""
 }

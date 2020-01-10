@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 const path = require('path');
 require('dotenv').config({ path: path.join(__dirname, '.env') });
 
@@ -37,11 +36,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-// Set the public folder to "~/client/build/"
-// Example: http://localhost:5000/favicon.ico => Display "~/client/build/favicon.ico"
 app.use(express.static(path.join(__dirname, '../client/build')));
 
-// authentication using session + passport
 app.use(
   session({
     secret: process.env.SESSION_SECRET || 'irongenerator',
@@ -75,7 +71,9 @@ app.use((err, req, res, next) => {
 
     if (process.env.NODE_ENV === 'production') res.json(err);
     else
-      res.json(JSON.parse(JSON.stringify(err, Object.getOwnPropertyNames(err))));
+      res.json(
+        JSON.parse(JSON.stringify(err, Object.getOwnPropertyNames(err)))
+      );
   }
 });
 

@@ -11,7 +11,6 @@ router.get('/', (req, res, next) => {
     .catch(err => next(err));
 });
 
-
 router.post('/', (req, res, next) => {
   let { name, capitals, area, description } = req.body;
   Country.create({ name, capitals, area, description })

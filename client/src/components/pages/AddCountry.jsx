@@ -1,52 +1,52 @@
-import React, { Component } from 'react'
-import api from '../../api'
+import React, { Component } from 'react';
+import api from '../../api';
 
 export default class AddCountry extends Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       name: '',
       capitals: '',
       area: '',
       description: '',
       message: null,
-    }
-    this.handleInputChange = this.handleInputChange.bind(this)
+    };
+    this.handleInputChange = this.handleInputChange.bind(this);
   }
 
   handleInputChange(event) {
     this.setState({
       [event.target.name]: event.target.value,
-    })
+    });
   }
 
   handleClick(e) {
-    e.preventDefault()
-    console.log(this.state.name, this.state.description)
+    e.preventDefault();
+    console.log(this.state.name, this.state.description);
     let data = {
       name: this.state.name,
       capitals: this.state.capitals,
       area: this.state.area,
       description: this.state.description,
-    }
+    };
     api
       .addCountry(data)
       .then(result => {
-        console.log('SUCCESS!')
+        console.log('SUCCESS!');
         this.setState({
           name: '',
           capitals: '',
           area: '',
           description: '',
           message: `Your country '${this.state.name}' has been created`,
-        })
+        });
         setTimeout(() => {
           this.setState({
             message: null,
-          })
-        }, 2000)
+          });
+        }, 2000);
       })
-      .catch(err => this.setState({ message: err.toString() }))
+      .catch(err => this.setState({ message: err.toString() }));
   }
   render() {
     return (
@@ -90,6 +90,6 @@ export default class AddCountry extends Component {
         </form>
         {this.state.message && <div className="info">{this.state.message}</div>}
       </div>
-    )
+    );
   }
 }

@@ -1,12 +1,12 @@
-import React, { Component } from 'react'
-import api from '../../api'
+import React, { Component } from 'react';
+import api from '../../api';
 
 export default class Countries extends Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       countries: [],
-    }
+    };
   }
   render() {
     return (
@@ -16,17 +16,17 @@ export default class Countries extends Component {
           <li key={c._id}>{c.name}</li>
         ))}
       </div>
-    )
+    );
   }
   componentDidMount() {
     api
       .getCountries()
       .then(countries => {
-        console.log(countries)
+        console.log(countries);
         this.setState({
           countries: countries,
-        })
+        });
       })
-      .catch(err => console.log(err))
+      .catch(err => console.log(err));
   }
 }

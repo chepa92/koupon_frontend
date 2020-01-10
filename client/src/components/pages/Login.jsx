@@ -1,32 +1,32 @@
-import React, { Component } from 'react'
-import api from '../../api'
+import React, { Component } from 'react';
+import api from '../../api';
 
 export default class Login extends Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       username: '',
       password: '',
       message: null,
-    }
-    this.handleInputChange = this.handleInputChange.bind(this)
+    };
+    this.handleInputChange = this.handleInputChange.bind(this);
   }
 
   handleInputChange(event) {
     this.setState({
       [event.target.name]: event.target.value,
-    })
+    });
   }
 
   handleClick(e) {
-    e.preventDefault()
+    e.preventDefault();
     api
       .login(this.state.username, this.state.password)
       .then(result => {
-        console.log('SUCCESS!')
-        this.props.history.push('/') // Redirect to the home page
+        console.log('SUCCESS!');
+        this.props.history.push('/'); // Redirect to the home page
       })
-      .catch(err => this.setState({ message: err.toString() }))
+      .catch(err => this.setState({ message: err.toString() }));
   }
 
   render() {
@@ -56,6 +56,6 @@ export default class Login extends Component {
           <div className="info info-danger">{this.state.message}</div>
         )}
       </div>
-    )
+    );
   }
 }

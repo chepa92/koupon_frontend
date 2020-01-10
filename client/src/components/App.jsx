@@ -1,24 +1,24 @@
-import React, { Component } from 'react'
-import { Route, Link, NavLink, Switch } from 'react-router-dom'
-import Home from './pages/Home'
-import Countries from './pages/Countries'
-import AddCountry from './pages/AddCountry'
-import Secret from './pages/Secret'
-import Login from './pages/Login'
-import Signup from './pages/Signup'
-import api from '../api'
-import logo from '../logo.svg'
+import React, { Component } from 'react';
+import { Route, Link, NavLink, Switch } from 'react-router-dom';
+import Home from './pages/Home';
+import Countries from './pages/Countries';
+import AddCountry from './pages/AddCountry';
+import Secret from './pages/Secret';
+import Login from './pages/Login';
+import Signup from './pages/Signup';
+import api from '../api';
+import logo from '../logo.svg';
 
 export default class App extends Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       countries: [],
-    }
+    };
   }
 
   handleLogoutClick(e) {
-    api.logout()
+    api.logout();
   }
 
   render() {
@@ -51,6 +51,6 @@ export default class App extends Component {
           <Route render={() => <h2>404</h2>} />
         </Switch>
       </div>
-    )
+    );
   }
 }

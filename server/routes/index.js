@@ -4,7 +4,7 @@ const router = express.Router();
 
 router.get('/secret', isLoggedIn, (req, res, next) => {
   res.json({
-    secret: 424242,
+    secret: 4242421111,
     user: req.user,
   });
 });

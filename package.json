@@ -6,12 +6,15 @@
     "preinstall": "cd server && npm install && cd ../client && npm install && npm run build && cd ..",
     "start": "cd server && npm start",
     "dev:server": "cd server && npm run dev",
-    "dev:client": "cd client && npm run start"
+    "dev:client": "cd client && npm run start",
+    "dev": "concurrently \"cd server && npm run dev\" \"cd client && npm run start\""
   },
   "engines": {
     "node": "13.6.0"
   },
-  "dependencies": {},
+  "dependencies": {
+    "concurrently": "^5.0.2"
+  },
   "main": "index.js",
   "devDependencies": {},
   "repository": {

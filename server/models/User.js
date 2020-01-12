@@ -8,6 +8,10 @@ const rankLevel = ['firstLevel', 'secondLevel', 'therdLevel'];
 
 const userSchema = new Schema(
   {
+    admin: {
+      type: Boolean,
+      default: 0,
+    },
     username: {
       type: String,
       required: [true, 'User Name is required'],

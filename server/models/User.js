@@ -10,12 +10,12 @@ const userSchema = new Schema(
   {
     username: {
       type: String,
-      required: true,
+      required: [true, 'User Name is required'],
       index: 1,
     },
     password: {
       type: String,
-      required: true,
+      required: [true, 'Password required'],
     },
     email: String,
     age: Number,
@@ -24,6 +24,11 @@ const userSchema = new Schema(
       enum: genderValues,
     },
     img: String,
+    starsLevel: {
+      type: String,
+      enum: rankLevel,
+      default: rankLevel[0],
+    },
     orders: [coupon],
   },
   {
@@ -34,6 +39,8 @@ const userSchema = new Schema(
   },
   { collection: 'users' }
 );
+
+userSchema.path('age').validate(obj => obj > 18, 'Age must be above 18!');
 
 const User = mongoose.model('User', userSchema);
 module.exports = User;

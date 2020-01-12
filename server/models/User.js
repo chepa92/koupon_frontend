@@ -15,7 +15,6 @@ const userSchema = new Schema(
     username: {
       type: String,
       required: [true, 'User Name is required'],
-      index: 1,
     },
     password: {
       type: String,
@@ -33,7 +32,7 @@ const userSchema = new Schema(
       enum: rankLevel,
       default: rankLevel[0],
     },
-    orders: [coupon],
+    // orders: [coupon],
   },
   {
     timestamps: {

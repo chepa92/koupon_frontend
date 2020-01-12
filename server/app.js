@@ -55,10 +55,13 @@ require('./passport')(app);
 
 app.use('/api', require('./routes/index'));
 app.use('/api', require('./routes/auth'));
+app.use('/api', authRouter); //auth
 app.use('/api/public', publicRouter);
+app.use('/api/user', userRouter);
 
 app.use('/api/public', couponRoute);
 app.use('/api/user', couponRoute);
+app.use('/api', require('./routes/index')); //demo
 
 app.use('/api/*', (req, res, next) => {
   let err = new Error('Not Found');

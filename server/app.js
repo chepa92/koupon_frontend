@@ -11,7 +11,10 @@ const nocache = require('nocache');
 const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
 
-const couponRoute = require('./routes/coupon');
+const authRouter = require('./routes/authRouter');
+const publicRouter = require('./routes/publicRouter');
+const userRouter = require('./routes/userRouter');
+const adminRouter = require('./routes/adminRouter');
 
 require('./configs/database');
 
@@ -52,6 +55,7 @@ require('./passport')(app);
 
 app.use('/api', require('./routes/index'));
 app.use('/api', require('./routes/auth'));
+app.use('/api/public', publicRouter);
 
 app.use('/api/public', couponRoute);
 app.use('/api/user', couponRoute);
@@ -62,6 +66,7 @@ app.use('/api/*', (req, res, next) => {
   next(err);
 });
 
+/* serve static files after compilation */
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '../client/build/index.html'));
 });

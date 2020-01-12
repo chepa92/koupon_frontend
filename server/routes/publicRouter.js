@@ -1,17 +1,16 @@
 const express = require('express');
 const router = express.Router();
+const Coupon = require('../models/Coupon');
 
 const publicController = require('../controllers/publicController');
 
-router.get('/', async (req, res, next) => {
+router.get('/getAllCoupons', async (req, res, next) => {
   Coupon.find()
     .then(coupons => {
       res.json(coupons);
     })
     .catch(err => next(err));
 });
-
-
 
 module.exports = router;
 

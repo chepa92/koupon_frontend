@@ -11,6 +11,8 @@ const nocache = require('nocache');
 const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
 
+const couponRoute = require('./routes/coupon');
+
 require('./configs/database');
 
 const app_name = require('./package.json').name;
@@ -50,7 +52,9 @@ require('./passport')(app);
 
 app.use('/api', require('./routes/index'));
 app.use('/api', require('./routes/auth'));
-app.use('/api/countries', require('./routes/countries'));
+
+app.use('/api/public', couponRoute);
+app.use('/api/user', couponRoute);
 
 app.use('/api/*', (req, res, next) => {
   let err = new Error('Not Found');

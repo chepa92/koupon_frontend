@@ -42,8 +42,10 @@ const couponSchema = new Schema(
       createdAt: 'created_at',
       updatedAt: 'updated_at',
     },
+    views: Number,
+    like: Number,
   },
-  { collation: 'coupons' }
+  { collection: 'coupons' }
 );
 
 const Coupon = mongoose.model('Coupon', couponSchema);

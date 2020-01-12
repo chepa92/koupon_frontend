@@ -15,21 +15,13 @@ const category = [
   'Sports',
 ];
 
-const couponSchema = new Schema(
+const requestSchema = new Schema(
   {
     title: {
       type: String,
-      required: [true, 'The coupon title is required'],
+      required: [true, 'The request title is required'],
     },
-    couponName: {
-      type: String,
-      required: [true, 'The coupon name is required'],
-    },
-    discount: String,
-    link: {
-      type: String,
-      required: true,
-    },
+    requestSummery: String,
     categories: [
       {
         type: String,
@@ -45,8 +37,8 @@ const couponSchema = new Schema(
     views: Number,
     like: Number,
   },
-  { collection: 'coupons' }
+  { collection: 'requests' }
 );
 
-const Coupon = mongoose.model('Coupon', couponSchema);
-module.exports = Coupon;
+const Request = mongoose.model('Request', requestSchema);
+module.exports = Request;

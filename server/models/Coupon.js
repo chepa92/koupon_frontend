@@ -1,7 +1,8 @@
 const mongoose = require('mongoose');
-const user = require('./User');
+//const User = require('./User');
 const Schema = mongoose.Schema;
 
+//TODO - move to DB
 const category = [
   'Shoes',
   'Clothes',
@@ -38,10 +39,10 @@ const couponSchema = new Schema(
     ],
     brand: String,
     publisher: String,
-    timestamps: {
-      createdAt: 'created_at',
-      updatedAt: 'updated_at',
-    },
+    // timestamps: {
+    //   createdAt: 'created_at',
+    //   updatedAt: 'updated_at',
+    // },
     views: Number,
     like: Number,
   },

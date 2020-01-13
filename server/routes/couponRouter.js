@@ -3,7 +3,7 @@ const router = express.Router();
 const Coupon = require('../models/Coupon');
 const { isLoggedIn } = require('../middlewares');
 
-const publicController = require('../controllers/publicController');
+const couponController = require('../controllers/couponController');
 
 router.post('/coupon', isLoggedIn, (req, res, next) => {
   let {
@@ -33,8 +33,8 @@ router.post('/coupon', isLoggedIn, (req, res, next) => {
     .catch(err => next(err));
 });
 
-router.get('/getAllCoupons', publicController.getAll);
-router.get('/getCoupon', publicController.getCoupon);
+router.get('/getAllCoupons', couponController.getAll);
+router.get('/getCoupon', couponController.getCoupon);
 
 // router.get('/getAllCoupons', async (req, res, next) => {
 //   Coupon.find()

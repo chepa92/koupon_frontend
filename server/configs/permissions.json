@@ -1,4 +1,4 @@
 {
-  "admin": "/api/admin",
-  "admin": "/api/admin/coupon"
+  "admin": ["/api/coupon/getCoupon", "/api/coupon/giveCoupon", "/api/coupon/deleteCoupon"],
+  "user": ["/api/user/coupon", "/api/user/coupon1", "/api/user/coupon2"]
 }

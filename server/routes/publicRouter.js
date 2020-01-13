@@ -4,13 +4,14 @@ const Coupon = require('../models/Coupon');
 
 const publicController = require('../controllers/publicController');
 
-router.get('/getAllCoupons', async (req, res, next) => {
-  Coupon.find()
-    .then(coupons => {
-      res.json(coupons);
-    })
-    .catch(err => next(err));
-});
+router.get('/getAllCoupons', publicController.getAll);
+// router.get('/getAllCoupons', async (req, res, next) => {
+//   Coupon.find()
+//     .then(coupons => {
+//       res.json(coupons);
+//     })
+//     .catch(err => next(err));
+// });
 
 module.exports = router;
 

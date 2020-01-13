@@ -14,6 +14,7 @@ const MongoStore = require('connect-mongo')(session);
 const authRouter = require('./routes/authRouter');
 const couponRouter = require('./routes/couponRouter');
 const requestRouter = require('./routes/requestRouter');
+const userRouter = require('./routes/userRouter');
 
 require('./configs/database');
 
@@ -55,6 +56,7 @@ require('./passport')(app);
 app.use('/api', authRouter); //auth
 app.use('/api/request', requestRouter);
 app.use('/api/coupon', couponRouter);
+app.use('/api/user', userRouter);
 
 app.use('/api', require('./routes/index')); //demo
 

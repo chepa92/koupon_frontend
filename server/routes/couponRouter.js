@@ -1,8 +1,37 @@
 const express = require('express');
 const router = express.Router();
 const Coupon = require('../models/Coupon');
+const { isLoggedIn } = require('../middlewares');
 
 const publicController = require('../controllers/publicController');
+
+router.post('/coupon', isLoggedIn, (req, res, next) => {
+  let {
+    title,
+    couponName,
+    discount,
+    link,
+    categories,
+    brand,
+    publisher,
+  } = req.body;
+  Coupon.create({
+    title,
+    couponName,
+    discount,
+    link,
+    categories,
+    brand,
+    publisher,
+  })
+    .then(coupons => {
+      res.json({
+        success: true,
+        coupons,
+      });
+    })
+    .catch(err => next(err));
+});
 
 router.get('/getAllCoupons', publicController.getAll);
 router.get('/getCoupon', publicController.getCoupon);
@@ -15,8 +44,6 @@ router.get('/getCoupon', publicController.getCoupon);
 //     .catch(err => next(err));
 // });
 
-module.exports = router;
-
 // couponRouter.get('/getCoupon', couponController.getCoupon);
 // couponRouter.get('/searchCoupons', couponController.searchCoupon);
 
@@ -26,3 +53,5 @@ module.exports = router;
 // couponRouter.delete('/coupon', couponController.deleteCoupon);
 
 // module.exports = couponRouter;
+
+module.exports = router;

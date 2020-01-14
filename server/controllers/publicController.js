@@ -23,12 +23,10 @@ module.exports = {
   async searchCoupons(req, res, next) {
     const text = req.query.text;
     const category = req.query.category;
-    console.log(req.query.text);
-    // const result = await Coupon.find({ categories: { $in: [category, text] } });
+
     const result = await Coupon.find({
       $or: [
-        { categories: { $in: [text, category] } },
-        // { title: { $regex: [text, category] } },
+        { categories: { $in: [category, text] } },
         { brand: { $in: [text, category] } },
         { title: { $in: [text, category] } },
         { couponName: { $in: [text, category] } },

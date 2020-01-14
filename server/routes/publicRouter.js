@@ -6,6 +6,7 @@ const publicController = require('../controllers/publicController');
 
 router.get('/getAllCoupons', publicController.getAll);
 router.get('/getCoupon', publicController.getCoupon);
+router.get('/searchCoupons', publicController.searchCoupons);
 
 // router.get('/getAllCoupons', async (req, res, next) => {
 //   Coupon.find()

@@ -1,4 +1,5 @@
 const Coupon = require('../models/Coupon');
+const mongoose = require('mongoose');
 
 //some function that publicRouter use;
 
@@ -13,8 +14,12 @@ module.exports = {
 
   async getCoupon(req, res, next) {
     const id = req.query.id;
-
+    console.log(id);
     const result = await Coupon.findOne({ _id: id });
+    // .catch(err => {
+    //   console.error('db error', err);
+    //   res.status(500).send(err.message);
+    // });
 
     if (result) res.json(result);
     else res.status(404).send('error: Coupon not found');
@@ -50,6 +55,46 @@ module.exports = {
       res.json({ response: 'done' });
     } else {
       res.status(404).send('{error: "Coupon not found"}');
+    }
+  },
+
+  async addCoupon(req, res, next) {
+    let {
+      title,
+      couponName,
+      discount,
+      link,
+      categories,
+      brand,
+      publisher,
+    } = req.body;
+    Coupon.create({
+      title,
+      couponName,
+      discount,
+      link,
+      categories,
+      brand,
+      publisher,
+    })
+      .then(coupons => {
+        res.json({
+          success: true,
+          coupons,
+        });
+      })
+      .catch(err => next(err));
+  },
+
+  async deleteCoupon(req, res, next) {
+    const id = req.query.id;
+
+    const result = await Coupon.deleteOne({ _id: id });
+
+    if (result.deletedCount) {
+      res.json({ response: 'Coupon deleted' });
+    } else {
+      res.status(404).send('{error: "no user found"}');
     }
   },
 };

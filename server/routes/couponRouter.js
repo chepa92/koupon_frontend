@@ -9,34 +9,35 @@ router.get('/getAllCoupons', couponController.getAll);
 router.get('/getCoupon', couponController.getCoupon);
 router.get('/searchCoupons', couponController.searchCoupons);
 router.put('/', couponController.updateCoupon);
-
-router.post('/coupon', isLoggedIn, (req, res, next) => {
-  let {
-    title,
-    couponName,
-    discount,
-    link,
-    categories,
-    brand,
-    publisher,
-  } = req.body;
-  Coupon.create({
-    title,
-    couponName,
-    discount,
-    link,
-    categories,
-    brand,
-    publisher,
-  })
-    .then(coupons => {
-      res.json({
-        success: true,
-        coupons,
-      });
-    })
-    .catch(err => next(err));
-});
+router.delete('/delete', couponController.deleteCoupon);
+router.post('/', couponController.addCoupon); //TODO add isLoggedIn
+// router.post('/coupon', isLoggedIn, (req, res, next) => {
+//   let {
+//     title,
+//     couponName,
+//     discount,
+//     link,
+//     categories,
+//     brand,
+//     publisher,
+//   } = req.body;
+//   Coupon.create({
+//     title,
+//     couponName,
+//     discount,
+//     link,
+//     categories,
+//     brand,
+//     publisher,
+//   })
+//     .then(coupons => {
+//       res.json({
+//         success: true,
+//         coupons,
+//       });
+//     })
+//     .catch(err => next(err));
+// });
 
 // couponRouter.post('/coupon', couponController.addCoupon);
 // couponRouter.put('/editCoupon', couponController.editCoupon);

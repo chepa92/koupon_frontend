@@ -11,4 +11,5 @@ mongoose
   })
   .catch(err => {
     console.error('Error connecting to mongo', err);
+    res.status(500).send(err.message);
   });

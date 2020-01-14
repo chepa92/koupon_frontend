@@ -12,9 +12,9 @@ const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
 
 const authRouter = require('./routes/authRouter');
-const publicRouter = require('./routes/publicRouter');
+const couponRouter = require('./routes/couponRouter');
+const requestRouter = require('./routes/requestRouter');
 const userRouter = require('./routes/userRouter');
-const adminRouter = require('./routes/adminRouter');
 
 require('./configs/database');
 
@@ -57,9 +57,9 @@ app.use(
 require('./passport')(app);
 
 app.use('/api', authRouter); //auth
-app.use('/api/public', publicRouter);
+app.use('/api/request', requestRouter);
+app.use('/api/coupon', couponRouter);
 app.use('/api/user', userRouter);
-app.use('/api/admin', adminRouter);
 
 app.use('/api', require('./routes/index')); //demo
 

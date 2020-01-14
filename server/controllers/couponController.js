@@ -36,4 +36,20 @@ module.exports = {
     if (result) res.json(result);
     else res.status(404).send('error: Coupon not found');
   },
+
+  async updateCoupon(req, res, next) {
+    const id = req.query.id;
+    const body = req.body;
+
+    console.log(id);
+    console.log(body);
+
+    const result = await Coupon.updateOne({ _id: id }, body);
+
+    if (result.ok) {
+      res.json({ response: 'done' });
+    } else {
+      res.status(404).send('{error: "Coupon not found"}');
+    }
+  },
 };

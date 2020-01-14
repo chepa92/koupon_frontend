@@ -1,4 +1,15 @@
 {
-  "admin": ["/api/coupon/getCoupon", "/api/coupon/giveCoupon", "/api/coupon/deleteCoupon"],
-  "user": ["/api/user/coupon", "/api/user/coupon1", "/api/user/coupon2"]
+  "user": [
+    "/api/coupon/getCoupon",
+    "/api/coupon/getAllCoupons",
+    "/api/coupon/searchCoupons",
+    "/api/coupon",
+    "/api/coupon/setCouponInactive",
+    "/api/coupon/likeCoupon"
+  ],
+  "public": [
+    "/api/coupon/getCoupon",
+    "/api/coupon/getAllCoupons",
+    "/api/coupon/searchCoupons"
+  ]
 }

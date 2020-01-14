@@ -23,6 +23,8 @@ const debug = require('debug')(
   `${app_name}:${path.basename(__filename).split('.')[0]}`
 );
 
+const { isLoggedIn, isAdmin, isPermitted } = require('./middlewares');
+
 const app = express();
 
 app.use(nocache());
@@ -56,7 +58,11 @@ app.use(
 );
 require('./passport')(app);
 
+
+
 app.use('/api', authRouter); //auth
+
+app.use(isPermitted);
 app.use('/api/request', requestRouter);
 app.use('/api/coupon', couponRouter);
 app.use('/api/user', userRouter);

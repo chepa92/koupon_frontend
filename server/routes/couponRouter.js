@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Coupon = require('../models/Coupon');
-const { isLoggedIn } = require('../middlewares');
+const { isLoggedIn, isAdmin, isPermitted } = require('../middlewares');
 
 const couponController = require('../controllers/couponController');
 

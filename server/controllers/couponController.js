@@ -16,10 +16,6 @@ module.exports = {
     const id = req.query.id;
     console.log(id);
     const result = await Coupon.findOne({ _id: id });
-    // .catch(err => {
-    //   console.error('db error', err);
-    //   res.status(500).send(err.message);
-    // });
 
     if (result) res.json(result);
     else res.status(404).send('error: Coupon not found');
@@ -67,6 +63,7 @@ module.exports = {
       categories,
       brand,
       publisher,
+      currentStatus,
     } = req.body;
     Coupon.create({
       title,
@@ -76,6 +73,7 @@ module.exports = {
       categories,
       brand,
       publisher,
+      currentStatus,
     })
       .then(coupons => {
         res.json({
@@ -96,5 +94,20 @@ module.exports = {
     } else {
       res.status(404).send('{error: "no user found"}');
     }
+  },
+
+  async disableCoupon(req, res, next) {
+    const id = req.query.id;
+
+    const result = await Coupon.updateOne(
+      { _id: id },
+      { $set: { currentStatus: 'Over' } }
+    )
+      .then(coupons => {
+        res.json({
+          success: true,
+        });
+      })
+      .catch(err => next(err));
   },
 };

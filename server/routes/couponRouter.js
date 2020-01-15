@@ -11,6 +11,8 @@ router.get('/searchCoupons', couponController.searchCoupons);
 router.put('/', couponController.updateCoupon);
 router.delete('/delete', couponController.deleteCoupon);
 router.post('/', couponController.addCoupon); //TODO add isLoggedIn
+router.put('/setCouponInactive', couponController.disableCoupon);
+
 // router.post('/coupon', isLoggedIn, (req, res, next) => {
 //   let {
 //     title,

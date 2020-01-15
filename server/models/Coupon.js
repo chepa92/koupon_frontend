@@ -2,7 +2,9 @@ const mongoose = require('mongoose');
 //const User = require('./User');
 const Schema = mongoose.Schema;
 
-//TODO - move to DB
+//****TODO - move to DB
+const status = ['Active', 'Pending', 'Over'];
+
 const category = [
   'Shoes',
   'Clothes',
@@ -45,6 +47,10 @@ const couponSchema = new Schema(
     // },
     views: Number,
     like: Number,
+    currentStatus: {
+      type: String,
+      enum: status,
+    },
   },
   { collection: 'coupons' }
 );

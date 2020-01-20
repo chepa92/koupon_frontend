@@ -5,6 +5,8 @@ const coupon = require('./Coupon');
 const genderValues = ['Male', 'Female'];
 
 const rankLevel = ['firstLevel', 'secondLevel', 'therdLevel'];
+//****TODO - move to DB
+const status = ['Active', 'Suspended'];
 
 const userSchema = new Schema(
   {
@@ -31,6 +33,11 @@ const userSchema = new Schema(
       type: String,
       enum: rankLevel,
       default: rankLevel[0],
+    },
+    currentStatus: {
+      type: String,
+      enum: status,
+      default: status[0],
     },
     // orders: [coupon],
   },

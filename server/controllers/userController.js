@@ -62,6 +62,23 @@ module.exports = {
             })
             .catch(err => next(err));
     },
+
+    async suspendUser(req, res, next){
+        const id = req.query.id;
+
+    const result = await User.updateOne(
+      { _id: id },
+      { $set: { currentStatus: 'Suspended' } }
+    )
+      .then(users => {
+        res.json({
+          success: true,
+          users
+        });
+      })
+      .catch(err => next(err));
+  },
+    
  
 
 

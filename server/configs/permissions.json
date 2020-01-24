@@ -1,5 +1,7 @@
 {
   "user": [
+    "/api/user/suspendUser", 
+
     "/api/coupon/getCoupon",
     "/api/coupon/getAllCoupons",
     "/api/coupon/searchCoupons",

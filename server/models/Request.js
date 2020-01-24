@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const user = require('./User');
 const Schema = mongoose.Schema;
 
+const status = ['Awaiting', 'Closed'];
 const category = [
   'Shoes',
   'Clothes',
@@ -30,12 +31,25 @@ const requestSchema = new Schema(
     ],
     brand: String,
     publisher: String,
-    timestamps: {
-      createdAt: 'created_at',
-      updatedAt: 'updated_at',
+    // date: { type: Date, default: Date.now },
+    status: {
+      type: String,
+      enum: status,
+      default: status[0],
     },
-    views: Number,
-    like: Number,
+    views: {
+      type: Number,
+      default: 0,
+    },
+    likes: {
+      type: Number,
+      default: 0,
+    },
+  },
+  { timestamps: {
+    createdAt: 'created_at',
+    updatedAt: 'updated_at',
+    }
   },
   { collection: 'requests' }
 );

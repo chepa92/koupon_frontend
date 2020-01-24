@@ -41,16 +41,17 @@ const couponSchema = new Schema(
     ],
     brand: String,
     publisher: String,
-    // timestamps: {
-    //   createdAt: 'created_at',
-    //   updatedAt: 'updated_at',
-    // },
     views: Number,
     like: Number,
     currentStatus: {
       type: String,
       enum: status,
     },
+  },{
+  timestamps: {
+    createdAt: 'created_at',
+    updatedAt: 'updated_at',
+   }
   },
   { collection: 'coupons' }
 );

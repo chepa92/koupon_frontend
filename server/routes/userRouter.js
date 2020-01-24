@@ -9,7 +9,7 @@ router.get('/getAllUsers', userController.getAll);
 router.get('/user', userController.getUser);
 router.put('/updateUser', userController.updateUser);
 router.put('/suspendUser', userController.suspendUser);
-// router.post('/user', userController.addUser);
-// router.delete('/deleteUser', userController.getAll);
+router.post('/user', userController.addUser);
+router.delete('/deleteUser', userController.getAll);
 
 module.exports = router

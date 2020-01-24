@@ -92,7 +92,7 @@ module.exports = {
     if (result.deletedCount) {
       res.json({ response: 'Coupon deleted' });
     } else {
-      res.status(404).send('{error: "no user found"}');
+      res.status(404).send('{error: "no Coupon found"}');
     }
   },
 

@@ -53,6 +53,7 @@ module.exports = {
             gender,
             img,
             starsLevel,
+            currentStatus,
           })
             .then(users => {
               res.json({
@@ -78,6 +79,18 @@ module.exports = {
       })
       .catch(err => next(err));
   },
+
+  async deleteUser(req, res, next){
+    const id = req.query.id;
+
+    const result = await User.deleteOne({ _id: id });
+
+    if (result.deletedCount) {
+      res.json({ response: 'User deleted' });
+    } else {
+      res.status(404).send('{error: "no user found"}');
+    }
+  }
     
  
 

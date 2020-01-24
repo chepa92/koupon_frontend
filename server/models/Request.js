@@ -31,7 +31,6 @@ const requestSchema = new Schema(
     ],
     brand: String,
     publisher: String,
-    // date: { type: Date, default: Date.now },
     status: {
       type: String,
       enum: status,

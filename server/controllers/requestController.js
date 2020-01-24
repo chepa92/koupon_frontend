@@ -17,8 +17,35 @@ module.exports = {
     else res.status(404).send('error: Request not found');
   },
 
+  async updateReqst(req, res, next) {
+    const id = req.query.id;
+    const body = req.body;
+
+    console.log(id);
+    console.log(body);
+
+    const result = await Request.updateOne({ _id: id }, body);
+
+    if (result.ok) {
+      res.json({ response: 'Done!' });
+    } else {
+      res.status(404).send('{error: "Request not found"}');
+    }
+  },
+
+  async deleteReqst(req, res, next) {
+    const id = req.query.id;
+
+    const result = await Request.deleteOne({ _id: id });
+
+    if (result.deletedCount) {
+      res.json({ response: 'Request deleted' });
+    } else {
+      res.status(404).send('{error: "no Request found"}');
+    }
+  },
+
   async addReqst(req, res, next) {
-    // console.log(publisherId);
     let {
       title,
       requestSummery,
@@ -39,6 +66,21 @@ module.exports = {
         res.json({
           success: true,
           requests,
+        });
+      })
+      .catch(err => next(err));
+  },
+  
+  async closeReqst(req, res, next) {
+    const id = req.query.id;
+
+    const result = await Request.updateOne(
+      { _id: id },
+      { $set: { status: 'Closed' } }
+    )
+      .then(coupons => {
+        res.json({
+          success: true,
         });
       })
       .catch(err => next(err));

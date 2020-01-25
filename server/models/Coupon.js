@@ -43,6 +43,11 @@ const couponSchema = new Schema(
     publisher: String,
     views: Number,
     like: Number,
+    like: [
+      {
+        type: Object,
+      },
+    ],
     currentStatus: {
       type: String,
       enum: status,

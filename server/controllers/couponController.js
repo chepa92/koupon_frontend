@@ -110,4 +110,19 @@ module.exports = {
       })
       .catch(err => next(err));
   },
+
+  async likeCoupon(req, res, next) {
+    const id = req.query.id;
+
+    const result = await Coupon.updateOne(
+      { _id: id },
+      { $addToSet: { like: req.user._id } }
+    )
+      .then(coupons => {
+        res.json({
+          success: true,
+        });
+      })
+      .catch(err => next(err));
+  },
 };

@@ -43,17 +43,22 @@ const couponSchema = new Schema(
     publisher: Object,
     views: [
       {
-        type: Object,
+        type: Array,
       },
     ],
     like: [
       {
-        type: Object,
+        type: Array,
       },
     ],
     comments: [
       {
-        type: Object,
+        type: Array,
+      },
+    ],
+    notify: [
+      {
+        type: Array,
       },
     ],
     currentStatus: {

@@ -10,5 +10,6 @@ router.put('/updateCoupon', couponController.updateCoupon);
 router.delete('/delete', couponController.deleteCoupon);
 router.post('/addCoupon', couponController.addCoupon); //TODO add isLoggedIn
 router.put('/setCouponInactive', couponController.disableCoupon);
+router.post('/likeCoupon', couponController.likeCoupon); //TODO add isLoggedIn
 
 module.exports = router;

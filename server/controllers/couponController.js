@@ -14,7 +14,6 @@ module.exports = {
 
   async getCoupon(req, res, next) {
     const id = req.query.id;
-    console.log(id);
     const result = await Coupon.findOne({ _id: id });
 
     if (result) res.json(result);
@@ -62,7 +61,7 @@ module.exports = {
       link,
       categories,
       brand,
-      publisher = req.user.id,
+      publisher = req.user._id,
       currentStatus,
     } = req.body;
     Coupon.create({

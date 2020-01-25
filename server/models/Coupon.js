@@ -40,9 +40,12 @@ const couponSchema = new Schema(
       },
     ],
     brand: String,
-    publisher: String,
-    views: Number,
-    like: Number,
+    publisher: Object,
+    views: [
+      {
+        type: Object,
+      },
+    ],
     like: [
       {
         type: Object,
@@ -52,11 +55,12 @@ const couponSchema = new Schema(
       type: String,
       enum: status,
     },
-  },{
-  timestamps: {
-    createdAt: 'created_at',
-    updatedAt: 'updated_at',
-   }
+  },
+  {
+    timestamps: {
+      createdAt: 'created_at',
+      updatedAt: 'updated_at',
+    },
   },
   { collection: 'coupons' }
 );

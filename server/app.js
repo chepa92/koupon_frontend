@@ -18,6 +18,9 @@ const userRouter = require('./routes/userRouter');
 
 require('./configs/database');
 
+process.env['NTBA_FIX_319'] = 1;
+require('./helpers/telegramHelper');
+
 const app_name = require('./package.json').name;
 const debug = require('debug')(
   `${app_name}:${path.basename(__filename).split('.')[0]}`

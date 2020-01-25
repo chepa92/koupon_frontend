@@ -4,7 +4,6 @@ const coupon = require('./Coupon');
 
 const genderValues = ['Male', 'Female'];
 
-const rankLevel = ['firstLevel', 'secondLevel', 'therdLevel'];
 //****TODO - move to DB
 const status = ['Active', 'Suspended'];
 
@@ -23,17 +22,13 @@ const userSchema = new Schema(
       required: [true, 'Password required'],
     },
     email: String,
+    telegram: Number,
     age: Number,
     gender: {
       type: String,
       enum: genderValues,
     },
     img: String,
-    starsLevel: {
-      type: String,
-      enum: rankLevel,
-      default: rankLevel[0],
-    },
     currentStatus: {
       type: String,
       enum: status,

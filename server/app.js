@@ -58,14 +58,12 @@ app.use(
 );
 require('./passport')(app);
 
-
-
 app.use('/api', authRouter); //auth
 
-app.use(isPermitted);
-app.use('/api/request', requestRouter);
-app.use('/api/coupon', couponRouter);
-app.use('/api/user', userRouter);
+//app.use(isPermitted);
+app.use('/api/request', isPermitted, requestRouter);
+app.use('/api/coupon', isPermitted, couponRouter);
+app.use('/api/user', isPermitted, userRouter);
 
 app.use('/api', require('./routes/index')); //demo
 

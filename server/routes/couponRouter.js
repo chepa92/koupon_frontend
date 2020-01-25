@@ -7,9 +7,9 @@ const couponController = require('../controllers/couponController');
 router.get('/getAllCoupons', couponController.getAll);
 router.get('/getCoupon', couponController.getCoupon);
 router.get('/searchCoupons', couponController.searchCoupons);
-router.put('/', couponController.updateCoupon);
+router.put('/updateCoupon', couponController.updateCoupon);
 router.delete('/delete', couponController.deleteCoupon);
-router.post('/', couponController.addCoupon); //TODO add isLoggedIn
+router.post('/addCoupon', couponController.addCoupon); //TODO add isLoggedIn
 router.put('/setCouponInactive', couponController.disableCoupon);
 
 // router.post('/coupon', isLoggedIn, (req, res, next) => {

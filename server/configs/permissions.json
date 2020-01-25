@@ -1,11 +1,11 @@
 {
   "user": [
-    "/api/user/suspendUser", 
-
+    "/api/user/suspendUser",
+    "/api/coupon/updateCoupon",
     "/api/coupon/getCoupon",
     "/api/coupon/getAllCoupons",
     "/api/coupon/searchCoupons",
-    "/api/coupon",
+    "/api/coupon/addCoupon",
     "/api/coupon/setCouponInactive",
     "/api/coupon/likeCoupon"
   ],

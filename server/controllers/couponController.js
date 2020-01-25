@@ -62,7 +62,7 @@ module.exports = {
       link,
       categories,
       brand,
-      publisher,
+      publisher = req.user.id,
       currentStatus,
     } = req.body;
     Coupon.create({

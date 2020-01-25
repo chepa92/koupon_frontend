@@ -8,8 +8,9 @@ router.get('/getCoupon', couponController.getCoupon);
 router.get('/searchCoupons', couponController.searchCoupons);
 router.put('/updateCoupon', couponController.updateCoupon);
 router.delete('/delete', couponController.deleteCoupon);
-router.post('/addCoupon', couponController.addCoupon); //TODO add isLoggedIn
+router.post('/addCoupon', couponController.addCoupon);
 router.put('/setCouponInactive', couponController.disableCoupon);
-router.post('/likeCoupon', couponController.likeCoupon); //TODO add isLoggedIn
+router.post('/likeCoupon', couponController.likeCoupon);
+router.post('/commentCoupon', couponController.commentCoupon);
 
 module.exports = router;

@@ -51,6 +51,11 @@ const couponSchema = new Schema(
         type: Object,
       },
     ],
+    comments: [
+      {
+        type: Object,
+      },
+    ],
     currentStatus: {
       type: String,
       enum: status,

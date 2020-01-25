@@ -115,7 +115,31 @@ module.exports = {
 
     const result = await Coupon.updateOne(
       { _id: id },
-      { $addToSet: { like: req.user._id } }
+      { $addToSet: { like: { user_id: req.user._id } } }
+    )
+      .then(coupons => {
+        res.json({
+          success: true,
+        });
+      })
+      .catch(err => next(err));
+  },
+
+  async commentCoupon(req, res, next) {
+    const id = req.query.id;
+    const comment = req.query.comment;
+
+    const result = await Coupon.updateOne(
+      { _id: id },
+      {
+        $addToSet: {
+          comments: {
+            user_id: req.user._id,
+            comment: comment,
+            date: new Date(),
+          },
+        },
+      }
     )
       .then(coupons => {
         res.json({

@@ -6,7 +6,8 @@
     "/api/coupon/searchCoupons",
     "/api/coupon/addCoupon",
     "/api/coupon/setCouponInactive",
-    "/api/coupon/likeCoupon"
+    "/api/coupon/likeCoupon",
+    "/api/coupon/commentCoupon"
   ],
   "public": [
     "/api/coupon/getCoupon",

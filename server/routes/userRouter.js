@@ -1,8 +1,5 @@
 const express = require('express');
-const { isLoggedIn, isAdmin, isPermitted } = require('../middlewares');
-
 const router = express.Router();
-
 const userController = require('../controllers/userController');
 
 router.get('/getAllUsers', userController.getAll);

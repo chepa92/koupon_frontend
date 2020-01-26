@@ -23,6 +23,7 @@ const userSchema = new Schema(
     },
     email: String,
     telegram: Number,
+    telegram_notify: Boolean,
     age: Number,
     gender: {
       type: String,

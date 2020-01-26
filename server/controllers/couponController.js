@@ -1,5 +1,4 @@
 const Coupon = require('../models/Coupon');
-const querystring = require('query-string');
 const mongoose = require('mongoose');
 
 const bestBuyApi = require('../helpers/bestbuyHelper');

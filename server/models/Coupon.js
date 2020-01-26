@@ -1,22 +1,10 @@
 const mongoose = require('mongoose');
 //const User = require('./User');
 const Schema = mongoose.Schema;
+const Category = require('./Category');
 
 //****TODO - move to DB
 const status = ['Active', 'Pending', 'Over'];
-
-const category = [
-  'Shoes',
-  'Clothes',
-  'Make Up',
-  'Computers',
-  'Phones',
-  'Electronics',
-  'Music',
-  'Man',
-  'Women',
-  'Sports',
-];
 
 const couponSchema = new Schema(
   {
@@ -33,14 +21,14 @@ const couponSchema = new Schema(
       type: String,
       required: true,
     },
-    categories: [
-      {
-        type: String,
-        enum: category,
-      },
-    ],
+    categories: [Category],
     brand: String,
     publisher: Object,
+    priceHistory: [
+      {
+        type: Array,
+      },
+    ],
     views: [
       {
         type: Array,
@@ -64,6 +52,7 @@ const couponSchema = new Schema(
     currentStatus: {
       type: String,
       enum: status,
+      default: status[0],
     },
   },
   {

@@ -1,5 +1,8 @@
 const Coupon = require('../models/Coupon');
+const querystring = require('query-string');
 const mongoose = require('mongoose');
+
+const bestBuyApi = require('../helpers/bestbuyHelper');
 
 //some function that publicRouter use;
 
@@ -168,5 +171,65 @@ module.exports = {
         });
       })
       .catch(err => next(err));
+  },
+
+  async priceHistory(req, res, next) {
+    const id = req.query.id;
+    const priceArr = [];
+    const coupon = await Coupon.findOne(
+      { _id: id },
+      { _id: 0, title: 1, categories: 1, brand: 1 }
+    );
+    const couponName = coupon.title;
+    const categoryId = coupon.categories[0].id;
+    const brand = coupon.brand;
+
+    console.log(couponName);
+    console.log(brand);
+
+    await bestBuyApi
+      .getBestPrice(categoryId, brand, couponName)
+      .then(data => {
+        let i = 0;
+        data.products.forEach(element => {
+          console.log(element.salePrice);
+          priceArr[i++] = element.salePrice;
+          Coupon.updateOne(
+            { _id: id },
+            {
+              $addToSet: {
+                priceHistory: {
+                  price: element.salePrice,
+                  url: element.url,
+                  date: new Date(),
+                },
+              },
+            }
+          );
+        });
+        console.log(priceArr[0]);
+        res.json(data);
+      })
+      .catch(err => next(err));
+
+    // priceArr.forEach(element => {
+    //   Coupon.updateOne(
+    //     { _id: id },
+    //     {
+    //       $addToSet: {
+    //         priceHistory: {
+    //           price: element,
+    //           date: new Date(),
+    //         },
+    //       },
+    //     }
+    //   )
+    //     .then(coupons => {
+    //       res.json({
+    //         success: true,
+    //       });
+    //     })
+    //     .catch(err => next(err));
+    // });
   },
 };

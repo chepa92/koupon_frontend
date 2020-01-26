@@ -2,7 +2,6 @@ const axios = require('axios');
 const service = axios.create();
 const apiKey = process.env.BEST_BUY_TOKEN;
 
-
 const errHandler = err => {
   console.error(err);
   if (err.response && err.response.data) {
@@ -15,6 +14,28 @@ const errHandler = err => {
 module.exports = {
   service: service,
 
+  async getBestPrice(categoryId, brand, couponName, res) {
+    const words = couponName.split(' ');
+    console.log(couponName);
+
+    try {
+      return (data = await axios
+        .get(
+          `https://api.bestbuy.com/v1/products((search=${brand}&search=${words[1]}&search=${words[2]})&onSale=true&(categoryPath.id=${categoryId}))?apiKey=${apiKey}&sort=name.asc&show=name,url,salePrice,regularPrice,percentSavings,onlineAvailability&facet=bestSellingRank&pageSize=20&format=json`
+        )
+        .then(response => {
+          // handle success
+          console.log(response.data.products[1]);
+          return response.data;
+        })
+        .catch(error => {
+          // handle error
+          console.log(error);
+        }));
+    } catch (error) {
+      console.error(error);
+    }
+  },
   async getItem() {
     try {
       const response = await axios
@@ -35,7 +56,5 @@ module.exports = {
     } catch (error) {
       console.error(error);
     }
-  }
-
-
+  },
 };

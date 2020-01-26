@@ -13,5 +13,6 @@ router.put('/setCouponInactive', couponController.disableCoupon);
 router.post('/likeCoupon', couponController.likeCoupon);
 router.post('/commentCoupon', couponController.commentCoupon);
 router.post('/notifyCoupon', couponController.notifyCoupon);
+router.get('/priceHistory', couponController.priceHistory);
 
 module.exports = router;

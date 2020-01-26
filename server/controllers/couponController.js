@@ -4,6 +4,10 @@ const mongoose = require('mongoose');
 
 const bestBuyApi = require('../helpers/bestbuyHelper');
 
+process.env['NTBA_FIX_319'] = 1;
+const telegram = require('../helpers/telegramHelper');
+
+const userController = require('../controllers/userController');
 //some function that publicRouter use;
 
 module.exports = {
@@ -65,7 +69,7 @@ module.exports = {
       categories,
       brand,
       publisher = req.user._id,
-      currentStatus,
+      active = true,
     } = req.body;
     Coupon.create({
       title,
@@ -75,9 +79,10 @@ module.exports = {
       categories,
       brand,
       publisher,
-      currentStatus,
+      active,
     })
       .then(coupons => {
+        notifyNewCoupon(coupons);
         res.json({
           success: true,
           coupons,
@@ -103,7 +108,7 @@ module.exports = {
 
     const result = await Coupon.updateOne(
       { _id: id },
-      { $set: { currentStatus: 'Over' } }
+      { $set: { active: false } }
     )
       .then(coupons => {
         res.json({
@@ -115,7 +120,6 @@ module.exports = {
 
   async likeCoupon(req, res, next) {
     const id = req.query.id;
-
     const result = await Coupon.updateOne(
       { _id: id },
       { $addToSet: { like: { user_id: req.user._id } } }
@@ -154,7 +158,7 @@ module.exports = {
 
   async notifyCoupon(req, res, next) {
     const id = req.query.id;
-
+    //telegram.sendMessage(req);
     const result = await Coupon.updateOne(
       { _id: id },
       {
@@ -233,3 +237,14 @@ module.exports = {
     // });
   },
 };
+
+async function notifyNewCoupon(coupon) {
+  let users = await userController.notifyUsers();
+  console.log(coupon);
+  users.forEach(user => {
+    telegram.sendMessage(
+      user,
+      `New Coupon Added: ${coupon.title} \nLink: ${coupon.link} \nDiscount: ${coupon.discount}`
+    );
+  });
+}

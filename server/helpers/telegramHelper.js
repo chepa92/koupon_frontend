@@ -1,5 +1,4 @@
 const TelegramBot = require('node-telegram-bot-api');
-
 const token = process.env.TELEGRAM_BOT_TOKEN;
 
 // https://github.com/yagop/node-telegram-bot-api
@@ -25,5 +24,15 @@ bot.on('message', msg => {
   const chatId = msg.chat.id;
 
   // send a message to the chat acknowledging receipt of their message
-  bot.sendMessage(chatId, 'Received your message');
+  bot.sendMessage(
+    chatId,
+    `Received your message, your id: ${chatId}, please update it in your profile`
+  );
 });
+
+module.exports = {
+  sendMessage(user, msg) {
+    const chatId = user.telegram;
+    bot.sendMessage(chatId, msg);
+  },
+};

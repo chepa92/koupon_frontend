@@ -49,10 +49,8 @@ const couponSchema = new Schema(
         type: Array,
       },
     ],
-    currentStatus: {
-      type: String,
-      enum: status,
-      default: status[0],
+    active: {
+      type: Boolean,
     },
   },
   {

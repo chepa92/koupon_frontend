@@ -4,9 +4,6 @@ const coupon = require('./Coupon');
 
 const genderValues = ['Male', 'Female'];
 
-//****TODO - move to DB
-const status = ['Active', 'Suspended'];
-
 const userSchema = new Schema(
   {
     admin: {
@@ -30,11 +27,7 @@ const userSchema = new Schema(
       enum: genderValues,
     },
     img: String,
-    currentStatus: {
-      type: String,
-      enum: status,
-      default: status[0],
-    },
+    active: Boolean,
     // orders: [coupon],
   },
   {

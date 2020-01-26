@@ -66,7 +66,7 @@ module.exports = {
       categories,
       brand,
       publisher = req.user._id,
-      currentStatus,
+      active = true,
     } = req.body;
     Coupon.create({
       title,
@@ -76,7 +76,7 @@ module.exports = {
       categories,
       brand,
       publisher,
-      currentStatus,
+      active,
     })
       .then(coupons => {
         notifyNewCoupon(coupons);
@@ -105,7 +105,7 @@ module.exports = {
 
     const result = await Coupon.updateOne(
       { _id: id },
-      { $set: { currentStatus: 'Over' } }
+      { $set: { active: false } }
     )
       .then(coupons => {
         res.json({

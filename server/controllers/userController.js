@@ -54,7 +54,7 @@ module.exports = {
       gender,
       img,
       starsLevel,
-      currentStatus,
+      active,
     })
       .then(users => {
         res.json({
@@ -70,7 +70,7 @@ module.exports = {
 
     const result = await User.updateOne(
       { _id: id },
-      { $set: { currentStatus: 'Suspended' } }
+      { $set: { active: false } }
     )
       .then(users => {
         res.json({

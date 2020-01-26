@@ -31,8 +31,8 @@ bot.on('message', msg => {
 });
 
 module.exports = {
-  sendMessage(user, msg) {
+  sendMessage(user, img_url, msg) {
     const chatId = user.telegram;
-    bot.sendMessage(chatId, msg);
+    bot.sendPhoto(chatId, img_url, { caption: msg });
   },
 };

@@ -214,35 +214,16 @@ module.exports = {
         res.json(data);
       })
       .catch(err => next(err));
-
-    // priceArr.forEach(element => {
-    //   Coupon.updateOne(
-    //     { _id: id },
-    //     {
-    //       $addToSet: {
-    //         priceHistory: {
-    //           price: element,
-    //           date: new Date(),
-    //         },
-    //       },
-    //     }
-    //   )
-    //     .then(coupons => {
-    //       res.json({
-    //         success: true,
-    //       });
-    //     })
-    //     .catch(err => next(err));
-    // });
   },
 };
 
 async function notifyNewCoupon(coupon) {
   let users = await userController.notifyUsers();
-  console.log(coupon);
+  const img_url = coupon.link;
   users.forEach(user => {
     telegram.sendMessage(
       user,
+      img_url,
       `New Coupon Added: ${coupon.title} \nLink: ${coupon.link} \nDiscount: ${coupon.discount}`
     );
   });

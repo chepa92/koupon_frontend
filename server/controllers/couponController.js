@@ -179,64 +179,56 @@ module.exports = {
 
   async priceHistory(req, res, next) {
     const id = req.query.id;
-    const priceArr = [];
+    var priceArr = [];
+    var elementArr = [];
     const coupon = await Coupon.findOne(
       { _id: id },
       { _id: 0, title: 1, categories: 1, brand: 1 }
     );
-    const couponName = coupon.title;
-    const categoryId = coupon.categories[0].id;
-    const brand = coupon.brand;
+    if (coupon) {
+      const couponName = coupon.title;
+      const categoryId = coupon.categories[0].id;
+      const brand = coupon.brand;
+      console.log(coupon);
 
-    console.log(couponName);
-    console.log(brand);
-
-    await bestBuyApi
-      .getBestPrice(categoryId, brand, couponName)
-      .then(data => {
-        let i = 0;
-        data.products.forEach(element => {
-          console.log(element.salePrice);
-          priceArr[i++] = element.salePrice;
-          Coupon.updateOne(
-            { _id: id },
-            {
-              $addToSet: {
-                priceHistory: {
-                  price: element.salePrice,
-                  url: element.url,
-                  date: new Date(),
-                },
-              },
-            }
-          );
-        });
-        console.log(priceArr[0]);
-        res.json(data);
-      })
-      .catch(err => next(err));
-
-    // priceArr.forEach(element => {
-    //   Coupon.updateOne(
-    //     { _id: id },
-    //     {
-    //       $addToSet: {
-    //         priceHistory: {
-    //           price: element,
-    //           date: new Date(),
-    //         },
-    //       },
-    //     }
-    //   )
-    //     .then(coupons => {
-    //       res.json({
-    //         success: true,
-    //       });
-    //     })
-    //     .catch(err => next(err));
-    // });
+      bestBuyApi
+        .getBestPrice(categoryId, brand, couponName)
+        .then(data => {
+          data.products.forEach(element => {
+            elementArr.push(element);
+            priceArr.push(element.salePrice);
+          });
+          const result = addPriceToHistory(elementArr, id);
+          res.json(data);
+        })
+        .catch(err => next(err));
+    } else {
+      res.status(404).send('{error: "Coupon not found"}');
+    }
   },
 };
+
+async function addPriceToHistory(elementArr, id) {
+  console.log(elementArr);
+  for (let i = 0; i < elementArr.length; i++) {
+    console.log(elementArr[i].url);
+    const result = await Coupon.updateOne(
+      { _id: id },
+      // { priceHistory.price: { $ne: elementArr[i].salePrice } },
+      {
+        $addToSet: {
+          priceHistory: {
+            price: elementArr[i].salePrice,
+            url: elementArr[i].url,
+            date: new Date(),
+          },
+        },
+      }
+    ).catch(err => {
+      console.log(err);
+    });
+  }
+}
 
 async function notifyNewCoupon(coupon) {
   let users = await userController.notifyUsers();

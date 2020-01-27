@@ -24,11 +24,7 @@ const couponSchema = new Schema(
     categories: [Category],
     brand: String,
     publisher: Object,
-    priceHistory: [
-      {
-        type: Array,
-      },
-    ],
+    priceHistory: [Object],
     views: [
       {
         type: Array,

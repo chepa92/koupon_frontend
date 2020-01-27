@@ -16,21 +16,22 @@ module.exports = {
 
   async getBestPrice(categoryId, brand, couponName, res) {
     const words = couponName.split(' ');
-    console.log(couponName);
+    console.log(words);
 
     try {
       return (data = await axios
         .get(
-          `https://api.bestbuy.com/v1/products((search=${brand}&search=${words[1]}&search=${words[2]})&onSale=true&(categoryPath.id=${categoryId}))?apiKey=${apiKey}&sort=name.asc&show=name,url,salePrice,regularPrice,percentSavings,onlineAvailability&facet=bestSellingRank&pageSize=20&format=json`
+          `https://api.bestbuy.com/v1/products((search=${brand}&search=${words[1]}&search=${words[2]})&onSale=true&(categoryPath.id=${categoryId}))?apiKey=${apiKey}&sort=name.asc&show=name,url,salePrice,regularPrice,percentSavings,onlineAvailability&facet=bestSellingRank&pageSize=10&format=json`
         )
         .then(response => {
           // handle success
-          console.log(response.data.products[1]);
+          console.log(response.data.products[0]);
           return response.data;
         })
         .catch(error => {
           // handle error
           console.log(error);
+          return err;
         }));
     } catch (error) {
       console.error(error);

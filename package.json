@@ -13,9 +13,7 @@
     "node": "13.6.0"
   },
   "dependencies": {
-    "axios": "^0.19.2",
-    "concurrently": "^5.0.2",
-    "query-string": "^6.10.1"
+    "concurrently": "^5.0.2"
   },
   "main": "index.js",
   "devDependencies": {},

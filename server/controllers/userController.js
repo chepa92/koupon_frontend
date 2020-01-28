@@ -109,4 +109,21 @@ module.exports = {
     if (result) return result;
     else console.log('error: No result');
   },
+
+  async addCoupontoUser(couponId, id) {
+    console.log(`user id: ${id} coupon ${couponId}`);
+    const result = await User.updateOne(
+      { _id: id },
+      {
+        $addToSet: {
+          postedCoupons: couponId,
+        },
+      }
+    );
+
+    console.log(result);
+
+    if (result) return result;
+    else console.log('error: Faild adding coupon to user coupon list.');
+  },
 };

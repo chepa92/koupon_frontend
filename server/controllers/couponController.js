@@ -83,6 +83,8 @@ module.exports = {
       active,
     })
       .then(coupons => {
+        console.log(coupons._id);
+        userController.addCoupontoUser(coupons._id, req.user._id);
         notifyNewCoupon(coupons);
         res.json({
           success: true,

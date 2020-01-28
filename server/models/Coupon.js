@@ -26,26 +26,10 @@ const couponSchema = new Schema(
     publisher: Object,
     priceHistory: [Object],
     imgUrl: String,
-    views: [
-      {
-        type: Array,
-      },
-    ],
-    like: [
-      {
-        type: Array,
-      },
-    ],
-    comments: [
-      {
-        type: Array,
-      },
-    ],
-    notify: [
-      {
-        type: Array,
-      },
-    ],
+    views: [Object],
+    like: [Object],
+    comments: [Object],
+    notify: [Object],
     active: {
       type: Boolean,
     },

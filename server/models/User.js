@@ -28,7 +28,7 @@ const userSchema = new Schema(
     },
     img: String,
     active: Boolean,
-    // orders: [coupon],
+    postedCoupons: [Object],
   },
   {
     timestamps: {

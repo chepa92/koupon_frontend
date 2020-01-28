@@ -3,6 +3,7 @@ const Schema = mongoose.Schema;
 const coupon = require('./Coupon');
 
 const genderValues = ['Male', 'Female'];
+const level = ['Beginner', 'Experienced', 'Professional'];
 
 const userSchema = new Schema(
   {
@@ -29,6 +30,11 @@ const userSchema = new Schema(
     img: String,
     active: Boolean,
     postedCoupons: [Object],
+    userLevel: {
+      type: String,
+      enum: level,
+      default: level[0],
+    },
   },
   {
     timestamps: {

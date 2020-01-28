@@ -192,6 +192,7 @@ module.exports = {
       const couponName = coupon.title;
       const categoryId = coupon.categories[0].id;
       const brand = coupon.brand;
+      const discount = coupon.discount;
       console.log(coupon);
 
       bestBuyApi
@@ -201,7 +202,7 @@ module.exports = {
             elementArr.push(element);
             priceArr.push(element.salePrice);
           });
-          const result = addPriceToHistory(elementArr, id);
+          const result = addPriceToHistory(elementArr, id, discount);
           res.json(data);
         })
         .catch(err => next(err));
@@ -211,10 +212,20 @@ module.exports = {
   },
 };
 
-async function addPriceToHistory(elementArr, id) {
-  console.log(elementArr);
+async function addPriceToHistory(elementArr, id, discount) {
+  let newUrl, newDiscount;
+  console.log(typeof parseInt(elementArr[0].percentSavings));
+  let bestDiscount = parseInt(discount);
+  console.log(bestDiscount);
+
   for (let i = 0; i < elementArr.length; i++) {
-    console.log(elementArr[i].url);
+    if (parseInt(elementArr[i].percentSavings) > bestDiscount) {
+      bestDiscount = parseInt(elementArr[i].percentSavings);
+      newUrl = elementArr[i].url;
+      newDiscount = elementArr[i].percentSavings;
+      console.log(`Lowest price found : ${newDiscount}!!!`);
+    }
+
     const result = await Coupon.updateOne(
       { _id: id },
       // { priceHistory.price: { $ne: elementArr[i].salePrice } },
@@ -226,6 +237,9 @@ async function addPriceToHistory(elementArr, id) {
             date: new Date(),
           },
         },
+      },
+      {
+        $set: { bestLink: newUrl },
       }
     ).catch(err => {
       console.log(err);

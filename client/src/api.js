@@ -2,9 +2,7 @@ import axios from 'axios';
 
 const service = axios.create({
   baseURL:
-    process.env.NODE_ENV === 'production'
-      ? '/api'
-      : 'http://localhost:5000/api',
+    process.env.NODE_ENV === 'production' ? '/api' : 'http://localhost:5001/api',
   withCredentials: true,
 });
 
@@ -63,18 +61,16 @@ export default {
     return service.get('/logout');
   },
 
-  // This is an example on how to use this method in a different file
-  // api.getCountries().then(countries => { /* ... */ })
-  getCountries() {
+  getCoupons() {
     return service
-      .get('/countries')
+      .get('/coupon/getAllCoupons')
       .then(res => res.data)
       .catch(errHandler);
   },
 
-  addCountry(body) {
+  addCoupon(body) {
     return service
-      .post('/countries', body)
+      .post('/coupon/addCoupon', body)
       .then(res => res.data)
       .catch(errHandler);
   },

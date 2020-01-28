@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import api from '../../api';
 
-export default class AddCountry extends Component {
+export default class AddCoupon extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -30,7 +30,7 @@ export default class AddCountry extends Component {
       description: this.state.description,
     };
     api
-      .addCountry(data)
+      .addCoupon(data)
       .then(result => {
         console.log('SUCCESS!');
         this.setState({
@@ -38,7 +38,7 @@ export default class AddCountry extends Component {
           capitals: '',
           area: '',
           description: '',
-          message: `Your country '${this.state.name}' has been created`,
+          message: `Your coupon '${this.state.name}' has been created`,
         });
         setTimeout(() => {
           this.setState({
@@ -50,8 +50,8 @@ export default class AddCountry extends Component {
   }
   render() {
     return (
-      <div className="AddCountry">
-        <h2>Add country</h2>
+      <div className="AddCoupon">
+        <h2>Add Coupon</h2>
         <form>
           Name:{' '}
           <input
@@ -61,7 +61,7 @@ export default class AddCountry extends Component {
             onChange={this.handleInputChange}
           />{' '}
           <br />
-          Capitals:{' '}
+          Descb:{' '}
           <input
             type="text"
             value={this.state.capitals}
@@ -69,7 +69,7 @@ export default class AddCountry extends Component {
             onChange={this.handleInputChange}
           />{' '}
           <br />
-          Area:{' '}
+          Link:{' '}
           <input
             type="number"
             value={this.state.area}
@@ -77,7 +77,7 @@ export default class AddCountry extends Component {
             onChange={this.handleInputChange}
           />{' '}
           <br />
-          Description:{' '}
+          More:{' '}
           <textarea
             value={this.state.description}
             name="description"
@@ -86,7 +86,7 @@ export default class AddCountry extends Component {
             onChange={this.handleInputChange}
           />{' '}
           <br />
-          <button onClick={e => this.handleClick(e)}>Create country</button>
+          <button onClick={e => this.handleClick(e)}>Add coupon</button>
         </form>
         {this.state.message && <div className="info">{this.state.message}</div>}
       </div>

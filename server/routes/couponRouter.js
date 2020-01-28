@@ -7,7 +7,7 @@ router.get('/getAllCoupons', couponController.getAll);
 router.get('/getCoupon', couponController.getCoupon);
 router.get('/searchCoupons', couponController.searchCoupons);
 router.put('/updateCoupon', couponController.updateCoupon);
-router.delete('/delete', couponController.deleteCoupon);
+router.delete('/deleteCoupon', couponController.deleteCoupon);
 router.post('/addCoupon', couponController.addCoupon);
 router.put('/setCouponInactive', couponController.disableCoupon);
 router.post('/likeCoupon', couponController.likeCoupon);

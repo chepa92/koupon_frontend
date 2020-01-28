@@ -1,5 +1,4 @@
 const Coupon = require('../models/Coupon');
-const querystring = require('query-string');
 const mongoose = require('mongoose');
 
 const bestBuyApi = require('../helpers/bestbuyHelper');
@@ -33,7 +32,7 @@ module.exports = {
 
     const result = await Coupon.find({
       $or: [
-        { categories: { $in: [category, text] } },
+        { categories: { category: { name: { $in: [category, text] } } } },
         { brand: { $in: [text, category] } },
         { title: { $in: [text, category] } },
         { couponName: { $in: [text, category] } },
@@ -69,6 +68,7 @@ module.exports = {
       categories,
       brand,
       publisher = req.user._id,
+      imgUrl,
       active = true,
     } = req.body;
     Coupon.create({
@@ -79,6 +79,7 @@ module.exports = {
       categories,
       brand,
       publisher,
+      imgUrl,
       active,
     })
       .then(coupons => {
@@ -232,10 +233,11 @@ async function addPriceToHistory(elementArr, id) {
 
 async function notifyNewCoupon(coupon) {
   let users = await userController.notifyUsers();
-  console.log(coupon);
+  const img_url = coupon.imgUrl;
   users.forEach(user => {
     telegram.sendMessage(
       user,
+      img_url,
       `New Coupon Added: ${coupon.title} \nLink: ${coupon.link} \nDiscount: ${coupon.discount}`
     );
   });

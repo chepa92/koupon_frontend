@@ -25,6 +25,7 @@ var Category = new Schema(
     },
     id: String,
   },
+  { _id: false },
   { collection: 'categories' }
 );
 

@@ -186,7 +186,7 @@ module.exports = {
     var elementArr = [];
     const coupon = await Coupon.findOne(
       { _id: id },
-      { _id: 0, title: 1, categories: 1, brand: 1 }
+      { _id: 0, title: 1, categories: 1, brand: 1, discount: 1 }
     );
     if (coupon) {
       const couponName = coupon.title;
@@ -212,34 +212,43 @@ module.exports = {
   },
 };
 
+//finding lowest price existing
 async function addPriceToHistory(elementArr, id, discount) {
-  let newUrl, newDiscount;
+  let newUrl, newDiscount, lowestPrice;
   console.log(typeof parseInt(elementArr[0].percentSavings));
   let bestDiscount = parseInt(discount);
   console.log(bestDiscount);
+  lowestPrice = parseInt(elementArr[0].salePrice);
 
   for (let i = 0; i < elementArr.length; i++) {
-    if (parseInt(elementArr[i].percentSavings) > bestDiscount) {
+    console.log(' lowest price: ' + lowestPrice);
+    console.log('precent saving ' + parseInt(elementArr[i].percentSavings));
+
+    if (parseInt(elementArr[i].salePrice) < lowestPrice) {
       bestDiscount = parseInt(elementArr[i].percentSavings);
+      lowestPrice = parseInt(elementArr[i].salePrice);
       newUrl = elementArr[i].url;
       newDiscount = elementArr[i].percentSavings;
-      console.log(`Lowest price found : ${newDiscount}!!!`);
+      console.log(`Lowest price found : ${lowestPrice} ${newDiscount} !!!`);
+      console.log(newUrl);
     }
 
-    const result = await Coupon.updateOne(
+    const result = await Coupon.update(
       { _id: id },
-      // { priceHistory.price: { $ne: elementArr[i].salePrice } },
       {
+        $set: { bestLink: newUrl },
+        // { priceHistory.price: { $ne: elementArr[i].salePrice } },
         $addToSet: {
           priceHistory: {
             price: elementArr[i].salePrice,
             url: elementArr[i].url,
-            date: new Date(),
+            date: new Date( //to avoid duplicate prices from the same day
+              new Date().getFullYear(),
+              new Date().getMonth(),
+              new Date().getDate()
+            ),
           },
         },
-      },
-      {
-        $set: { bestLink: newUrl },
       }
     ).catch(err => {
       console.log(err);

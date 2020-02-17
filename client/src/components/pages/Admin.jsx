@@ -11,8 +11,8 @@ export default class Secret extends Component {
   }
   render() {
     return (
-      <div className="Secret">
-        <h2>Secret</h2>
+      <div className="Admin">
+        <h2>This is admin page</h2>
 
         <div className="result">{this.state.secret}</div>
 

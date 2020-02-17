@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { Route, Link, NavLink, Switch } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import SearchIcon from '@material-ui/icons/Search';
 import { useStyles } from './HeaderStyles';
 import { withStyles } from '@material-ui/core/styles';
@@ -18,13 +18,7 @@ import {
   Toolbar,
 } from '@material-ui/core';
 
-import Home from '../pages/Home';
-import Coupons from '../pages/Coupons';
-import AddCountry from '../pages/AddCoupon';
-import Secret from '../pages/Secret';
-import Login from '../pages/Login';
-import Signup from '../pages/Signup';
-import api from '../../api';
+import api from '../../api/api';
 
 const Header = props => {
   const { classes } = props;
@@ -47,7 +41,7 @@ const Header = props => {
         <Toolbar>
           <div className={classes.logo}>
             <NavLink to="/" exact>
-              <img src="/images/logo2.png" alt="image" style={{ height: 50 }} />
+              <img src="/images/logo2.png" alt="logo" style={{ height: 50 }} />
             </NavLink>
           </div>
 
@@ -102,15 +96,6 @@ const Header = props => {
           </Menu>
         </Toolbar>
       </AppBar>
-      <Switch>
-        <Route path="/" exact component={Home} />
-        <Route path="/coupons" component={Coupons} />
-        <Route path="/add-coupon" component={AddCountry} />
-        <Route path="/signup" component={Signup} />
-        <Route path="/login" component={Login} />
-        <Route path="/secret" component={Secret} />
-        <Route render={() => <h2>404</h2>} />
-      </Switch>
     </div>
   );
 };

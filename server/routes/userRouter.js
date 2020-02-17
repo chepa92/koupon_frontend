@@ -6,7 +6,7 @@ router.get('/getAllUsers', userController.getAll);
 router.get('/getUser', userController.getUser);
 router.put('/updateUser', userController.updateUser);
 router.put('/suspendUser', userController.suspendUser);
-router.post('/addUser', userController.addUser);
+router.post('/user', userController.addUser);
 router.delete('/deleteUser', userController.getAll);
 
 module.exports = router;

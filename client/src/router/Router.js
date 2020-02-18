@@ -6,6 +6,7 @@ import { Route, Switch } from 'react-router-dom';
 
 import Home from '../components/pages/Home';
 import Coupons from '../components/pages/Coupons';
+import Coupon from '../components/pages/Coupon';
 import AddCoupon from '../components/pages/AddCoupon';
 import Secret from '../components/pages/Secret';
 import Login from '../components/pages/Login';
@@ -28,6 +29,7 @@ const ReactRouter = props => {
       <Switch>
         <Route path="/" exact component={Home} />
         <Route path="/coupons" component={Coupons} />
+        <Route path="/coupon" component={Coupon} />
         <Route path="/add-coupon" component={AddCoupon} />
         <Route path="/signup" component={Signup} />
         <Route path="/login" component={Login} />

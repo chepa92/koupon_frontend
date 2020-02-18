@@ -68,6 +68,13 @@ export default {
       .catch(errHandler);
   },
 
+  getCoupon(id) {
+    return service
+      .get('/coupon/getCoupon?id='+id)
+      .then(res => res.data)
+      .catch(errHandler);
+  },
+
   addCoupon(body) {
     return service
       .post('/coupon/addCoupon', body)

@@ -3,7 +3,7 @@ $primary: #32c3ff;
 body {
   margin: 0;
   padding: 0;
-  font-family: sans-serif;
+  font-family: 'Poppins', sans-serif;
 }
 
 .info {
@@ -23,6 +23,7 @@ body {
 // Style for App component
 .root {
   color: rgba(0, 0, 0, 0.5) !important;
+  font-family: 'Poppins', sans-serif !important;
 }
 
 a {

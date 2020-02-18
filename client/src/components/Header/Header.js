@@ -1,17 +1,14 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { Link, NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import SearchIcon from '@material-ui/icons/Search';
-import { useStyles } from './HeaderStyles';
+import { useStyles } from './Header.styled';
 import { withStyles } from '@material-ui/core/styles';
-
+import MainMenu from '../Menu/Menu';
 import {
   Button,
   IconButton,
-  Fade,
   InputBase,
-  Menu,
-  MenuItem,
   Avatar,
   Box,
   AppBar,
@@ -74,26 +71,12 @@ const Header = props => {
           >
             <Avatar alt="Remy Sharp" src="/broken-image.jpg" />
           </IconButton>
-          <Menu
-            id="fade-menu"
-            anchorEl={anchorEl}
-            keepMounted
+          <MainMenu
             open={open}
+            anchorEl={anchorEl}
             onClose={handleClose}
-            TransitionComponent={Fade}
-          >
-            <MenuItem onClick={handleClose}>Coupons</MenuItem>
-            <MenuItem onClick={handleClose}>My Profile</MenuItem>
-            <MenuItem onClick={handleClose}>Requests</MenuItem>
-            <MenuItem onClick={handleClose}>My Coupons</MenuItem>
-            <MenuItem onClick={handleClose}>Settings</MenuItem>
-            {api.isLoggedIn() && (
-              <Link to="/" onClick={e => handleLogoutClick(e)}>
-                Logout
-              </Link>
-            )}
-            <MenuItem onClick={handleClose}>Logout</MenuItem>
-          </Menu>
+            onLogout={handleLogoutClick}
+          />
         </Toolbar>
       </AppBar>
     </div>

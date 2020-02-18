@@ -2,6 +2,7 @@ import { fade } from '@material-ui/core/styles';
 
 const useStyles = theme => ({
   root: {
+    fontFamily: 'Poppins, sans-serif',
     flexGrow: 1,
     color: 'rgba(0, 0, 0, 0.20 )',
   },
@@ -19,7 +20,8 @@ const useStyles = theme => ({
   search: {
     position: 'relative',
     borderRadius: '40px',
-    'background-image': 'linear-gradient(to top, #FD749B 0%, #281AC8 100%)',
+    'background-image':
+      'linear-gradient(179.58deg, #FD749B -13.56%, #281AC8 158.3%)',
     'box-sizing': 'border-box',
     display: 'block',
     margin: '0 auto',

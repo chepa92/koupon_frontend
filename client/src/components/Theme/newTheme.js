@@ -19,8 +19,17 @@ const theme = createMuiTheme({
         paddingRight: 20,
       },
     },
+    'Mui-selected': {
+      backgroundColor:
+        'linear-gradient(179.58deg, #FD749B -13.56%, #281AC8 158.3%)',
+    },
     MuiMenuItem: {
-      background: 'linear-gradient(179.58deg, #FD749B -13.56%, #281AC8 158.3%)',
+      root: {
+        '&$selected': {
+          backgroundColor:
+            'linear-gradient(179.58deg, #FD749B -13.56%, #281AC8 158.3%)',
+        },
+      },
     },
     // Name of the component ⚛️ / style sheet
     MuiButton: {

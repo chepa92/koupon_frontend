@@ -1,7 +1,7 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
-import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
+import Drawer from '@material-ui/core/Drawer';
 
 const StyledMenu = withStyles({
   paper: {
@@ -10,15 +10,15 @@ const StyledMenu = withStyles({
     height: '100%',
   },
 })(props => (
-  <Menu
+  <Drawer
     elevation={0}
     getContentAnchorEl={null}
     anchorOrigin={{
-      vertical: 'bottom',
+      vertical: 'left',
       horizontal: 'center',
     }}
     transformOrigin={{
-      vertical: 'top',
+      vertical: 'right',
       horizontal: 'center',
     }}
     {...props}
@@ -37,11 +37,16 @@ const StyledMenuItem = withStyles(theme => ({
     '&:focus': {
       background: theme.palette.primary.mainGradient,
       borderRadius: '0px 20px 20px 0px',
-      color: theme.palette.common.white,
+      color: theme.palette.common.white + '!important',
       '& .MuiListItemIcon-root, & .MuiListItemText-primary': {
         color: theme.palette.common.white,
       },
     },
+  },
+  selected: {
+    background: theme.palette.primary.mainGradient,
+    borderRadius: '0px 20px 20px 0px',
+    color: theme.palette.common.white + '!important',
   },
 }))(MenuItem);
 

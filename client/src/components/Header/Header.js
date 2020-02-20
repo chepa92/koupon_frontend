@@ -17,7 +17,7 @@ import {
 
 import api from '../../api/api';
 
-const Header = props => {
+function Header(props) {
   const { classes } = props;
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
@@ -59,6 +59,9 @@ const Header = props => {
           </Box>
           <Button size="small" style={{ marginLeft: 10 }}>
             {!api.isLoggedIn() && <NavLink to="/login">Login</NavLink>}
+            {api.isLoggedIn() && (
+              <NavLink to="/">{api.getLocalStorageUser().username}</NavLink>
+            )}
           </Button>
           <IconButton
             aria-controls="fade-menu"
@@ -74,6 +77,7 @@ const Header = props => {
           <MainMenu
             open={open}
             anchorEl={anchorEl}
+            keepMounted
             onClose={handleClose}
             onLogout={handleLogoutClick}
           />
@@ -81,7 +85,7 @@ const Header = props => {
       </AppBar>
     </div>
   );
-};
+}
 
 Header.propTypes = {
   classes: PropTypes.object.isRequired,

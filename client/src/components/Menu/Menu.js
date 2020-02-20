@@ -1,7 +1,6 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import { MuiThemeProvider } from '@material-ui/core/styles';
-import { Fade } from '@material-ui/core';
 import api from '../../api/api';
 import { StyledMenu, StyledMenuItem } from './Menu.styled';
 import theme from '../Theme/newTheme';
@@ -13,7 +12,7 @@ import SettingsIcon from '@material-ui/icons/Settings';
 import PowerSettingsNewIcon from '@material-ui/icons/PowerSettingsNew';
 
 export default function MainMenu(props) {
-  const { open, onClose, onLogout, anchorEl } = props;
+  const { onClose, onLogout, anchorEl } = props;
 
   const onClickClose = () => onClose();
   const onLogoutClick = e => {
@@ -24,30 +23,35 @@ export default function MainMenu(props) {
   return (
     <MuiThemeProvider theme={theme}>
       <StyledMenu
-        id="fade-menu"
+        id="customized-menu"
         anchorEl={anchorEl}
         keepMounted
-        open={open}
+        open={Boolean(anchorEl)}
         onClose={onClickClose}
-        TransitionComponent={Fade}
       >
-        <StyledMenuItem onClick={onClickClose}>
+        <StyledMenuItem component={Link} to="/coupons" onClick={onClickClose}>
           <DashboardIcon />
           Coupons
         </StyledMenuItem>
-        <StyledMenuItem onClick={onClickClose}>
-          <PersonIcon />
-          My Profile
-        </StyledMenuItem>
-        <StyledMenuItem onClick={onClickClose}>
+        {api.isLoggedIn() && (
+          <StyledMenuItem
+            component={Link}
+            to="/myprofile"
+            onClick={onClickClose}
+          >
+            <PersonIcon />
+            My Profile
+          </StyledMenuItem>
+        )}
+        <StyledMenuItem component={Link} to="/requests" onClick={onClickClose}>
           <ForumIcon />
           Requests
         </StyledMenuItem>
-        <StyledMenuItem onClick={onClickClose}>
+        <StyledMenuItem component={Link} to="/coupons" onClick={onClickClose}>
           <QueueIcon />
           My Coupons
         </StyledMenuItem>
-        <StyledMenuItem onClick={onClickClose}>
+        <StyledMenuItem component={Link} to="/" onClick={onClickClose}>
           <SettingsIcon />
           Settings
         </StyledMenuItem>

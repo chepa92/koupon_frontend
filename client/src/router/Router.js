@@ -11,6 +11,9 @@ import Secret from '../components/pages/Secret';
 import Login from '../components/pages/Login';
 import Signup from '../components/pages/Signup';
 import Admin from '../components/pages/Admin';
+import MyCoupons from '../components/pages/Coupons';
+import UserProfile from '../components/pages/Profile';
+// import Settings from '../components/pages/Setings';
 
 const styles = {
   root: {
@@ -28,9 +31,12 @@ const ReactRouter = props => {
       <Switch>
         <Route path="/" exact component={Home} />
         <Route path="/coupons" component={Coupons} />
+        <Route path="/myCoupons" component={MyCoupons} />
         <Route path="/add-coupon" component={AddCoupon} />
         <Route path="/signup" component={Signup} />
         <Route path="/login" component={Login} />
+        <Route path="/myProfile" component={UserProfile} />
+        {/* <Route path="/sttings" component={} /> */}
         <Route path="/secret" component={Secret} />
         <Route path="/admin" component={Admin} />
         <Route render={() => <h2>404</h2>} />

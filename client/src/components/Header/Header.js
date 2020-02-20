@@ -19,8 +19,8 @@ import api from '../../api/api';
 
 function Header(props) {
   const { classes } = props;
-  const [anchorEl, setAnchorEl] = useState(null);
-  const open = Boolean(anchorEl);
+  const [anchorel, setAnchorEl] = useState(null);
+  const open = Boolean(anchorel);
 
   const handleClick = event => {
     setAnchorEl(event.currentTarget);
@@ -76,7 +76,7 @@ function Header(props) {
           </IconButton>
           <MainMenu
             open={open}
-            anchorEl={anchorEl}
+            anchorel={anchorel}
             keepMounted
             onClose={handleClose}
             onLogout={handleLogoutClick}

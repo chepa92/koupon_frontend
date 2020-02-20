@@ -12,7 +12,7 @@ import SettingsIcon from '@material-ui/icons/Settings';
 import PowerSettingsNewIcon from '@material-ui/icons/PowerSettingsNew';
 
 export default function MainMenu(props) {
-  const { onClose, onLogout, anchorEl } = props;
+  const { onClose, onLogout, anchorel } = props;
 
   const onClickClose = () => onClose();
   const onLogoutClick = e => {
@@ -24,9 +24,9 @@ export default function MainMenu(props) {
     <MuiThemeProvider theme={theme}>
       <StyledMenu
         id="customized-menu"
-        anchorEl={anchorEl}
+        anchorel={anchorel}
         keepMounted
-        open={Boolean(anchorEl)}
+        open={Boolean(anchorel)}
         onClose={onClickClose}
       >
         <StyledMenuItem component={Link} to="/coupons" onClick={onClickClose}>

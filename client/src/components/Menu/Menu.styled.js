@@ -12,12 +12,12 @@ const StyledMenu = withStyles({
 })(props => (
   <Drawer
     elevation={0}
-    getContentAnchorEl={null}
-    anchorOrigin={{
+    getcontentanchorel={null}
+    anchororigin={{
       vertical: 'left',
       horizontal: 'center',
     }}
-    transformOrigin={{
+    transformorigin={{
       vertical: 'right',
       horizontal: 'center',
     }}

@@ -33,6 +33,12 @@ export default function MainMenu(props) {
           <DashboardIcon />
           Coupons
         </StyledMenuItem>
+        {api.isAdmin() && (
+          <StyledMenuItem component={Link} to="/admin" onClick={onClickClose}>
+            <PersonIcon />
+            Admin Panel
+          </StyledMenuItem>
+        )}
         {api.isLoggedIn() && (
           <StyledMenuItem
             component={Link}

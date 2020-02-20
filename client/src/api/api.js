@@ -2,7 +2,9 @@ import axios from 'axios';
 
 const service = axios.create({
   baseURL:
-    process.env.NODE_ENV === 'production' ? '/api' : 'http://localhost:5001/api',
+    process.env.NODE_ENV === 'production'
+      ? '/api'
+      : 'http://localhost:5001/api',
   withCredentials: true,
 });
 
@@ -22,6 +24,14 @@ export default {
   // To know if the user is connected, we just check if we have a value for localStorage.getItem('user')
   isLoggedIn() {
     return localStorage.getItem('user') != null;
+  },
+
+  isAdmin() {
+    let status = false;
+    if (localStorage.getItem('user') != null) {
+      status = JSON.parse(localStorage.getItem('user')).admin;
+    }
+    return status;
   },
 
   // This method returns the user from the localStorage
@@ -70,7 +80,7 @@ export default {
 
   getCoupon(id) {
     return service
-      .get('/coupon/getCoupon?id='+id)
+      .get('/coupon/getCoupon?id=' + id)
       .then(res => res.data)
       .catch(errHandler);
   },
@@ -80,6 +90,13 @@ export default {
       .post('/coupon/addCoupon', body)
       .then(res => res.data)
       .catch(errHandler);
+  },
+
+  deleteCoupon(id) {
+    return service
+    .delete('/coupon/deleteCoupon?id=' + id)
+    .then(res => res.data)
+    .catch(errHandler);
   },
 
   getSecret() {

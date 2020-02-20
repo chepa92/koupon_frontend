@@ -6,7 +6,7 @@ export default class Secret extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      secret: null,
+      isAdmin: false,
       message: null,
     };
   }
@@ -15,21 +15,12 @@ export default class Secret extends Component {
       <div className="Admin">
         <h2>This is admin page</h2>
 
-        <div className="result">{this.state.secret}</div>
+        {api.isLoggedIn() && <CouponsTable />}
 
-        {this.state.message && (
-          <div className="info info-danger">{this.state.message}</div>
+        {!api.isLoggedIn() && (
+          <div className="info info-danger">Not Authorized</div> //TODO mb make force redirect to main page?
         )}
-
-
-        <CouponsTable/>
       </div>
     );
-  }
-  componentDidMount() {
-    api
-      .getSecret()
-      .then(data => this.setState({ secret: data.secret }))
-      .catch(err => this.setState({ message: err.toString() }));
   }
 }

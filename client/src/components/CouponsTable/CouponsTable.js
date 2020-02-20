@@ -2,19 +2,36 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import MaterialTable from 'material-table'; //https://material-table.com/
 import { withStyles } from '@material-ui/core/styles';
-import { Router, Switch, Route } from 'react-router-dom';
+import { Router, Switch, Route, Link, Redirect, useHistory  } from 'react-router-dom';
+import api from '../../api/api';
+import Delete from '@material-ui/icons/Delete';
 
-class CouponsTable extends Component {
+class CouponsTable extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       coupons: [],
+      clicked: false,
     };
   }
 
+  handleClick(id) {
+    this.setState(state => ({
+      clicked: id
+    }));
+  }
+
+
   render() {
+
     return (
       <div style={{ maxWidth: '100%' }}>
+        {this.state.clicked && (
+         <Redirect to={{
+          pathname: '/coupon',
+          search: '?id='+this.state.clicked,
+        }} />
+        )}
         <MaterialTable
           columns={[
             { title: 'Title', field: 'title' },
@@ -48,21 +65,37 @@ class CouponsTable extends Component {
             })
           }
           actions={[
-            {
-              icon: 'delete',
-              tooltip: 'Delete Coupon',
-              onClick: (event, rowData) => {
-                console.log(rowData._id);
-              },
-            },
             rowData => ({
               icon: 'edit',
               tooltip: 'Edit Coupon',
               onClick: (event, rowData) => {
-                console.log(rowData._id);
+                this.handleClick(rowData._id)
               },
             }),
           ]}
+          editable={{
+            // onRowAdd: newData =>
+            //   new Promise((resolve, reject) => {
+            //     setTimeout(() => {
+            //       {
+            //         const data = this.state.data;
+            //         data.push(newData);
+            //         this.setState({ data }, () => resolve());
+            //       }
+            //       resolve();
+            //     }, 1000);
+            //   }),
+
+            onRowDelete: rowData =>
+              new Promise((resolve, reject) => {
+                setTimeout(() => {
+                  {
+                    api.deleteCoupon(rowData._id);
+                  }
+                  resolve();
+                }, 1000);
+              }),
+          }}
           options={{
             actionsColumnIndex: -1,
           }}

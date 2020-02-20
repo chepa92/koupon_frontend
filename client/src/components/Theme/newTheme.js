@@ -13,10 +13,9 @@ const theme = createMuiTheme({
     },
   },
   overrides: {
-    //Icons theme
-    MuiSvgIcon: {
-      root: {
-        paddingRight: 20,
+    MuiTypography: {
+      body2: {
+        fontFamily: 'Poppins, sans-serif',
       },
     },
     'Mui-selected': {
@@ -33,9 +32,12 @@ const theme = createMuiTheme({
     },
     // Name of the component ⚛️ / style sheet
     MuiButton: {
+      root: {
+        fontFamily: 'Poppins, sans-serif',
+      },
       // Name of the rule
       text: {
-        // Some CSSlinear-gradient(to top, #FD749B 0%, #281AC8 100%)
+        // Some CSS
         background: 'linear-gradient(45deg, #FD749B 30%, #281AC8 90%)',
         borderRadius: 3,
         border: 0,
@@ -43,6 +45,9 @@ const theme = createMuiTheme({
         height: 48,
         padding: '0 30px',
         boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
+      },
+      label: {
+        fontFamily: 'Poppins, sans-serif',
       },
     },
   },

@@ -31,6 +31,9 @@ a {
   padding: 0 5px;
   text-decoration: unset;
 }
+a > svg {
+  margin-right: 20px;
+}
 
 .App {
   text-align: center;

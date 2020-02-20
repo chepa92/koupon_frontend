@@ -16,39 +16,37 @@ import MyCoupons from '../components/pages/Coupons';
 import UserProfile from '../components/pages/Profile';
 // import Settings from '../components/pages/Setings';
 
-const styles = {
-  root: {
-    backgroundColor: 'white',
-    minHeight: '100vh',
+import { createMuiTheme } from '@material-ui/core/styles';
+import { ThemeProvider } from '@material-ui/styles';
+
+const theme = createMuiTheme({
+  typography: {
+    fontFamily: ['Poppins', 'sans-serif'].join(','),
   },
-};
+});
 
 const ReactRouter = props => {
-  const { classes } = props;
-
   return (
-    <React.Fragment className={classes.root}>
-      <Header />
-      <Switch>
-        <Route path="/" exact component={Home} />
-        <Route path="/coupons" component={Coupons} />
-        <Route path="/myCoupons" component={MyCoupons} />
-        <Route path="/coupon" component={Coupon} />
-        <Route path="/add-coupon" component={AddCoupon} />
-        <Route path="/signup" component={Signup} />
-        <Route path="/login" component={Login} />
-        <Route path="/myProfile" component={UserProfile} />
-        {/* <Route path="/sttings" component={} /> */}
-        <Route path="/secret" component={Secret} />
-        <Route path="/admin" component={Admin} />
-        <Route render={() => <h2>404</h2>} />
-      </Switch>
-    </React.Fragment>
+    <ThemeProvider theme={theme}>
+      <React.Fragment>
+        <Header />
+        <Switch>
+          <Route path="/" exact component={Home} />
+          <Route path="/coupons" component={Coupons} />
+          <Route path="/myCoupons" component={MyCoupons} />
+          <Route path="/coupon" component={Coupon} />
+          <Route path="/add-coupon" component={AddCoupon} />
+          <Route path="/signup" component={Signup} />
+          <Route path="/login" component={Login} />
+          <Route path="/myProfile" component={UserProfile} />
+          {/* <Route path="/sttings" component={} /> */}
+          <Route path="/secret" component={Secret} />
+          <Route path="/admin" component={Admin} />
+          <Route render={() => <h2>404</h2>} />
+        </Switch>
+      </React.Fragment>
+    </ThemeProvider>
   );
 };
 
-ReactRouter.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(ReactRouter);
+export default ReactRouter;

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import api from '../../api/api';
+import CouponsTable from '../CouponsTable/CouponsTable';
 
 export default class Secret extends Component {
   constructor(props) {
@@ -19,6 +20,9 @@ export default class Secret extends Component {
         {this.state.message && (
           <div className="info info-danger">{this.state.message}</div>
         )}
+
+
+        <CouponsTable/>
       </div>
     );
   }

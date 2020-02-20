@@ -26,7 +26,7 @@ function isPermitted(req, res, next) {
   }
 
   for (let i = 0; i < permissions[clientType].length; i++) {
-    if (req.path == permissions[clientType][i]) {
+    if ((req.originalUrl == permissions[clientType][i]) || (req.baseUrl+req.path == permissions[clientType][i])) {
       return next();
     }
   }

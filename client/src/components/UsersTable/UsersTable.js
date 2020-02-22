@@ -27,7 +27,7 @@ class UsersTable extends React.Component {
         {this.state.clicked && (
           <Redirect
             to={{
-              pathname: '/user',
+              pathname: '/profile',
               search: '?id=' + this.state.clicked,
             }}
           />

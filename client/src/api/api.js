@@ -99,6 +99,13 @@ export default {
       .catch(errHandler);
   },
 
+  getUser(id) {
+    return service
+      .get('/coupon/getCoupon?id=' + id)
+      .then(res => res.data)
+      .catch(errHandler);
+  },
+
   getAllUsers() {
     return service
       .get('/user/getAllUsers')
@@ -106,9 +113,9 @@ export default {
       .catch(errHandler);
   },
 
-  suspendUser(id) {
+  getUser(id) {
     return service
-      .put('/user/suspendUser?id=' + id)
+      .get('/user/getUser?id=' + id)
       .then(res => res.data)
       .catch(errHandler);
   },

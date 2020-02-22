@@ -39,6 +39,7 @@ const ReactRouter = props => {
           <Route path="/signup" component={Signup} />
           <Route path="/login" component={Login} />
           <Route path="/myProfile" component={UserProfile} />
+          <Route path="/profile" component={UserProfile} />
           {/* <Route path="/sttings" component={} /> */}
           <Route path="/secret" component={Secret} />
           <Route path="/admin" component={Admin} />

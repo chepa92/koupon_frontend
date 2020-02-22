@@ -5,6 +5,7 @@ import SearchIcon from '@material-ui/icons/Search';
 import { useStyles } from './Header.styled';
 import { withStyles } from '@material-ui/core/styles';
 import MainMenu from '../Menu/Menu';
+import FormDialog from '../Forms/addCoupon';
 import {
   Button,
   IconButton,
@@ -57,6 +58,8 @@ function Header(props) {
               />
             </div>
           </Box>
+          <FormDialog />
+
           <Button size="small" style={{ marginLeft: 10 }}>
             {!api.isLoggedIn() && <NavLink to="/login">Login</NavLink>}
             {api.isLoggedIn() && (

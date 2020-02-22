@@ -6,6 +6,9 @@ const theme = createMuiTheme({
       main: '#FD749B',
       mainGradient:
         'linear-gradient(179.58deg, #FD749B -13.56%, #281AC8 158.3%)', // Linear gradient for selected background.
+      redGradient:
+        'linear-gradient(179.58deg, #FD749B -13.56%, #281AC8 158.3%)',
+      greenDradient: 'linear-gradient(180deg, #85D536 22.4%, #1C602B 100%)',
     },
     secondary: { main: '#FD749B' },
     common: {
@@ -13,6 +16,27 @@ const theme = createMuiTheme({
     },
   },
   overrides: {
+    MuiIconButton: {
+      root: {
+        color: 'linear-gradient(179.58deg, #FD749B -13.56%, #281AC8 158.3%)',
+        background:
+          'linear-gradient(179.58deg, #FD749B -13.56%, #281AC8 158.3%)',
+        padding: 0.3,
+        marginRight: 20,
+        marginLeft: 20,
+      },
+    },
+    // MuiButton: {
+    //   root: {
+    //     fontWeight: 'bold',
+    //     backgroundColor:
+    //       'linear-gradient(179.58deg, #FD749B -13.56%, #281AC8 158.3%)',
+    //     margin: '10px',
+    //     '&:hover': {
+    //       backgroundColor: 'green',
+    //     },
+    //   },
+    // },
     MuiTypography: {
       body2: {
         fontFamily: 'Poppins, sans-serif',

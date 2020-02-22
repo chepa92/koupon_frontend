@@ -118,4 +118,13 @@ export default {
       .then(res => res.data)
       .catch(errHandler);
   },
+
+  // Users Functions
+
+  getUser(id) {
+    return service
+      .get('/user/getUser?id=' + id)
+      .then(res => res.data)
+      .catch(errHandler);
+  },
 };

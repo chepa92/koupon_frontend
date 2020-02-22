@@ -1,12 +1,18 @@
-import React, { useState } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import React, { useState, useEffect } from 'react';
+import { Redirect, NavLink } from 'react-router-dom';
+
+import { makeStyles, MuiThemeProvider } from '@material-ui/core/styles';
 import ThumbUpAltIcon from '@material-ui/icons/ThumbUpAlt';
 import ThumbDownAltIcon from '@material-ui/icons/ThumbDownAlt';
 import VisibilityIcon from '@material-ui/icons/Visibility';
 import ShareIcon from '@material-ui/icons/Share';
+import theme from '../Theme/newTheme';
+import { StyledButton } from '../Theme/Button.styled';
+import MyLineGraph from '../Chart/Chart';
 
 import {
   Card,
+  Container,
   CardActionArea,
   CardActions,
   Typography,
@@ -15,9 +21,10 @@ import {
   CardMedia,
   CardHeader,
   Avatar,
+  Collapse,
 } from '@material-ui/core';
 
-const useStyles = makeStyles({
+const useStyles = makeStyles(theme => ({
   root: {
     margin: '30px 25px 10px 0px',
     maxWidth: 289,
@@ -31,17 +38,28 @@ const useStyles = makeStyles({
   lable: {
     color: '#bdbdbd',
   },
-});
+}));
 
 export default function CouponCard(props) {
   const classes = useStyles();
-  const { onDelete, index, children, onChange, coupon } = props;
+  const { onDelete, priceHistory, children, onChange, coupon } = props;
   const [editing, setEditing] = useState(false);
-  const [name, setName] = useState('');
-  console.log('the coupon: ' + coupon.title);
+  const [price, setPrice] = useState(0);
+  const [expanded, setExpanded] = useState(false);
+  const [percentage, setpercentage] = useState(1);
+  const [data, setData] = useState([]);
+
+  const handleExpandClick = () => {
+    setExpanded(!expanded);
+  };
 
   return (
-    <Card className={classes.root}>
+    <Card
+      className={classes.root}
+      onClick={handleExpandClick}
+      aria-expanded={expanded}
+      aria-label="show more"
+    >
       <CardHeader
         avatar={
           <Avatar aria-label="recipe" className={classes.avatar}>
@@ -96,6 +114,26 @@ export default function CouponCard(props) {
           <VisibilityIcon />
         </IconButton>
       </CardActions>
+      <Collapse in={expanded} timeout="auto" unmountOnExit>
+        <CardContent>
+          <Typography variant="body2" color="textSecondary" component="p">
+            coupon info
+          </Typography>
+          <div style={{ textAlign: 'center' }}>
+            <StyledButton href={coupon.link} target="_blank">
+              Go to Website
+            </StyledButton>
+            <NavLink
+              to={{
+                pathname: '/coupon',
+                search: '?id=' + coupon._id,
+              }}
+            >
+              <StyledButton>Show More</StyledButton>
+            </NavLink>
+          </div>
+        </CardContent>
+      </Collapse>
     </Card>
   );
 }

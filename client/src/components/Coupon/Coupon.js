@@ -42,7 +42,7 @@ const useStyles = makeStyles(theme => ({
 
 export default function CouponCard(props) {
   const classes = useStyles();
-  const { onDelete, priceHistory, children, onChange, coupon } = props;
+  const { onDelete, priceHistory, children, index, coupon } = props;
   const [editing, setEditing] = useState(false);
   const [price, setPrice] = useState(0);
   const [expanded, setExpanded] = useState(false);
@@ -126,7 +126,7 @@ export default function CouponCard(props) {
             <NavLink
               to={{
                 pathname: '/coupon',
-                search: '?id=' + coupon._id,
+                search: '?id=' + index,
               }}
             >
               <StyledButton>Show More</StyledButton>

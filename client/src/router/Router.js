@@ -32,7 +32,7 @@ const ReactRouter = props => {
       <React.Fragment>
         <Header />
         <Switch>
-          <Route path="/" exact component={Home} />
+          <Route path="/" exact component={Coupons} />
           <Route path="/coupons" component={Coupons} />
           <Route path="/myCoupons" component={MyCoupons} />
           <Route path="/coupon" component={Coupon} />

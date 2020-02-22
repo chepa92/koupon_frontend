@@ -11,7 +11,7 @@ import AddCoupon from '../components/pages/AddCoupon';
 import Secret from '../components/pages/Secret';
 import Login from '../components/pages/Login';
 import Signup from '../components/pages/Signup';
-import Admin from '../components/pages/Admin';
+import Admin from '../components/pages/admin/Admin';
 import MyCoupons from '../components/pages/Coupons';
 import UserProfile from '../components/pages/Profile';
 // import Settings from '../components/pages/Setings';
@@ -40,6 +40,7 @@ const ReactRouter = props => {
           <Route path="/signup" component={Signup} />
           <Route path="/login" component={Login} />
           <Route path="/myProfile" component={UserProfile} />
+          <Route path="/profile" component={UserProfile} />
           {/* <Route path="/sttings" component={} /> */}
           <Route path="/secret" component={Secret} />
           <Route path="/admin" component={Admin} />

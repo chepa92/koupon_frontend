@@ -34,6 +34,10 @@ export default function Coupons(props) {
     fetchData();
   }, []);
 
+  // const handleClickAway = () => {
+  //   setExpanded(false);
+  // };
+
   const renderEachCoupon = (item, i) => {
     console.log(item);
     return (
@@ -41,6 +45,7 @@ export default function Coupons(props) {
         <CouponCard
           index={item._id}
           coupon={item}
+          // expanded={expanded}
           // onChange={updateCoupon}
           // onDelete={deleteCoupon}
         ></CouponCard>

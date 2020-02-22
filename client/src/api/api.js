@@ -99,6 +99,20 @@ export default {
       .catch(errHandler);
   },
 
+  updateCupon(id, body) {
+    return service
+      .put('/coupon/updateCoupon?id=' + id, body)
+      .then(res => res.data)
+      .catch(errHandler);
+  },
+
+  likeCoupon(id) {
+    return service
+      .post('/coupon/likeCoupon?id=' + id)
+      .then(res => res.data)
+      .catch(errHandler);
+  },
+
   getUser(id) {
     return service
       .get('/coupon/getCoupon?id=' + id)

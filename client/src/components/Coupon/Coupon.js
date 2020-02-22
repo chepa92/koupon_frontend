@@ -23,10 +23,12 @@ import {
   Avatar,
   Collapse,
 } from '@material-ui/core';
+import api from '../../api/api';
 
 const useStyles = makeStyles(theme => ({
   root: {
     margin: '30px 25px 10px 0px',
+    minWidth: 289,
     maxWidth: 289,
   },
   img: {
@@ -44,96 +46,92 @@ export default function CouponCard(props) {
   const classes = useStyles();
   const { onDelete, priceHistory, children, index, coupon } = props;
   const [editing, setEditing] = useState(false);
-  const [price, setPrice] = useState(0);
-  const [expanded, setExpanded] = useState(false);
-  const [percentage, setpercentage] = useState(1);
+  const [likesCount, setLikes] = useState(0);
+  const [commentCount, setComments] = useState(0);
+  const [viewsCount, setViews] = useState(0);
   const [data, setData] = useState([]);
 
-  const handleExpandClick = () => {
-    setExpanded(!expanded);
+  useEffect(() => {
+    async function fetchData() {
+      setLikes(coupon.like.length);
+      setComments(coupon.comments.length);
+      setViews(coupon.views.length);
+      setEditing(false);
+    }
+    fetchData();
+  }, [editing]);
+
+  const addLike = () => {
+    // let x = coupon.like.length;
+    // console.log(x);
+    // setLikes(likesCount++);
+    console.log(index);
+    let newCount = likesCount + 1;
+    api.likeCoupon(index);
+    setLikes(newCount);
   };
 
   return (
-    <Card
-      className={classes.root}
-      onClick={handleExpandClick}
-      aria-expanded={expanded}
-      aria-label="show more"
-    >
-      <CardHeader
-        avatar={
-          <Avatar aria-label="recipe" className={classes.avatar}>
-            R
-          </Avatar>
-        }
-        action={
-          <IconButton aria-label="share">
-            <ShareIcon />
-          </IconButton>
-        }
-        title={coupon.title}
-        subheader={'#' + coupon.brand}
-      />
-      <CardActionArea>
-        <CardMedia
-          className={classes.img}
-          component="img"
-          alt="Coupon"
-          height="140"
-          image={
-            coupon.imgUrl
-              ? coupon.imgUrl
-              : 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTCWnEg-zPrA6JZIXqfN7vxCdSWgORuP3b3jycKv1_3oZYODAeF'
+    <Card className={classes.root}>
+      <NavLink
+        to={{
+          pathname: '/coupon',
+          search: '?id=' + index,
+        }}
+      >
+        <CardHeader
+          avatar={
+            <Avatar aria-label="recipe" className={classes.avatar}>
+              R
+            </Avatar>
           }
-          title="Contemplative Reptile"
+          action={
+            <IconButton aria-label="share">
+              <ShareIcon />
+            </IconButton>
+          }
+          title={coupon.title}
+          subheader={'#' + coupon.brand}
         />
-        <CardContent>
-          <Typography variant="body2" color="textSecondary" component="h5">
-            Discount: {coupon.discount}
-          </Typography>
-          <Typography variant="body2" color="textSecondary" component="p">
-            {coupon.couponName}
-          </Typography>
-        </CardContent>
-      </CardActionArea>
+        <CardActionArea>
+          <CardMedia
+            className={classes.img}
+            component="img"
+            alt="Coupon"
+            height="140"
+            image={
+              coupon.imgUrl
+                ? coupon.imgUrl
+                : 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTCWnEg-zPrA6JZIXqfN7vxCdSWgORuP3b3jycKv1_3oZYODAeF'
+            }
+            title="Contemplative Reptile"
+          />
+          <CardContent>
+            <Typography variant="body2" color="textSecondary" component="h5">
+              Discount: {coupon.discount}
+            </Typography>
+            <Typography variant="body2" color="textSecondary" component="p">
+              {coupon.couponName}
+            </Typography>
+          </CardContent>
+        </CardActionArea>
+      </NavLink>
+
       <CardActions>
-        <IconButton className={classes.lable} size="small">
+        <Typography variant="body2" color="textSecondary" component="p">
+          {likesCount}
+        </Typography>
+        <IconButton className={classes.lable} size="small" onClick={addLike}>
           <ThumbUpAltIcon />
         </IconButton>
-        <IconButton
-          className={classes.lable}
-          size="small"
-          style={{ marginRight: '45%' }}
-        >
-          <ThumbDownAltIcon />
-        </IconButton>
+
         <Typography variant="body2" color="textSecondary" component="p">
-          {coupon.views.lenght ? coupon.views.lenght : 0}
+          {viewsCount}
         </Typography>
         <IconButton className={classes.lable} size="small">
           <VisibilityIcon />
         </IconButton>
       </CardActions>
-      <Collapse in={expanded} timeout="auto" unmountOnExit>
-        <CardContent>
-          <Typography variant="body2" color="textSecondary" component="p">
-            coupon info
-          </Typography>
-          <div style={{ textAlign: 'center' }}>
-            <StyledButton href={coupon.link} target="_blank">
-              Go to Website
-            </StyledButton>
-            <NavLink
-              to={{
-                pathname: '/coupon',
-                search: '?id=' + index,
-              }}
-            >
-              <StyledButton>Show More</StyledButton>
-            </NavLink>
-          </div>
-        </CardContent>
-      </Collapse>
     </Card>
   );
 }

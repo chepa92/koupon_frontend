@@ -19,12 +19,11 @@ const useStyles = makeStyles(theme => ({
 
 export default function Coupons(props) {
   const classes = useStyles();
-  const [limit, setLimit] = useState(10);
+  const [limit, setLimit] = useState(15);
   const [coupons, setCoupons] = useState([]);
 
   useEffect(() => {
     async function fetchData() {
-      var data = [];
       try {
         await api.getCoupons().then(coupons => setCoupons(coupons));
       } catch (err) {

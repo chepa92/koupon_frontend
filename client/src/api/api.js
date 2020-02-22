@@ -94,9 +94,23 @@ export default {
 
   deleteCoupon(id) {
     return service
-    .delete('/coupon/deleteCoupon?id=' + id)
-    .then(res => res.data)
-    .catch(errHandler);
+      .delete('/coupon/deleteCoupon?id=' + id)
+      .then(res => res.data)
+      .catch(errHandler);
+  },
+
+  getAllUsers() {
+    return service
+      .get('/user/getAllUsers')
+      .then(res => res.data)
+      .catch(errHandler);
+  },
+
+  suspendUser(id) {
+    return service
+      .put('/user/suspendUser?id=' + id)
+      .then(res => res.data)
+      .catch(errHandler);
   },
 
   getSecret() {

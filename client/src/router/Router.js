@@ -11,7 +11,7 @@ import AddCoupon from '../components/pages/AddCoupon';
 import Secret from '../components/pages/Secret';
 import Login from '../components/pages/Login';
 import Signup from '../components/pages/Signup';
-import Admin from '../components/pages/Admin';
+import Admin from '../components/pages/admin/Admin';
 import MyCoupons from '../components/pages/Coupons';
 import UserProfile from '../components/pages/Profile';
 // import Settings from '../components/pages/Setings';

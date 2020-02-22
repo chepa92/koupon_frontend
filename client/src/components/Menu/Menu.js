@@ -29,14 +29,26 @@ export default function MainMenu(props) {
         open={Boolean(anchorel)}
         onClose={onClickClose}
       >
-        <StyledMenuItem component={Link} to="/coupons" onClick={onClickClose}>
-          <DashboardIcon />
-          Coupons
-        </StyledMenuItem>
+        {!api.isAdmin() && (
+          <StyledMenuItem component={Link} to="/coupons" onClick={onClickClose}>
+            <QueueIcon />
+            Coupons
+          </StyledMenuItem>
+        )}
         {api.isAdmin() && (
-          <StyledMenuItem component={Link} to="/admin" onClick={onClickClose}>
+          <StyledMenuItem component={Link} to="/admin/coupons" onClick={onClickClose}>
             <PersonIcon />
-            Admin Panel
+            Manage Coupons
+          </StyledMenuItem>
+        )}
+        {api.isAdmin() && (
+          <StyledMenuItem
+            component={Link}
+            to="/admin/users"
+            onClick={onClickClose}
+          >
+            <PersonIcon />
+            Manage Users
           </StyledMenuItem>
         )}
         {api.isLoggedIn() && (
@@ -53,10 +65,12 @@ export default function MainMenu(props) {
           <ForumIcon />
           Requests
         </StyledMenuItem>
-        <StyledMenuItem component={Link} to="/coupons" onClick={onClickClose}>
-          <QueueIcon />
-          My Coupons
-        </StyledMenuItem>
+        {!api.isAdmin() && (
+          <StyledMenuItem component={Link} to="/coupons" onClick={onClickClose}>
+            <QueueIcon />
+            My Coupons
+          </StyledMenuItem>
+        )}
         <StyledMenuItem component={Link} to="/" onClick={onClickClose}>
           <SettingsIcon />
           Settings

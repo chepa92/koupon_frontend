@@ -3,11 +3,14 @@ import MaterialTable from 'material-table'; //https://material-table.com/
 import { Redirect } from 'react-router-dom';
 import api from '../../api/api';
 
-class CouponsTable extends React.Component {
+const service =
+  process.env.NODE_ENV === 'production' ? '/api' : 'http://localhost:5001/api';
+
+class UsersTable extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      coupons: [],
+      users: [],
       clicked: false,
     };
   }
@@ -24,33 +27,34 @@ class CouponsTable extends React.Component {
         {this.state.clicked && (
           <Redirect
             to={{
-              pathname: '/coupon',
+              pathname: '/user',
               search: '?id=' + this.state.clicked,
             }}
           />
         )}
         <MaterialTable
           columns={[
-            { title: 'Title', field: 'title' },
-            { title: 'Coupon Name', field: 'couponName' },
-            { title: 'Publisher', field: 'publisher' },
-            { title: 'Active', field: 'active' },
             {
               title: 'Image',
-              field: 'imgUrl',
+              field: 'img',
               render: rowData => (
                 <img
                   style={{ height: 36, borderRadius: '50%' }}
-                  src={rowData.imgUrl}
+                  src={rowData.img}
                 />
               ),
             },
-            { title: 'Id', field: '_id' },
+            { title: 'Username', field: 'username' },
+            { title: 'Email', field: 'email' },
+            { title: 'Admin', field: 'admin' },
+            { title: 'Telegram Notifications', field: 'telegram_notify' },
+            { title: 'Created', field: 'created_at' },
+            { title: 'Active', field: 'active' },
           ]}
           data={query =>
             new Promise((resolve, reject) => {
               api
-                .getCoupons()
+                .getAllUsers()
                 .then(result => {
                   resolve({
                     data: result,
@@ -64,7 +68,7 @@ class CouponsTable extends React.Component {
           actions={[
             rowData => ({
               icon: 'edit',
-              tooltip: 'Edit Coupon',
+              tooltip: 'Edit User',
               onClick: (event, rowData) => {
                 this.handleClick(rowData._id);
               },
@@ -75,7 +79,7 @@ class CouponsTable extends React.Component {
               new Promise((resolve, reject) => {
                 setTimeout(() => {
                   {
-                    api.deleteCoupon(rowData._id);
+                    api.suspendUser(rowData._id);
                   }
                   resolve();
                 }, 1000);
@@ -84,11 +88,11 @@ class CouponsTable extends React.Component {
           options={{
             actionsColumnIndex: -1,
           }}
-          title="Coupons"
+          title="Users"
         />
       </div>
     );
   }
 }
 
-export default CouponsTable;
+export default UsersTable;

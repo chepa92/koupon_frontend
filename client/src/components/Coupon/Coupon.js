@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Redirect, NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 import { makeStyles, MuiThemeProvider } from '@material-ui/core/styles';
 import ThumbUpAltIcon from '@material-ui/icons/ThumbUpAlt';
@@ -81,7 +81,11 @@ export default function CouponCard(props) {
       >
         <CardHeader
           avatar={
-            <Avatar aria-label="recipe" className={classes.avatar}>
+            <Avatar
+              aria-label="recipe"
+              className={classes.avatar}
+              src={coupon.publisherImg}
+            >
               R
             </Avatar>
           }

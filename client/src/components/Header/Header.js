@@ -5,7 +5,7 @@ import SearchIcon from '@material-ui/icons/Search';
 import { useStyles } from './Header.styled';
 import { withStyles } from '@material-ui/core/styles';
 import MainMenu from '../Menu/Menu';
-import FormDialog from '../Forms/addCoupon';
+import FormDialog from '../Dialogs/addCoupon';
 import {
   Button,
   IconButton,
@@ -75,7 +75,7 @@ function Header(props) {
             color="inherit"
             aria-label="open drawer"
           >
-            <Avatar alt="Remy Sharp" src="/broken-image.jpg" />
+            <Avatar alt="Remy Sharp" src={api.getLocalStorageUser().img} />
           </IconButton>
           <MainMenu
             open={open}

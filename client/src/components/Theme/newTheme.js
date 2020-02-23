@@ -38,6 +38,9 @@ const theme = createMuiTheme({
     //   },
     // },
     MuiTypography: {
+      body: {
+        fontFamily: 'Poppins, sans-serif',
+      },
       body2: {
         fontFamily: 'Poppins, sans-serif',
       },
@@ -55,23 +58,83 @@ const theme = createMuiTheme({
       },
     },
     // Name of the component ⚛️ / style sheet
-    MuiButton: {
+    MuiDialog: {
+      paper: {
+        width: 350,
+        height: 450,
+      },
+    },
+    MuiDialogContent: {
+      root: {
+        margin: 'auto',
+      },
+    },
+    // MuiPaper: {
+    //   root: {
+    //     padding: 20,
+    //     margin: 20,
+    //   },
+    // },
+    MuiTypography: {
       root: {
         fontFamily: 'Poppins, sans-serif',
       },
+      h6: {
+        fontFamily: 'Poppins, sans-serif',
+      },
+
+      body2: {
+        fontFamily: 'Poppins, sans-serif',
+      },
+      subtitle1: {
+        fontFamily: 'Poppins, sans-serif',
+      },
+    },
+    MuiDialogContentText: {
+      root: {
+        fontFamily: 'Poppins, sans-serif',
+      },
+    },
+    MuiOutlinedInput: {
+      multiline: {
+        width: 230,
+        margin: 8,
+        padding: 12,
+      },
+      root: {
+        borderRadius: 20,
+      },
+    },
+    MuiInputBase: {
+      root: {
+        fontFamily: 'Poppins, sans-serif',
+      },
+      input: {
+        fontFamily: 'Poppins, sans-serif',
+      },
+    },
+
+    MuiButton: {
+      root: {
+        fontFamily: 'Poppins, sans-serif',
+        padding: 10,
+      },
+
       // Name of the rule
       text: {
         // Some CSS
-        background: 'linear-gradient(45deg, #FD749B 30%, #281AC8 90%)',
-        borderRadius: 3,
-        color: 'white',
+        // background: 'linear-gradient(45deg, #FD749B 30%, #281AC8 90%)',
+        // borderRadius: 3,
+        // color: 'white',
       },
       label: {
         fontFamily: 'Poppins, sans-serif',
       },
     },
   },
-  typography: { useNextVariants: true },
+  typography: {
+    useNextVariants: true,
+  },
 });
 
 export default theme;

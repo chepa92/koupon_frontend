@@ -236,7 +236,7 @@ async function addPriceToHistory(elementArr, id, discount) {
     const result = await Coupon.update(
       { _id: id },
       {
-        $set: { bestLink: newUrl },
+        $set: { link: newUrl },
         // { priceHistory.price: { $ne: elementArr[i].salePrice } },
         $addToSet: {
           priceHistory: {

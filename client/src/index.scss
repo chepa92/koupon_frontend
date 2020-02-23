@@ -31,7 +31,8 @@ a {
   padding: 0 5px;
   text-decoration: unset;
 }
-a > svg {
+
+a>svg {
   margin-right: 20px;
 }
 
@@ -54,10 +55,12 @@ a > svg {
     }
   }
 }
+
 .MuiAppBar-colorPrimary {
   color: #fff;
   background-color: #fff !important;
 }
+
 // --------------------
 // Style for Home component
 .Home {
@@ -73,4 +76,23 @@ a > svg {
     font-size: 1.2em;
     color: $primary;
   }
+}
+
+.button {
+  color: #fff;
+  margin: 10px 5px 10px 5px;
+  font-size: 18px;
+  background: linear-gradient(179.58deg, #FD749B -13.56%, #281AC8 158.3%);
+  font-family: Poppins, sans-serif;
+  line-height: 25px;
+  border-radius: 20px;
+  margin-top: 40px;
+  width:100%;
+}
+
+.button_close{
+  position: absolute;
+  right: 0;
+  height: 50px !important;
+  width: 50px !important;
 }

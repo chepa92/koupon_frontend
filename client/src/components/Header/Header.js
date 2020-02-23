@@ -50,7 +50,11 @@ function Header(props) {
         <Toolbar>
           <div className={classes.logo}>
             <NavLink to="/" exact>
-              <img src="/images/logo2.png" alt="logo" style={{ height: 50 , marginTop: 10}} />
+              <img
+                src="/images/logo2.png"
+                alt="logo"
+                style={{ height: 50, marginTop: 10 }}
+              />
             </NavLink>
           </div>
 

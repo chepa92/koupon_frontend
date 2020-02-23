@@ -98,7 +98,14 @@ function Header(props) {
             color="inherit"
             aria-label="open drawer"
           >
-            <Avatar alt="Remy Sharp" src={api.getLocalStorageUser().img} />
+            <Avatar
+              alt="Remy Sharp"
+              src={
+                api.getLocalStorageUser()
+                  ? api.getLocalStorageUser().img
+                  : './images/userImg.png'
+              }
+            />
           </IconButton>
           <MainMenu
             open={open}

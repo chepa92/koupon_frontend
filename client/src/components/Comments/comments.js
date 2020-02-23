@@ -56,8 +56,10 @@ export default function CommentsList(props) {
   const saveComment = () => {
     var body = {
       comment: comment,
-      userImg: api.getLocalStorageUser().img,
-      userName: api.getLocalStorageUser.userName,
+      userImg: api.getLocalStorageUser() ? api.getLocalStorageUser().img : '',
+      userName: api.getLocalStorageUser()
+        ? api.getLocalStorageUser.userName()
+        : 'Anonymus',
     };
     try {
       api.commentCoupon(index, body).then(response => console.log(response));
@@ -124,25 +126,27 @@ export default function CommentsList(props) {
                 show more
               </Button>
             </Grid>
-            <Grid item container justify="center" direction="row" spacing={2}>
-              <TextField
-                id="outlined-textarea"
-                label="Comment"
-                size="small"
-                placeholder=" Write a comment..."
-                multiline
-                variant="outlined"
-                onChange={event => {
-                  console.log(event.target.value);
-                  setComment(event.target.value);
-                  console.log(comment);
-                }}
-                value={comment}
-              />
-              <StyledButton onClick={saveComment} color="primary">
-                <CheckCircleIcon />
-              </StyledButton>
-            </Grid>
+            {api.isLoggedIn() && (
+              <Grid item container justify="center" direction="row" spacing={2}>
+                <TextField
+                  id="outlined-textarea"
+                  label="Comment"
+                  size="small"
+                  placeholder=" Write a comment..."
+                  multiline
+                  variant="outlined"
+                  onChange={event => {
+                    console.log(event.target.value);
+                    setComment(event.target.value);
+                    console.log(comment);
+                  }}
+                  value={comment}
+                />
+                <StyledButton onClick={saveComment} color="primary">
+                  <CheckCircleIcon />
+                </StyledButton>
+              </Grid>
+            )}
           </Grid>
         </Paper>
       </Grid>

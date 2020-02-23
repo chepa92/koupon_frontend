@@ -17,8 +17,6 @@ const userRouter = require('./routes/userRouter');
 
 require('./configs/database');
 
-
-
 const app_name = require('./package.json').name;
 const debug = require('debug')(
   `${app_name}:${path.basename(__filename).split('.')[0]}`
@@ -28,9 +26,13 @@ const { isLoggedIn, isAdmin, isPermitted } = require('./middlewares');
 
 const app = express();
 
-app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*"); // update to match the domain you will make the request from
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header(
+    'Access-Control-Allow-Headers',
+    'Origin, X-Requested-With, Content-Type, Accept'
+  );
+  res.set('Content-Type', 'application/json');
   next();
 });
 

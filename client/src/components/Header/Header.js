@@ -9,6 +9,7 @@ import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormDialog from '../Forms/addCoupon';
 import Login from '../Login/Login';
+import FormDialog from '../Dialogs/addCoupon';
 import {
   Button,
   IconButton,
@@ -94,7 +95,7 @@ function Header(props) {
             color="inherit"
             aria-label="open drawer"
           >
-            <Avatar alt="Remy Sharp" src="/broken-image.jpg" />
+            <Avatar alt="Remy Sharp" src={api.getLocalStorageUser().img} />
           </IconButton>
           <MainMenu
             open={open}

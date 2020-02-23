@@ -113,6 +113,13 @@ export default {
       .catch(errHandler);
   },
 
+  commentCoupon(id, comment) {
+    return service
+      .post('/coupon/commentCoupon?id=' + id, comment)
+      .then(res => res.data)
+      .catch(errHandler);
+  },
+
   getUser(id) {
     return service
       .get('/coupon/getCoupon?id=' + id)

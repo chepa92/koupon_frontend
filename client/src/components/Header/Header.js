@@ -5,7 +5,10 @@ import SearchIcon from '@material-ui/icons/Search';
 import { useStyles } from './Header.styled';
 import { withStyles } from '@material-ui/core/styles';
 import MainMenu from '../Menu/Menu';
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
 import FormDialog from '../Forms/addCoupon';
+import Login from '../Login/Login';
 import {
   Button,
   IconButton,
@@ -21,6 +24,7 @@ import api from '../../api/api';
 function Header(props) {
   const { classes } = props;
   const [anchorel, setAnchorEl] = useState(null);
+  const [anchorElL, setAnchorElL] = useState(null);
   const open = Boolean(anchorel);
 
   const handleClick = event => {
@@ -33,13 +37,20 @@ function Header(props) {
     api.logout();
   }
 
+  const handleClickL = event => {
+    setAnchorElL(event.currentTarget);
+  };
+  const handleCloseL = () => {
+    setAnchorElL(null);
+  };
+
   return (
     <div>
       <AppBar position="static">
         <Toolbar>
           <div className={classes.logo}>
             <NavLink to="/" exact>
-              <img src="/images/logo2.png" alt="logo" style={{ height: 50 }} />
+              <img src="/images/logo2.png" alt="logo" style={{ height: 50 , marginTop: 10}} />
             </NavLink>
           </div>
 
@@ -61,7 +72,15 @@ function Header(props) {
           <FormDialog />
 
           <Button size="small" style={{ marginLeft: 10 }}>
-            {!api.isLoggedIn() && <NavLink to="/login">Login</NavLink>}
+            {!api.isLoggedIn() && (
+              <Button
+                aria-controls="simple-menu"
+                aria-haspopup="true"
+                onClick={handleClickL}
+              >
+                Login
+              </Button>
+            )}
             {api.isLoggedIn() && (
               <NavLink to="/">{api.getLocalStorageUser().username}</NavLink>
             )}
@@ -84,6 +103,16 @@ function Header(props) {
             onClose={handleClose}
             onLogout={handleLogoutClick}
           />
+
+          <Menu
+            id="simple-menu"
+            anchorEl={anchorElL}
+            keepMounted
+            open={Boolean(anchorElL)}
+            onClose={handleCloseL}
+          >
+            <Login onSubmitC={handleCloseL} />
+          </Menu>
         </Toolbar>
       </AppBar>
     </div>

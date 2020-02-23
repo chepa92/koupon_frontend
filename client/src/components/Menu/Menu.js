@@ -29,6 +29,7 @@ export default function MainMenu(props) {
         open={Boolean(anchorel)}
         onClose={onClickClose}
       >
+        <img src="/images/logo2.png" alt="logo" style={{ width: 150 , marginTop: 10, marginLeft: 50}} />
         {!api.isAdmin() && (
           <StyledMenuItem component={Link} to="/coupons" onClick={onClickClose}>
             <QueueIcon />
@@ -37,7 +38,7 @@ export default function MainMenu(props) {
         )}
         {api.isAdmin() && (
           <StyledMenuItem component={Link} to="/admin/coupons" onClick={onClickClose}>
-            <PersonIcon />
+            <QueueIcon />
             Manage Coupons
           </StyledMenuItem>
         )}
@@ -78,7 +79,7 @@ export default function MainMenu(props) {
         {api.isLoggedIn() && (
           <StyledMenuItem>
             <PowerSettingsNewIcon />
-            <NavLink
+            <NavLink style={{marginLeft: 15}}
               to="/"
               onClick={e => {
                 onLogoutClick(e);

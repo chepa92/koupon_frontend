@@ -38,7 +38,6 @@ export default function Coupons(props) {
   // };
 
   const renderEachCoupon = (item, i) => {
-    console.log(item);
     return (
       <div key={`container${item._id}`}>
         <CouponCard

@@ -58,7 +58,7 @@ export default function CommentsList(props) {
       comment: comment,
       userImg: api.getLocalStorageUser() ? api.getLocalStorageUser().img : '',
       userName: api.getLocalStorageUser()
-        ? api.getLocalStorageUser.userName()
+        ? api.getLocalStorageUser().userName
         : 'Anonymus',
     };
     try {

@@ -5,6 +5,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import ThumbUpAltIcon from '@material-ui/icons/ThumbUpAlt';
 import VisibilityIcon from '@material-ui/icons/Visibility';
 import ShareIcon from '@material-ui/icons/Share';
+import RateReviewIcon from '@material-ui/icons/RateReview';
 
 import {
   Card,
@@ -57,9 +58,6 @@ export default function CouponCard(props) {
   }, [editing]);
 
   const addLike = () => {
-    // let x = coupon.like.length;
-    // console.log(x);
-    // setLikes(likesCount++);
     console.log(index);
     let newCount = likesCount + 1;
     api.likeCoupon(index);
@@ -129,6 +127,13 @@ export default function CouponCard(props) {
         </Typography>
         <IconButton className={classes.lable} size="small">
           <VisibilityIcon />
+        </IconButton>
+
+        <Typography variant="body2" color="textSecondary" component="p">
+          {commentCount}
+        </Typography>
+        <IconButton className={classes.lable} size="small">
+          <RateReviewIcon />
         </IconButton>
       </CardActions>
     </Card>

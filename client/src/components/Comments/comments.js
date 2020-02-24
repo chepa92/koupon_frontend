@@ -14,8 +14,8 @@ import {
   Avatar,
   Typography,
   Grid,
-  Paper,
   TextField,
+  IconButton,
 } from '@material-ui/core';
 
 const useStyles = makeStyles(theme => ({
@@ -46,7 +46,7 @@ export default function CommentsList(props) {
       })
       .catch(err => console.log(err));
     setedit(false);
-  }, []);
+  }, [edit]);
 
   const showMore = () => {
     setLimit(prevState => prevState + 5);
@@ -67,19 +67,20 @@ export default function CommentsList(props) {
       ...prevState,
       {
         comment: newComment,
-        userImg: api.getLocalStorageUser().img,
+        img: api.getLocalStorageUser().img,
         userName: api.getLocalStorageUser.userName,
         date: new Date(),
       },
     ]);
     setedit(true);
+    setComment('');
   };
 
   const renderEachComment = (item, i) => {
     return (
       <ListItem key={item.date} alignItems="flex-start">
         <ListItemAvatar>
-          <Avatar alt="Remy Sharp" src={item.userImg} />
+          <Avatar alt="Remy Sharp" src={item.img} />
         </ListItemAvatar>
         <ListItemText
           primary={
@@ -141,9 +142,12 @@ export default function CommentsList(props) {
                 }}
                 value={newComment}
               />
-              <StyledButton onClick={saveComment} color="primary">
-                <CheckCircleIcon />
-              </StyledButton>
+              <IconButton
+                onClick={saveComment}
+                style={{ height: 38, marginTop: 7 }}
+              >
+                <CheckCircleIcon fontSize="large" />
+              </IconButton>
             </Grid>
           )}
         </Grid>

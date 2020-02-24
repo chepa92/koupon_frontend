@@ -68,6 +68,7 @@ module.exports = {
       categories,
       brand,
       publisher = req.user._id,
+      publisherImg = req.user.img,
       imgUrl,
       active = true,
     } = req.body;
@@ -79,6 +80,7 @@ module.exports = {
       categories,
       brand,
       publisher,
+      publisherImg,
       imgUrl,
       active,
     })
@@ -144,8 +146,9 @@ module.exports = {
       {
         $addToSet: {
           comments: {
+            userName: req.username,
             user_id: req.user._id,
-            userImg: req.user.img,
+            img: req.user.img,
             comment: body.comment,
             date: new Date(),
           },
@@ -220,7 +223,6 @@ async function addPriceToHistory(elementArr, id, discount) {
   let bestDiscount = parseInt(discount);
   console.log(bestDiscount);
   lowestPrice = parseInt(elementArr[0].salePrice);
-  newUrl = elementArr[0].url;
 
   for (let i = 0; i < elementArr.length; i++) {
     console.log(' lowest price: ' + lowestPrice);
@@ -238,7 +240,7 @@ async function addPriceToHistory(elementArr, id, discount) {
     const result = await Coupon.update(
       { _id: id },
       {
-        $set: { bestLink: newUrl },
+        $set: { link: newUrl },
         // { priceHistory.price: { $ne: elementArr[i].salePrice } },
         $addToSet: {
           priceHistory: {

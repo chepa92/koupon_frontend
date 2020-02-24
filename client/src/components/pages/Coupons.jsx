@@ -21,6 +21,7 @@ export default function Coupons(props) {
   const classes = useStyles();
   const [limit, setLimit] = useState(15);
   const [coupons, setCoupons] = useState([]);
+  const [edit, setEdit] = useState(false);
 
   useEffect(() => {
     async function fetchData() {
@@ -29,24 +30,19 @@ export default function Coupons(props) {
       } catch (err) {
         console.log('error fetching...:', err);
       }
+      setEdit(false);
     }
     fetchData();
-  }, []);
-
-  // const handleClickAway = () => {
-  //   setExpanded(false);
-  // };
+  }, [edit]);
+  const showMore = () => {
+    setLimit(prevState => prevState + 8);
+    setEdit(true);
+  };
 
   const renderEachCoupon = (item, i) => {
     return (
       <div key={`container${item._id}`}>
-        <CouponCard
-          index={item._id}
-          coupon={item}
-          // expanded={expanded}
-          // onChange={updateCoupon}
-          // onDelete={deleteCoupon}
-        ></CouponCard>
+        <CouponCard index={item._id} coupon={item}></CouponCard>
       </div>
     );
   };
@@ -60,13 +56,12 @@ export default function Coupons(props) {
           </Grid>
         </Grid>
       </Grid>
-      {/* <Button id="showMoreBtn" variant="text" onClick={loadMore}>
-        Show More
-      </Button> */}
-
-      {/* {coupons.map(c => (
-        <li key={c._id}>{c.title}</li>
-      ))} */}
+      <Grid item container justify="center">
+        <Button size="small" onClick={showMore}>
+          {' '}
+          show more
+        </Button>
+      </Grid>
     </Grid>
   );
 }

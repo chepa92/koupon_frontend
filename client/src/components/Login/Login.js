@@ -1,13 +1,16 @@
 import React, { Fragment, useState } from 'react';
 import api from '../../api/api';
 import Menu from '@material-ui/core/Menu';
-import TextField from '@material-ui/core/TextField';
+import { TextField, Grid } from '@material-ui/core';
 import { useForm } from 'react-hook-form';
+import { MuiThemeProvider } from '@material-ui/core/styles';
+import theme from '../Theme/newTheme';
+import { StyledButton } from '../Theme/Button.styled';
 
 export default function Login(props) {
-  const {onSubmitC} = props;
+  const { onSubmitC } = props;
   const [open, setOpenForm] = useState(false);
-  const [error, setError] = useState("");
+  const [error, setError] = useState('');
   const { register, handleSubmit, errors } = useForm();
   const onSubmit = data => {
     api
@@ -17,7 +20,6 @@ export default function Login(props) {
         console.log('SUCCESS!');
       })
       .catch(err => setError(err));
-
   };
   console.log(errors);
 
@@ -41,26 +43,26 @@ export default function Login(props) {
   // }
 
   return (
-    <div className="Login">
-      <form className="form_login" onSubmit={handleSubmit(onSubmit)}>
-        <h2>Login</h2>
-        <TextField
-          fullWidth
-          inputRef={register}
-          label="Username"
-          name="username"
-        />
-        <TextField
-          fullWidth
-          inputRef={register}
-          label="Password"
-          name="password"
-        />
-        <input className="button" type="submit" />
-      </form>
-      {error && (
-        <div className="info info-danger">{error}</div>
-      )}
-    </div>
+    <MuiThemeProvider theme={theme}>
+      <div className="Login">
+        <form className="form_login" onSubmit={handleSubmit(onSubmit)}>
+          <h2>Login</h2>
+          <TextField
+            fullWidth
+            inputRef={register}
+            label="Username"
+            name="username"
+          />
+          <TextField
+            fullWidth
+            inputRef={register}
+            label="Password"
+            name="password"
+          />
+          <StyledButton type="submit">Login</StyledButton>
+        </form>
+        {error && <div className="info info-danger">{error}</div>}
+      </div>
+    </MuiThemeProvider>
   );
 }

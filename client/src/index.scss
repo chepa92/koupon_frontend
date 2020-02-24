@@ -32,7 +32,7 @@ a {
   text-decoration: unset;
 }
 
-a>svg {
+a > svg {
   margin-right: 20px;
 }
 
@@ -78,33 +78,24 @@ a>svg {
   }
 }
 
-.button {
-  color: #fff;
-  margin: 10px 5px 10px 5px;
-  font-size: 18px;
-  background: linear-gradient(179.58deg, #FD749B -13.56%, #281AC8 158.3%);
-  font-family: Poppins, sans-serif;
-  line-height: 25px;
-  border-radius: 20px;
-  margin-top: 40px;
-  width:100%;
-}
-
-.button_close{
+.button_close {
   position: absolute;
   right: 0;
   height: 50px !important;
   width: 50px !important;
 }
 
-.Admin{
+.Admin {
   margin: 30px;
 }
 
-.form_login{
-  margin: 30px;
+.form_login {
+  align-items: center;
+  margin: auto;
+  padding: 30px;
 }
 
-.Login{
-  width: 300px;
+.Login {
+  width: 350px;
+  margin: auto;
 }

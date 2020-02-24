@@ -96,7 +96,7 @@ export default function CouponPage(props) {
     try {
       api.couponNotify(index).then(response => console.log(response));
       setStatus(
-        'Allert was created, you will be notified when we find a better price.'
+        'Alert was created, you will be notified when we find a better price.'
       );
       setOpen(true);
     } catch (err) {

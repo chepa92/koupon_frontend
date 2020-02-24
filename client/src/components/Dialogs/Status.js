@@ -27,7 +27,7 @@ export default function StatusDialog(props) {
           open={open}
           onClose={onClose}
           aria-labelledby="form-dialog-title"
-          style={{ maxHeight: 400 }}
+          style={{ maxHeight: 450 }}
         >
           <Grid item container justify="center">
             <img

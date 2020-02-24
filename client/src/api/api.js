@@ -107,6 +107,14 @@ export default {
       .catch(errHandler);
   },
 
+
+  updateUser(id, body) {
+    return service
+      .put('/user/updateUser?id=' + id, body)
+      .then(res => res.data)
+      .catch(errHandler);
+  },
+
   likeCoupon(id) {
     return service
       .post('/coupon/likeCoupon?id=' + id)

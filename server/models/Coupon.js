@@ -21,6 +21,7 @@ const couponSchema = new Schema(
       type: String,
       required: true,
     },
+    bestLink: String,
     categories: [Category],
     brand: String,
     publisher: Object,

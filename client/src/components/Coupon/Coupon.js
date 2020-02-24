@@ -1,15 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 
-import { makeStyles, MuiThemeProvider } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import ThumbUpAltIcon from '@material-ui/icons/ThumbUpAlt';
-import ThumbDownAltIcon from '@material-ui/icons/ThumbDownAlt';
 import VisibilityIcon from '@material-ui/icons/Visibility';
 import ShareIcon from '@material-ui/icons/Share';
-import theme from '../Theme/newTheme';
-import { StyledButton } from '../Theme/Button.styled';
-import MyLineGraph from '../Chart/Chart';
-
 
 import {
   Card,
@@ -22,7 +17,6 @@ import {
   CardMedia,
   CardHeader,
   Avatar,
-  Collapse,
 } from '@material-ui/core';
 import api from '../../api/api';
 

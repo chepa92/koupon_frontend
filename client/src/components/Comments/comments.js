@@ -31,7 +31,7 @@ export default function CommentsList(props) {
   const { index } = props;
   const classes = useStyles();
   const [limit, setLimit] = useState(5);
-  const [comment, setComment] = useState('');
+  const [newComment, setComment] = useState('');
   const [comments, setComments] = useState(null);
   const [coupon, setCoupon] = useState(null);
   const [edit, setedit] = useState(true);
@@ -54,12 +54,9 @@ export default function CommentsList(props) {
   };
 
   const saveComment = () => {
+    console.log(newComment);
     var body = {
-      comment: comment,
-      userImg: api.getLocalStorageUser() ? api.getLocalStorageUser().img : '',
-      userName: api.getLocalStorageUser()
-        ? api.getLocalStorageUser.userName()
-        : 'Anonymus',
+      comment: newComment,
     };
     try {
       api.commentCoupon(index, body).then(response => console.log(response));
@@ -67,13 +64,13 @@ export default function CommentsList(props) {
       console.log('error fetching...:', err);
     }
     setComments(prevState => [
+      ...prevState,
       {
-        comment: comment,
+        comment: newComment,
         userImg: api.getLocalStorageUser().img,
         userName: api.getLocalStorageUser.userName,
         date: new Date(),
       },
-      ...prevState,
     ]);
     setedit(true);
   };
@@ -96,7 +93,7 @@ export default function CommentsList(props) {
                 {item.comment}
               </Typography>
               <Typography component="span" variant="body2" color="textPrimary">
-                --{new Date(item.date).toUTCString()}
+                -- {new Date(item.date).toUTCString().slice(0, 16)}
               </Typography>
             </React.Fragment>
           }
@@ -108,47 +105,48 @@ export default function CommentsList(props) {
   return (
     <MuiThemeProvider theme={theme}>
       <Grid container justify="flex-end" spacing={2}>
-        <Paper className={classes.root}>
+        <Grid item>
           <Grid item>
-            <Grid item>
-              <Typography variant="subtitle1">Comments</Typography>
-            </Grid>
-            <List className={classes.root}>
-              {comments ? (
-                comments.map(renderEachComment).slice(0, limit)
-              ) : (
-                <div></div>
-              )}
-            </List>
-            <Grid item container justify="flex-end">
-              <Button size="small" onClick={showMore}>
-                {' '}
-                show more
-              </Button>
-            </Grid>
-            {api.isLoggedIn() && (
-              <Grid item container justify="center" direction="row" spacing={2}>
-                <TextField
-                  id="outlined-textarea"
-                  label="Comment"
-                  size="small"
-                  placeholder=" Write a comment..."
-                  multiline
-                  variant="outlined"
-                  onChange={event => {
-                    console.log(event.target.value);
-                    setComment(event.target.value);
-                    console.log(comment);
-                  }}
-                  value={comment}
-                />
-                <StyledButton onClick={saveComment} color="primary">
-                  <CheckCircleIcon />
-                </StyledButton>
-              </Grid>
-            )}
+            <Typography variant="subtitle1">Comments</Typography>
           </Grid>
-        </Paper>
+          <List className={classes.root}>
+            {comments ? (
+              comments
+                .map(renderEachComment)
+                .reverse()
+                .slice(0, limit)
+            ) : (
+              <div></div>
+            )}
+          </List>
+          <Grid item container justify="flex-end">
+            <Button size="small" onClick={showMore}>
+              {' '}
+              show more
+            </Button>
+          </Grid>
+          {api.isLoggedIn() && (
+            <Grid item container justify="center" direction="row" spacing={2}>
+              <TextField
+                id="outlined-textarea"
+                label="Comment"
+                size="small"
+                placeholder=" Write a comment..."
+                multiline
+                variant="outlined"
+                onChange={event => {
+                  console.log(event.target.value);
+                  setComment(event.target.value);
+                  console.log('comment:  ' + newComment);
+                }}
+                value={newComment}
+              />
+              <StyledButton onClick={saveComment} color="primary">
+                <CheckCircleIcon />
+              </StyledButton>
+            </Grid>
+          )}
+        </Grid>
       </Grid>
     </MuiThemeProvider>
   );

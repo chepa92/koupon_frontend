@@ -3,11 +3,12 @@ import { makeStyles } from '@material-ui/core/styles';
 import EditIcon from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/Delete';
 import api from '../../api/api';
-import axios from 'axios';
 import StatusDialog from '../Dialogs/Status';
 import { useHistory } from 'react-router-dom';
 import EditiDialog from '../Dialogs/editCoupon';
 import CommentsList from '../Comments/comments';
+// import theme from '../Theme/newTheme';
+import { StyledButton } from '../Theme/Button.styled';
 
 import {
   IconButton,
@@ -105,6 +106,10 @@ export default function CouponPage(props) {
           </IconButton>
         </Grid>
       )}
+      <Grid item container>
+        <StyledButton>Go</StyledButton>
+        <StyledButton>Notifiy</StyledButton>
+      </Grid>
       <StatusDialog open={open} status={status} onClose={handleCloseDelete} />
       <EditiDialog open={edit} onChange={saveCoupon} onClose={handleClose} />
     </Grid>

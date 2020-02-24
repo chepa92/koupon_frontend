@@ -137,7 +137,7 @@ module.exports = {
 
   async commentCoupon(req, res, next) {
     const id = req.query.id;
-    const comment = req.query.comment;
+    const body = req.body;
 
     const result = await Coupon.updateOne(
       { _id: id },
@@ -145,7 +145,8 @@ module.exports = {
         $addToSet: {
           comments: {
             user_id: req.user._id,
-            comment: comment,
+            userImg: req.user.img,
+            comment: body.comment,
             date: new Date(),
           },
         },
@@ -219,6 +220,7 @@ async function addPriceToHistory(elementArr, id, discount) {
   let bestDiscount = parseInt(discount);
   console.log(bestDiscount);
   lowestPrice = parseInt(elementArr[0].salePrice);
+  newUrl = elementArr[0].url;
 
   for (let i = 0; i < elementArr.length; i++) {
     console.log(' lowest price: ' + lowestPrice);
@@ -236,7 +238,7 @@ async function addPriceToHistory(elementArr, id, discount) {
     const result = await Coupon.update(
       { _id: id },
       {
-        $set: { link: newUrl },
+        $set: { bestLink: newUrl },
         // { priceHistory.price: { $ne: elementArr[i].salePrice } },
         $addToSet: {
           priceHistory: {

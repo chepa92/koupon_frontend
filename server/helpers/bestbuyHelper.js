@@ -31,7 +31,8 @@ module.exports = {
         .catch(error => {
           // handle error
           console.log(error);
-          return err;
+          // return error;
+          errHandler(error);
         }));
     } catch (error) {
       console.error(error);

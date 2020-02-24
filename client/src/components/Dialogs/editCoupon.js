@@ -45,7 +45,7 @@ export default function EditDialog(props) {
           onClose={onClose}
           aria-labelledby="form-dialog-title"
         >
-          <DialogTitle id="form-dialog-title">Create New Coupon</DialogTitle>
+          <DialogTitle id="form-dialog-title">Edit Coupon</DialogTitle>
           <DialogContent>
             <DialogContentText>
               Please Fill Coupon Information

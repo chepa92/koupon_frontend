@@ -3,7 +3,8 @@ import axios from 'axios';
 const service = axios.create({
   baseURL:
     process.env.NODE_ENV === 'production'
-      ? '/api'
+      ? // ? 'https://koupon.chepa.net/api'
+        '/api'
       : 'http://localhost:5001/api',
   withCredentials: true,
 });
@@ -127,12 +128,14 @@ export default {
       .catch(errHandler);
   },
 
-  getUser(id) {
+  couponNotify(id) {
     return service
-      .get('/coupon/getCoupon?id=' + id)
+      .post('/coupon/notifyCoupon?id=' + id)
       .then(res => res.data)
       .catch(errHandler);
   },
+
+  // Users Functions
 
   getAllUsers() {
     return service
@@ -164,15 +167,6 @@ export default {
           'Content-Type': 'multipart/form-data',
         },
       })
-      .then(res => res.data)
-      .catch(errHandler);
-  },
-
-  // Users Functions
-
-  getUser(id) {
-    return service
-      .get('/user/getUser?id=' + id)
       .then(res => res.data)
       .catch(errHandler);
   },

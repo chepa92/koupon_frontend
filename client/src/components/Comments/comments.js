@@ -31,7 +31,7 @@ export default function CommentsList(props) {
   const { index } = props;
   const classes = useStyles();
   const [limit, setLimit] = useState(5);
-  const [comment, setComment] = useState('');
+  const [newComment, setComment] = useState('');
   const [comments, setComments] = useState(null);
   const [coupon, setCoupon] = useState(null);
   const [edit, setedit] = useState(true);
@@ -54,12 +54,9 @@ export default function CommentsList(props) {
   };
 
   const saveComment = () => {
+    console.log(newComment);
     var body = {
-      comment: comment,
-      userImg: api.getLocalStorageUser() ? api.getLocalStorageUser().img : '',
-      userName: api.getLocalStorageUser()
-        ? api.getLocalStorageUser().userName
-        : 'Anonymus',
+      comment: newComment,
     };
     try {
       api.commentCoupon(index, body).then(response => console.log(response));
@@ -67,13 +64,13 @@ export default function CommentsList(props) {
       console.log('error fetching...:', err);
     }
     setComments(prevState => [
+      ...prevState,
       {
-        comment: comment,
+        comment: newComment,
         userImg: api.getLocalStorageUser().img,
         userName: api.getLocalStorageUser.userName,
         date: new Date(),
       },
-      ...prevState,
     ]);
     setedit(true);
   };
@@ -96,7 +93,7 @@ export default function CommentsList(props) {
                 {item.comment}
               </Typography>
               <Typography component="span" variant="body2" color="textPrimary">
-                --{new Date(item.date).toUTCString()}
+                -- {new Date(item.date).toUTCString().slice(0, 16)}
               </Typography>
             </React.Fragment>
           }
@@ -114,7 +111,10 @@ export default function CommentsList(props) {
           </Grid>
           <List className={classes.root}>
             {comments ? (
-              comments.map(renderEachComment).slice(0, limit)
+              comments
+                .map(renderEachComment)
+                .reverse()
+                .slice(0, limit)
             ) : (
               <div></div>
             )}
@@ -137,9 +137,9 @@ export default function CommentsList(props) {
                 onChange={event => {
                   console.log(event.target.value);
                   setComment(event.target.value);
-                  console.log(comment);
+                  console.log('comment:  ' + newComment);
                 }}
-                value={comment}
+                value={newComment}
               />
               <StyledButton onClick={saveComment} color="primary">
                 <CheckCircleIcon />

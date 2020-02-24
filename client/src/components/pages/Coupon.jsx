@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { EditIcon, DeleteIcon } from '@material-ui/icons';
 import CouponPage from '../Coupon/CouponPage';
 import CommentsList from '../Comments/comments';
 import axios from 'axios';
+import LineExample from '../Chart/Graph';
 
 import api from '../../api/api';
 import qs from 'qs';
@@ -36,6 +36,10 @@ const useStyles = makeStyles(theme => ({
     paddingTop: 4,
     maxWidth: '300px',
     maxHeight: '250px',
+  },
+  comments: {
+    padding: 30,
+    margin: 50,
   },
 }));
 
@@ -85,8 +89,13 @@ export default function Coupon(props) {
         <Grid item xs={6}>
           <CouponPage index={id} coupon={coupon} />
         </Grid>
-        <Grid item xs={6}>
-          <CommentsList index={id} />
+        <Grid item container justify="center">
+          <Grid item className={classes.comments}>
+            <CommentsList index={id} />
+          </Grid>
+          <Grid style={{ width: 400, height: 350 }}>
+            <LineExample index={id} />
+          </Grid>
         </Grid>
       </Grid>
     </Grid>

@@ -3,7 +3,7 @@ import axios from 'axios';
 const service = axios.create({
   baseURL:
     process.env.NODE_ENV === 'production'
-      ? 'https://koupon.chepa.net/api'
+      ? '/api'
       : 'http://localhost:5001/api',
   withCredentials: true,
 });
@@ -19,7 +19,7 @@ const errHandler = err => {
 
 export default {
   service: service,
-  headers: { 'Access-Control-Allow-Origin': '*' },
+
   // This method is synchronous and returns true or false
   // To know if the user is connected, we just check if we have a value for localStorage.getItem('user')
   isLoggedIn() {
@@ -113,9 +113,16 @@ export default {
       .catch(errHandler);
   },
 
-  commentCoupon(id, comment) {
+  commentCoupon(id, body) {
     return service
-      .post('/coupon/commentCoupon?id=' + id, comment)
+      .post('/coupon/commentCoupon?id=' + id, body)
+      .then(res => res.data)
+      .catch(errHandler);
+  },
+
+  couponPriceHistory(id) {
+    return service
+      .get('/coupon/priceHistory?id=' + id)
       .then(res => res.data)
       .catch(errHandler);
   },

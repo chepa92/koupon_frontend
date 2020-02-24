@@ -38,32 +38,18 @@ export default function CouponPage(props) {
   // const [coupon, setCoupon] = useState();
 
   useEffect(() => {
-    // async function getCoupon() {
-    //   api
-    //     .getCoupon(index)
-    //     .then(coupon => {
-    //       console.log(coupon);
-    //       setCoupon(coupon);
-    //     })
-    //     .catch(err => console.log(err));
-    //   setEdit(false);
-    // }
-    // getCoupon();
-
-    setTimeout(() => {
-      if (coupon.priceHistory) {
-        if (coupon.priceHistory[0] != undefined) {
-          var newPrice = coupon.priceHistory.reduce(
-            (min, p) => (p.price < min ? p.price : min),
-            coupon.priceHistory[0].price
-          );
-          console.log(newPrice);
-          setBestPrice(newPrice + '$');
-          setShow(true);
-        }
+    if (coupon.priceHistory) {
+      if (coupon.priceHistory[0] != undefined) {
+        var newPrice = coupon.priceHistory.reduce(
+          (min, p) => (p.price < min ? p.price : min),
+          coupon.priceHistory[0].price
+        );
+        console.log(newPrice);
+        setBestPrice(newPrice + '$');
+        setShow(true);
       }
-    }, 1000);
-  }, [edit]);
+    }
+  }, [coupon]);
 
   const handleDelete = () => {
     console.log(api.getLocalStorageUser()._id);

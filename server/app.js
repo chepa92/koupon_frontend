@@ -17,8 +17,6 @@ const userRouter = require('./routes/userRouter');
 
 require('./configs/database');
 
-
-
 const app_name = require('./package.json').name;
 const debug = require('debug')(
   `${app_name}:${path.basename(__filename).split('.')[0]}`
@@ -27,6 +25,24 @@ const debug = require('debug')(
 const { isLoggedIn, isAdmin, isPermitted } = require('./middlewares');
 
 const app = express();
+
+app.use((req, res, next) => {
+  res.header(
+    'Access-Control-Allow-Origin',
+    'https://koupon-9fccd.firebaseapp.com'
+  );
+  res.header(
+    'Access-Control-Allow-Headers',
+    'Origin, X-Requested-With, Content-Type, Accept'
+  );
+  res.header(
+    'Access-Control-Allow-Methods',
+    'GET, POST, OPTIONS, PUT, PATCH, DELETE'
+  );
+  res.header('Access-Control-Allow-Credentials', true);
+  res.set('Content-Type', 'application/json');
+  next();
+});
 
 app.use(nocache());
 

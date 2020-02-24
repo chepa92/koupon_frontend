@@ -23,8 +23,8 @@ const useStyles = makeStyles(theme => ({
     padding: 20,
   },
   paper: {
-    height: 140,
-    width: 100,
+    // height: 140,
+    width: 350,
   },
   image: {
     width: 128,
@@ -46,16 +46,6 @@ export default function Coupon(props) {
   const [coupon, setCoupon] = useState([]);
   var id = qs.parse(props.location.search, { ignoreQueryPrefix: true }).id;
 
-  // useEffect(() => {
-  //   async function fetchData() {
-  //     try {
-  //       await api.getCoupon(id).then(coupon => setCoupon(coupon));
-  //     } catch (err) {
-  //       console.log('error fetching...:', err);
-  //     }
-  //   }
-  //   fetchData();
-  // }, []);
   useEffect(() => {
     api
       .getCoupon(id)
@@ -76,19 +66,19 @@ export default function Coupon(props) {
         <Grid item xs={6}>
           <Grid container justify="flex-end" spacing={spacing}>
             <Grid item>
-              <Paper>
-                <CardMedia
-                  className={classes.img}
-                  component="img"
-                  alt="Coupon"
-                  height="140"
-                  image={
-                    coupon.imgUrl
-                      ? coupon.imgUrl
-                      : 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTCWnEg-zPrA6JZIXqfN7vxCdSWgORuP3b3jycKv1_3oZYODAeF'
-                  }
-                />
-              </Paper>
+              {/* <Paper className={classes.paper}> */}
+              <CardMedia
+                className={classes.img}
+                component="img"
+                alt="Coupon"
+                height="140"
+                image={
+                  coupon.imgUrl
+                    ? coupon.imgUrl
+                    : 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTCWnEg-zPrA6JZIXqfN7vxCdSWgORuP3b3jycKv1_3oZYODAeF'
+                }
+              />
+              {/* </Paper> */}
             </Grid>
           </Grid>
         </Grid>

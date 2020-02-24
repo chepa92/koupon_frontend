@@ -108,47 +108,45 @@ export default function CommentsList(props) {
   return (
     <MuiThemeProvider theme={theme}>
       <Grid container justify="flex-end" spacing={2}>
-        <Paper className={classes.root}>
+        <Grid item>
           <Grid item>
-            <Grid item>
-              <Typography variant="subtitle1">Comments</Typography>
-            </Grid>
-            <List className={classes.root}>
-              {comments ? (
-                comments.map(renderEachComment).slice(0, limit)
-              ) : (
-                <div></div>
-              )}
-            </List>
-            <Grid item container justify="flex-end">
-              <Button size="small" onClick={showMore}>
-                {' '}
-                show more
-              </Button>
-            </Grid>
-            {api.isLoggedIn() && (
-              <Grid item container justify="center" direction="row" spacing={2}>
-                <TextField
-                  id="outlined-textarea"
-                  label="Comment"
-                  size="small"
-                  placeholder=" Write a comment..."
-                  multiline
-                  variant="outlined"
-                  onChange={event => {
-                    console.log(event.target.value);
-                    setComment(event.target.value);
-                    console.log(comment);
-                  }}
-                  value={comment}
-                />
-                <StyledButton onClick={saveComment} color="primary">
-                  <CheckCircleIcon />
-                </StyledButton>
-              </Grid>
-            )}
+            <Typography variant="subtitle1">Comments</Typography>
           </Grid>
-        </Paper>
+          <List className={classes.root}>
+            {comments ? (
+              comments.map(renderEachComment).slice(0, limit)
+            ) : (
+              <div></div>
+            )}
+          </List>
+          <Grid item container justify="flex-end">
+            <Button size="small" onClick={showMore}>
+              {' '}
+              show more
+            </Button>
+          </Grid>
+          {api.isLoggedIn() && (
+            <Grid item container justify="center" direction="row" spacing={2}>
+              <TextField
+                id="outlined-textarea"
+                label="Comment"
+                size="small"
+                placeholder=" Write a comment..."
+                multiline
+                variant="outlined"
+                onChange={event => {
+                  console.log(event.target.value);
+                  setComment(event.target.value);
+                  console.log(comment);
+                }}
+                value={comment}
+              />
+              <StyledButton onClick={saveComment} color="primary">
+                <CheckCircleIcon />
+              </StyledButton>
+            </Grid>
+          )}
+        </Grid>
       </Grid>
     </MuiThemeProvider>
   );

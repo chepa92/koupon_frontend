@@ -2,22 +2,13 @@ import React, { Fragment, useState } from 'react';
 import { MuiThemeProvider } from '@material-ui/core/styles';
 import { makeStyles } from '@material-ui/core/styles';
 import theme from '../Theme/newTheme';
-import { Router, NavLink } from 'react-router-dom';
 
-import {
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogContentText,
-  IconButton,
-  DialogTitle,
-  Box,
-} from '@material-ui/core';
+import { Dialog, DialogActions, DialogTitle, Grid } from '@material-ui/core';
 import { StyledButton } from '../Theme/Button.styled';
-import api from '../../api/api';
 
 const useStyles = makeStyles(theme => ({
   root: {
+    maxHeight: 200,
     maxWidth: 350,
     flexGrow: 1,
     margin: 'auto',
@@ -36,14 +27,15 @@ export default function StatusDialog(props) {
           open={open}
           onClose={onClose}
           aria-labelledby="form-dialog-title"
+          style={{ maxHeight: 400 }}
         >
-          <DialogContent>
+          <Grid item container justify="center">
             <img
               src="/images/done.png"
               alt="done"
-              style={{ width: 160, height: 120 }}
+              style={{ width: 160, height: 120, padding: 30 }}
             />
-          </DialogContent>
+          </Grid>
 
           <DialogTitle id="form-dialog-title">{status}</DialogTitle>
           <DialogActions>

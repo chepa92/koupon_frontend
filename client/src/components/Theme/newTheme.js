@@ -18,12 +18,18 @@ const theme = createMuiTheme({
   overrides: {
     MuiIconButton: {
       root: {
-        color: 'linear-gradient(179.58deg, #FD749B -13.56%, #281AC8 158.3%)',
+        cursor: 'pointer',
+        color: '#ffff',
         background:
           'linear-gradient(179.58deg, #FD749B -13.56%, #281AC8 158.3%)',
         padding: 0.3,
         marginRight: 20,
         marginLeft: 20,
+      },
+    },
+    MuiButtonBase: {
+      root: {
+        margin: 0,
       },
     },
     // MuiButton: {
@@ -69,12 +75,7 @@ const theme = createMuiTheme({
         margin: 'auto',
       },
     },
-    // MuiPaper: {
-    //   root: {
-    //     padding: 20,
-    //     margin: 20,
-    //   },
-    // },
+
     MuiTypography: {
       root: {
         fontFamily: 'Poppins, sans-serif',
@@ -103,13 +104,26 @@ const theme = createMuiTheme({
       },
       root: {
         borderRadius: 20,
+        color: 'rgba(142, 68, 173, 1)',
+      },
+    },
+    MuiFormLabel: {
+      root: {
+        color: 'rgba(142, 68, 173, 1)',
+        fontFamily: 'Poppins, sans-serif',
+        paddind: 5,
       },
     },
     MuiInputBase: {
       root: {
         fontFamily: 'Poppins, sans-serif',
+        color: '#FD749B',
       },
       input: {
+        fontFamily: 'Poppins, sans-serif',
+      },
+      outlined: {
+        color: '#FD749B',
         fontFamily: 'Poppins, sans-serif',
       },
     },

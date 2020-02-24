@@ -7,15 +7,7 @@ import LineExample from '../Chart/Graph';
 
 import api from '../../api/api';
 import qs from 'qs';
-import {
-  IconButton,
-  Typography,
-  Grid,
-  CardMedia,
-  Container,
-  Paper,
-  Avatar,
-} from '@material-ui/core';
+import { Grid, CardMedia } from '@material-ui/core';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -38,8 +30,7 @@ const useStyles = makeStyles(theme => ({
     maxHeight: '250px',
   },
   comments: {
-    padding: 30,
-    margin: 50,
+    margin: '30px 60px',
   },
 }));
 
@@ -61,16 +52,11 @@ export default function Coupon(props) {
   }, []);
 
   return (
-    // <div className="Coupon">
-    //   <h2>The coupon is:</h2>
-    //   <li key={coupon._id}>{coupon.title}</li>
-    // </div>
     <Grid container className="Coupon">
       <Grid container className={classes.root} spacing={2}>
         <Grid item xs={6}>
           <Grid container justify="flex-end" spacing={spacing}>
             <Grid item>
-              {/* <Paper className={classes.paper}> */}
               <CardMedia
                 className={classes.img}
                 component="img"
@@ -82,7 +68,6 @@ export default function Coupon(props) {
                     : 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTCWnEg-zPrA6JZIXqfN7vxCdSWgORuP3b3jycKv1_3oZYODAeF'
                 }
               />
-              {/* </Paper> */}
             </Grid>
           </Grid>
         </Grid>
@@ -93,7 +78,10 @@ export default function Coupon(props) {
           <Grid item className={classes.comments}>
             <CommentsList index={id} />
           </Grid>
-          <Grid style={{ width: 400, height: 350 }}>
+          <Grid
+            style={{ width: 400, height: 350 }}
+            className={classes.comments}
+          >
             <LineExample index={id} />
           </Grid>
         </Grid>

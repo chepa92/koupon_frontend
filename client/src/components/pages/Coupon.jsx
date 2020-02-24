@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { EditIcon, DeleteIcon } from '@material-ui/icons';
 import CouponPage from '../Coupon/CouponPage';
 import CommentsList from '../Comments/comments';
 import axios from 'axios';
+import LineExample from '../Chart/Graph';
 
 import api from '../../api/api';
 import qs from 'qs';
@@ -23,8 +23,8 @@ const useStyles = makeStyles(theme => ({
     padding: 20,
   },
   paper: {
-    height: 140,
-    width: 100,
+    // height: 140,
+    width: 350,
   },
   image: {
     width: 128,
@@ -37,6 +37,10 @@ const useStyles = makeStyles(theme => ({
     maxWidth: '300px',
     maxHeight: '250px',
   },
+  comments: {
+    padding: 30,
+    margin: 50,
+  },
 }));
 
 export default function Coupon(props) {
@@ -46,16 +50,6 @@ export default function Coupon(props) {
   const [coupon, setCoupon] = useState([]);
   var id = qs.parse(props.location.search, { ignoreQueryPrefix: true }).id;
 
-  // useEffect(() => {
-  //   async function fetchData() {
-  //     try {
-  //       await api.getCoupon(id).then(coupon => setCoupon(coupon));
-  //     } catch (err) {
-  //       console.log('error fetching...:', err);
-  //     }
-  //   }
-  //   fetchData();
-  // }, []);
   useEffect(() => {
     api
       .getCoupon(id)
@@ -76,27 +70,32 @@ export default function Coupon(props) {
         <Grid item xs={6}>
           <Grid container justify="flex-end" spacing={spacing}>
             <Grid item>
-              <Paper>
-                <CardMedia
-                  className={classes.img}
-                  component="img"
-                  alt="Coupon"
-                  height="140"
-                  image={
-                    coupon.imgUrl
-                      ? coupon.imgUrl
-                      : 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTCWnEg-zPrA6JZIXqfN7vxCdSWgORuP3b3jycKv1_3oZYODAeF'
-                  }
-                />
-              </Paper>
+              {/* <Paper className={classes.paper}> */}
+              <CardMedia
+                className={classes.img}
+                component="img"
+                alt="Coupon"
+                height="140"
+                image={
+                  coupon.imgUrl
+                    ? coupon.imgUrl
+                    : 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTCWnEg-zPrA6JZIXqfN7vxCdSWgORuP3b3jycKv1_3oZYODAeF'
+                }
+              />
+              {/* </Paper> */}
             </Grid>
           </Grid>
         </Grid>
         <Grid item xs={6}>
           <CouponPage index={id} coupon={coupon} />
         </Grid>
-        <Grid item xs={6}>
-          <CommentsList index={id} />
+        <Grid item container justify="center">
+          <Grid item className={classes.comments}>
+            <CommentsList index={id} />
+          </Grid>
+          <Grid style={{ width: 400, height: 350 }}>
+            <LineExample index={id} />
+          </Grid>
         </Grid>
       </Grid>
     </Grid>

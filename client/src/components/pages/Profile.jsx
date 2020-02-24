@@ -38,7 +38,7 @@ const useStyles = makeStyles(theme => ({
   },
   text: {
     margin: '20px 0',
-  }
+  },
 }));
 
 export default function Profile(props) {
@@ -55,14 +55,10 @@ export default function Profile(props) {
           username: profile.username,
           telegram: profile.telegram,
           email: profile.email,
-          telegram_notify: profile.telegram_notify,
+          telegram_notify: true,
         });
       })
       .catch(err => console.log(err));
-
-    function switcher() {
-      profile.telegram_notify = false;
-    }
   }, [reset]);
 
   const { register, handleSubmit, errors, reset, control } = useForm();

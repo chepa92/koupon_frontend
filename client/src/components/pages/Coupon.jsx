@@ -45,7 +45,6 @@ export default function Coupon(props) {
     api
       .getCoupon(id)
       .then(coupon => {
-        console.log(coupon);
         setCoupon(coupon);
       })
       .catch(err => console.log(err));

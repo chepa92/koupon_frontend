@@ -25,7 +25,7 @@ export default function Coupons(props) {
   };
 
   const renderEachCoupon = (item, i) => {
-    return <CouponCard index={item._id} coupon={item}></CouponCard>;
+    return <CouponCard index={item._id} coupon={item} key={item._id}></CouponCard>;
   };
 
   return (

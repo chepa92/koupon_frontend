@@ -17,9 +17,12 @@ export default function Login(props) {
         onSubmitC();
         console.log('SUCCESS!');
       })
-      .catch(err => setError(err));
+      .catch(err => {
+        setError(err);
+        console.log(error);
+        console.log(errors);
+      });
   };
-  console.log(errors);
 
   return (
     <MuiThemeProvider theme={theme}>

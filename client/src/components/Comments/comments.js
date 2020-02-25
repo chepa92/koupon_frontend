@@ -54,7 +54,6 @@ export default function CommentsList(props) {
     api
       .getCoupon(index)
       .then(coupon => {
-        console.log(coupon);
         setCoupon(coupon);
         setComments(coupon.comments);
       })

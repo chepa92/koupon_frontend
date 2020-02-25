@@ -36,9 +36,10 @@ export default function FormDialog(props) {
         this.setState({ message: err.toString() });
         setStatus('Oops... Somthing went wrong, try again.');
         setOpenRespons(true);
+        console.log(errors);
       });
   };
-  console.log(errors);
+
 
   const handleOpenForm = () => {
     setOpenForm(true);

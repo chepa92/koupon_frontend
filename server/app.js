@@ -56,13 +56,13 @@ app.use(nocache());
 //   })
 // );
 
-var whitelist = ['http://localhost:3000', 'https://koupon-9fccd.firebaseapp.com/', 'https://chepa.net']
+var whitelist = ['http://localhost:3000', 'https://koupon-9fccd.firebaseapp.com', 'https://chepa.net']
 var corsOptions = {
   origin: function (origin, callback) {
     if (whitelist.indexOf(origin) !== -1) {
       callback(null, true)
     } else {
-      callback(new Error('Not allowed by CORS'))
+      callback(new Error('Not allowed by CORS' + origin))
     }
   }
 }

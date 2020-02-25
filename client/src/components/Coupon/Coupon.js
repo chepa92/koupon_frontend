@@ -53,6 +53,7 @@ export default function CouponCard(props) {
       setEditing(false);
     }
     fetchData();
+    // eslint-disable-next-line
   }, [editing]);
 
   const addLike = () => {

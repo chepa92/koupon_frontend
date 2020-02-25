@@ -46,6 +46,7 @@ export default function CommentsList(props) {
   const [limit, setLimit] = useState(5);
   const [newComment, setComment] = useState('');
   const [comments, setComments] = useState(null);
+  // eslint-disable-next-line
   const [coupon, setCoupon] = useState(null);
   const [edit, setedit] = useState(true);
 
@@ -59,6 +60,7 @@ export default function CommentsList(props) {
       })
       .catch(err => console.log(err));
     setedit(false);
+    // eslint-disable-next-line
   }, [edit]);
 
   const showMore = () => {

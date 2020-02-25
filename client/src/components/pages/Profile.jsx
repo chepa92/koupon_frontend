@@ -56,6 +56,7 @@ export default function Profile(props) {
         });
       })
       .catch(err => console.log(err));
+      // eslint-disable-next-line
   }, [reset]);
 
 

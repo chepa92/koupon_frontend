@@ -49,6 +49,7 @@ export default function Coupon(props) {
         setCoupon(coupon);
       })
       .catch(err => console.log(err));
+      // eslint-disable-next-line
   }, []);
 
   return (

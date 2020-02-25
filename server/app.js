@@ -46,7 +46,28 @@ app.use((req, res, next) => {
 
 app.use(nocache());
 
-app.use(cors())
+// app.use(
+//   cors({
+//     origin: (origin, cb) => {
+//       cb(null, origin && origin.startsWith('http://localhost:') && origin.startsWith('https://koupon-9fccd.firebaseapp.com/'));
+//     },
+//     optionsSuccessStatus: 200,
+//     credentials: true,
+//   })
+// );
+
+var whitelist = ['http://localhost:3000', 'https://koupon-9fccd.firebaseapp.com/', 'https://chepa.net']
+var corsOptions = {
+  origin: function (origin, callback) {
+    if (whitelist.indexOf(origin) !== -1) {
+      callback(null, true)
+    } else {
+      callback(new Error('Not allowed by CORS'))
+    }
+  }
+}
+
+app.use(cors(corsOptions))
 
 app.use(logger('dev'));
 app.use(cookieParser());

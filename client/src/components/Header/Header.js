@@ -75,20 +75,25 @@ function Header(props) {
           </Box>
           <FormDialog />
 
-          <Button size="small" style={{ marginLeft: 10 }}>
-            {!api.isLoggedIn() && (
-              <Button
-                aria-controls="simple-menu"
-                aria-haspopup="true"
-                onClick={handleClickL}
-              >
-                Login
-              </Button>
-            )}
-            {api.isLoggedIn() && (
+          {!api.isLoggedIn() && (
+            <Button
+              aria-controls="simple-menu"
+              aria-haspopup="true"
+              onClick={handleClickL}
+              size="small"
+              style={{ marginLeft: 10 }}
+            >
+              Login
+            </Button>
+          )}
+          {api.isLoggedIn() && (
+            <Button
+              size="small"
+              style={{ marginLeft: 10, textTransform: 'upercase' }}
+            >
               <NavLink to="/">{api.getLocalStorageUser().username}</NavLink>
-            )}
-          </Button>
+            </Button>
+          )}
           <IconButton
             aria-controls="fade-menu"
             aria-haspopup="true"

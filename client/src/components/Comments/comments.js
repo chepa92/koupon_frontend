@@ -13,17 +13,22 @@ import {
   ListItemAvatar,
   Avatar,
   Typography,
-  Grid,
   TextField,
   IconButton,
 } from '@material-ui/core';
 
 const useStyles = makeStyles(theme => ({
   root: {
-    padding: 20,
+    padding: 0,
   },
   inline: {
     display: 'inline',
+  },
+  comment: {
+    borderStyle: 'solid',
+    borderColor: '#bb57a9',
+    margin: '10px 0',
+    border: '0.5px',
   },
 }));
 
@@ -78,7 +83,11 @@ export default function CommentsList(props) {
 
   const renderEachComment = (item, i) => {
     return (
-      <ListItem key={item.date} alignItems="flex-start">
+      <ListItem
+        key={item.date}
+        alignItems="flex-start"
+        className={classes.comment}
+      >
         <ListItemAvatar>
           <Avatar alt="Remy Sharp" src={item.img} />
         </ListItemAvatar>
@@ -105,53 +114,46 @@ export default function CommentsList(props) {
 
   return (
     <MuiThemeProvider theme={theme}>
-      <Grid container justify="flex-end" spacing={2}>
-        <Grid item>
-          <Grid item>
-            <Typography variant="subtitle1">Comments</Typography>
-          </Grid>
-          <List className={classes.root}>
-            {comments ? (
-              comments
-                .map(renderEachComment)
-                .reverse()
-                .slice(0, limit)
-            ) : (
-              <div></div>
-            )}
-          </List>
-          <Grid item container justify="flex-end">
-            <Button size="small" onClick={showMore}>
-              {' '}
-              show more
-            </Button>
-          </Grid>
-          {api.isLoggedIn() && (
-            <Grid item container justify="center" direction="row" spacing={2}>
-              <TextField
-                id="outlined-textarea"
-                label="Comment"
-                size="small"
-                placeholder=" Write a comment..."
-                multiline
-                variant="outlined"
-                onChange={event => {
-                  console.log(event.target.value);
-                  setComment(event.target.value);
-                  console.log('comment:  ' + newComment);
-                }}
-                value={newComment}
-              />
-              <IconButton
-                onClick={saveComment}
-                style={{ height: 38, marginTop: 7 }}
-              >
-                <CheckCircleIcon fontSize="large" />
-              </IconButton>
-            </Grid>
-          )}
-        </Grid>
-      </Grid>
+      <Typography variant="subtitle1">Comments</Typography>
+      <List className={classes.root}>
+        {comments ? (
+          comments
+            .map(renderEachComment)
+            .reverse()
+            .slice(0, limit)
+        ) : (
+          <div></div>
+        )}
+      </List>
+
+      <Button size="small" onClick={showMore}>
+        {' '}
+        show more
+      </Button>
+      {api.isLoggedIn() && (
+        <div>
+          <TextField
+            id="outlined-textarea"
+            label=""
+            size="small"
+            placeholder="Write a comment..."
+            multiline
+            variant="outlined"
+            onChange={event => {
+              console.log(event.target.value);
+              setComment(event.target.value);
+              console.log('comment:  ' + newComment);
+            }}
+            value={newComment}
+          />
+          <IconButton
+            onClick={saveComment}
+            style={{ height: 38, marginTop: 9 }}
+          >
+            <CheckCircleIcon fontSize="large" />
+          </IconButton>
+        </div>
+      )}
     </MuiThemeProvider>
   );
 }

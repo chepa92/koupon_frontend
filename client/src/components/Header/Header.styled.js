@@ -36,6 +36,9 @@ const useStyles = theme => ({
       marginLeft: theme.spacing(1),
       width: 'auto',
     },
+    [theme.breakpoints.down('sm')]: {
+      display: 'none',
+    },
   },
   innerBox: {
     background: ' #fff',

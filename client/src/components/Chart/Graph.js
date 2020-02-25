@@ -23,6 +23,8 @@ const options = {
       },
     },
   },
+  maintainAspectRatio: false,
+  responsive: true,
 };
 
 const LineExample = props => {
@@ -77,7 +79,7 @@ const LineExample = props => {
   };
   return (
     <MuiThemeProvider theme={theme}>
-      <div className="flex flex-col items-center w-full max-w-md">
+      <div className="flex flex-col items-center w-full max-w-md" style={{ width: "400px" }}>
         <Typography variant="subtitle1">Prices</Typography>
         <Line data={data} options={options} />
       </div>

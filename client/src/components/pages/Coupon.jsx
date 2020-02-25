@@ -10,10 +10,6 @@ import qs from 'qs';
 import { Grid, CardMedia } from '@material-ui/core';
 
 const useStyles = makeStyles(theme => ({
-  root: {
-    flexGrow: 1,
-    padding: 20,
-  },
   paper: {
     // height: 140,
     width: 350,
@@ -26,11 +22,18 @@ const useStyles = makeStyles(theme => ({
     width: '100%',
     objectFit: 'contain',
     paddingTop: 4,
-    maxWidth: '300px',
     maxHeight: '250px',
   },
   comments: {
     margin: '30px 60px',
+  },
+  gridpadL: {
+    padding: '3% 5% 0 10% !important',
+
+  },
+  gridpadR: {
+    padding: '3% 0% 0 5% !important',
+
   },
 }));
 
@@ -53,38 +56,26 @@ export default function Coupon(props) {
 
   return (
     <Grid container className="Coupon">
-      <Grid container className={classes.root} spacing={2}>
-        <Grid item xs={6}>
-          <Grid container justify="flex-end" spacing={spacing}>
-            <Grid item>
-              <CardMedia
-                className={classes.img}
-                component="img"
-                alt="Coupon"
-                height="140"
-                image={
-                  coupon.imgUrl
-                    ? coupon.imgUrl
-                    : 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTCWnEg-zPrA6JZIXqfN7vxCdSWgORuP3b3jycKv1_3oZYODAeF'
-                }
-              />
-            </Grid>
-          </Grid>
-        </Grid>
-        <Grid item xs={6}>
-          <CouponPage index={id} coupon={coupon} />
-        </Grid>
-        <Grid item container justify="center">
-          <Grid item className={classes.comments}>
-            <CommentsList index={id} />
-          </Grid>
-          <Grid
-            style={{ width: 400, height: 350 }}
-            className={classes.comments}
-          >
-            <LineExample index={id} />
-          </Grid>
-        </Grid>
+      <Grid item xs={12} lg={6} className={classes.gridpadL}>
+        <CardMedia
+          className={classes.img}
+          component="img"
+          alt="Coupon"
+          image={
+            coupon.imgUrl
+              ? coupon.imgUrl
+              : 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTCWnEg-zPrA6JZIXqfN7vxCdSWgORuP3b3jycKv1_3oZYODAeF'
+          }
+        />
+      </Grid>
+      <Grid item xs={12} lg={6} className={classes.gridpadR}>
+        <CouponPage index={id} coupon={coupon} />
+      </Grid>
+      <Grid item xs={12} lg={6} className={classes.gridpadL}>
+        <CommentsList index={id} />
+      </Grid>
+      <Grid item xs={12} lg={6} className={classes.gridpadR}>
+        <LineExample index={id} />
       </Grid>
     </Grid>
   );

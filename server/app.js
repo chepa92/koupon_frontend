@@ -49,7 +49,10 @@ app.use(nocache());
 app.use(
   cors({
     origin: (origin, cb) => {
-      cb(null, origin && origin.startsWith('http://localhost:'));
+      cb(
+        null,
+        origin && origin.startsWith('https://koupon-9fccd.firebaseapp.com')
+      );
     },
     optionsSuccessStatus: 200,
     credentials: true,

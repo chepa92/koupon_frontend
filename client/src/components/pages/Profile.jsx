@@ -39,7 +39,7 @@ const useStyles = makeStyles(theme => ({
 export default function Profile(props) {
   const classes = useStyles();
   const [profile, setProfile] = useState([]);
-  var id = qs.parse(props.location.search, { ignoreQueryPrefix: true }).id;
+  const id = qs.parse(props.location.search, { ignoreQueryPrefix: true }).id;
 
   const { register, handleSubmit, errors, reset, control } = useForm();
   

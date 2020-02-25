@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import MaterialTable from 'material-table'; //https://material-table.com/
 import { Redirect } from 'react-router-dom';
 import api from '../../api/api';
@@ -38,6 +38,7 @@ class UsersTable extends React.Component {
                 <img
                   style={{ height: 36, borderRadius: '50%' }}
                   src={rowData.img}
+                  alt="itemPhoto"
                 />
               ),
             },
@@ -75,9 +76,7 @@ class UsersTable extends React.Component {
             onRowDelete: rowData =>
               new Promise((resolve, reject) => {
                 setTimeout(() => {
-                  {
-                    api.suspendUser(rowData._id);
-                  }
+                  api.suspendUser(rowData._id);
                   resolve();
                 }, 1000);
               }),

@@ -46,18 +46,8 @@ app.use((req, res, next) => {
 
 app.use(nocache());
 
-app.use(
-  cors({
-    origin: (origin, cb) => {
-      cb(
-        null,
-        origin && origin.startsWith('https://koupon-9fccd.firebaseapp.com')
-      );
-    },
-    optionsSuccessStatus: 200,
-    credentials: true,
-  })
-);
+app.use(cors())
+
 app.use(logger('dev'));
 app.use(cookieParser());
 

@@ -43,14 +43,6 @@ const theme = createMuiTheme({
     //     },
     //   },
     // },
-    MuiTypography: {
-      body: {
-        fontFamily: 'Poppins, sans-serif',
-      },
-      body2: {
-        fontFamily: 'Poppins, sans-serif',
-      },
-    },
     'Mui-selected': {
       backgroundColor:
         'linear-gradient(179.58deg, #FD749B -13.56%, #281AC8 158.3%)',
@@ -83,11 +75,13 @@ const theme = createMuiTheme({
       h6: {
         fontFamily: 'Poppins, sans-serif',
       },
-
-      body2: {
+      subtitle1: {
         fontFamily: 'Poppins, sans-serif',
       },
-      subtitle1: {
+      body: {
+        fontFamily: 'Poppins, sans-serif',
+      },
+      body2: {
         fontFamily: 'Poppins, sans-serif',
       },
     },

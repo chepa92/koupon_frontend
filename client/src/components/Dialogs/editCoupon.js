@@ -1,6 +1,4 @@
 import React, { Fragment, useState } from 'react';
-import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
-import AddCircleIcon from '@material-ui/icons/AddCircle';
 import { MuiThemeProvider } from '@material-ui/core/styles';
 import theme from '../Theme/newTheme';
 
@@ -9,32 +7,25 @@ import {
   DialogActions,
   DialogContent,
   DialogContentText,
-  IconButton,
   TextField,
   DialogTitle,
   Grid,
 } from '@material-ui/core';
 import { StyledButton } from '../Theme/Button.styled';
-import api from '../../api/api';
+
 
 export default function EditDialog(props) {
-  const { open, onClose, onChange } = props;
+  const {coupon, open, onClose, onChange } = props;
   const [title, setTitle] = useState('');
-  const [desc, setDesc] = useState('');
+  const [couponName, setCouponName] = useState('');
   const [link, setLink] = useState('');
   const [discount, setDiscount] = useState('');
-  // const [open, setOpenForm] = useState(false);
 
-  // const handleOpenForm = () => {
-  //   setOpenForm(true);
-  // };
-  // const handleClose = () => {
-  //   setOpenForm(false);
-  // };
   const saveCoupon = event => {
     event.preventDefault();
-    console.log(title, desc, link, discount);
-    onChange(title, desc, link, discount);
+    console.log(coupon.title, title, couponName, link, discount);
+    onChange(title, couponName, link, discount);
+    
   };
 
   return (
@@ -65,24 +56,20 @@ export default function EditDialog(props) {
                 multiline
                 variant="outlined"
                 onChange={event => {
-                  console.log(event.target.value);
                   setTitle(event.target.value);
-                  console.log(title);
                 }}
-                value={title}
+                defaultValue={coupon.title}
               />
               <TextField
                 id="outlined-textarea"
-                label="Description"
-                placeholder=" Description"
+                label="Сoupon Name"
+                placeholder=" Сoupon Name"
                 multiline
                 variant="outlined"
                 onChange={event => {
-                  console.log(event.target.value);
-                  setDesc(event.target.value);
-                  console.log(desc);
+                  setCouponName(event.target.value);
                 }}
-                value={desc}
+                defaultValue={coupon.couponName}
               />
               <TextField
                 id="outlined-textarea"
@@ -91,11 +78,9 @@ export default function EditDialog(props) {
                 multiline
                 variant="outlined"
                 onChange={event => {
-                  console.log(event.target.value);
                   setLink(event.target.value);
-                  console.log(link);
                 }}
-                value={link}
+                defaultValue={coupon.link}
               />
               <TextField
                 id="outlined-textarea"
@@ -104,11 +89,9 @@ export default function EditDialog(props) {
                 multiline
                 variant="outlined"
                 onChange={event => {
-                  console.log(event.target.value);
                   setDiscount(event.target.value);
-                  console.log(discount);
                 }}
-                value={discount}
+                defaultValue={coupon.discount}
               />
             </Grid>
           </DialogContent>

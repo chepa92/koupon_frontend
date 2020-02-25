@@ -4,18 +4,15 @@ import EditIcon from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/Delete';
 import api from '../../api/api';
 import StatusDialog from '../Dialogs/Status';
-import { useHistory } from 'react-router-dom';
 import EditiDialog from '../Dialogs/editCoupon';
 import AddAlertIcon from '@material-ui/icons/AddAlert';
+import LikeIcon from '@material-ui/icons/ThumbUp';
 import { StyledButton } from '../Theme/Button.styled';
 
 import {
   IconButton,
   Typography,
   Grid,
-  CardMedia,
-  Container,
-  Paper,
   Avatar,
 } from '@material-ui/core';
 
@@ -29,24 +26,21 @@ const useStyles = makeStyles(theme => ({
 export default function CouponPage(props) {
   const { coupon, index } = props;
   const classes = useStyles();
-  let history = useHistory();
   const [status, setStatus] = useState([]);
   const [open, setOpen] = useState(false);
   const [edit, setEdit] = useState(false);
   const [bestPrice, setBestPrice] = useState('not available');
-  const [show, setShow] = useState(false);
   // const [coupon, setCoupon] = useState();
 
   useEffect(() => {
     if (coupon.priceHistory) {
-      if (coupon.priceHistory[0] != undefined) {
+      if (coupon.priceHistory[0] !== undefined) {
         var newPrice = coupon.priceHistory.reduce(
           (min, p) => (p.price < min ? p.price : min),
           coupon.priceHistory[0].price
         );
         console.log(newPrice);
         setBestPrice(newPrice + '$');
-        setShow(true);
       }
     }
   }, [coupon]);
@@ -62,10 +56,6 @@ export default function CouponPage(props) {
       console.log('error fetching...:', err);
     }
   };
-  const handleCloseDelete = () => {
-    setOpen(false);
-    history.goBack();
-  };
   const handleClose = () => {
     setEdit(false);
     setOpen(false);
@@ -73,10 +63,10 @@ export default function CouponPage(props) {
   const handleEdit = () => {
     setEdit(true);
   };
-  const saveCoupon = (title, desc, link, discount) => {
+  const saveCoupon = (title, couponName, link, discount) => {
     var body = {
       title: title,
-      couponName: desc,
+      couponName: couponName,
       discount: discount,
       link: link,
       publisherImg: api.getLocalStorageUser().img,
@@ -126,10 +116,14 @@ export default function CouponPage(props) {
         </Grid>
       </Grid>
 
-      {/* {api.getLocalStorageUser()._id === coupon.publisher ||
-        (api.isAdmin() && ( */}
       {api.isLoggedIn() && (
         <Grid item xs={3}>
+          <IconButton onClick={console.log('LIKE!')}>
+            <LikeIcon />
+          </IconButton>
+          <IconButton onClick={addAlert}>
+            <AddAlertIcon />
+          </IconButton>
           <IconButton onClick={handleEdit} style={{ cursor: 'pointer' }}>
             <EditIcon />
           </IconButton>
@@ -139,11 +133,6 @@ export default function CouponPage(props) {
         </Grid>
       )}
 
-      <Grid item container>
-        <StyledButton href={coupon.link} target="_blank">
-          Go
-        </StyledButton>
-      </Grid>
       {!api.isLoggedIn() && <Typography>Sign in to see best price</Typography>}
       {api.isLoggedIn() && (
         <Grid item container>
@@ -153,16 +142,21 @@ export default function CouponPage(props) {
               href={coupon.bestLink ? coupon.bestLink : '#'}
               target="_blank"
             >
-              {bestPrice}
+              <h2>{bestPrice}</h2>
             </StyledButton>
           </Typography>
-          <IconButton onClick={addAlert}>
-            <AddAlertIcon />
-          </IconButton>
         </Grid>
       )}
+      <StyledButton href={coupon.link} target="_blank">
+        More info
+      </StyledButton>
       <StatusDialog open={open} status={status} onClose={handleClose} />
-      <EditiDialog open={edit} onChange={saveCoupon} onClose={handleClose} />
+      <EditiDialog
+        coupon={coupon}
+        open={edit}
+        onChange={saveCoupon}
+        onClose={handleClose}
+      />
     </Grid>
   );
 }

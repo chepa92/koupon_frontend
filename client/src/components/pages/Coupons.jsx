@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { Button, List, Grid } from '@material-ui/core';
+import { Button, Grid } from '@material-ui/core';
 import CouponCard from '../Coupon/Coupon';
 import api from '../../api/api';
 

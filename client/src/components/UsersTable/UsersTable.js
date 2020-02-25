@@ -3,9 +3,6 @@ import MaterialTable from 'material-table'; //https://material-table.com/
 import { Redirect } from 'react-router-dom';
 import api from '../../api/api';
 
-const service =
-  process.env.NODE_ENV === 'production' ? '/api' : 'http://localhost:5001/api';
-
 class UsersTable extends React.Component {
   constructor(props) {
     super(props);

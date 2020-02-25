@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import CouponPage from '../Coupon/CouponPage';
 import CommentsList from '../Comments/comments';
-import axios from 'axios';
 import LineExample from '../Chart/Graph';
 
 import api from '../../api/api';
@@ -39,8 +38,6 @@ const useStyles = makeStyles(theme => ({
 
 export default function Coupon(props) {
   const classes = useStyles();
-  const [spacing, setSpacing] = useState(2);
-  const [comments, setComments] = useState([]);
   const [coupon, setCoupon] = useState([]);
   var id = qs.parse(props.location.search, { ignoreQueryPrefix: true }).id;
 

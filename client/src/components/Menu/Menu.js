@@ -4,7 +4,6 @@ import { MuiThemeProvider } from '@material-ui/core/styles';
 import api from '../../api/api';
 import { StyledMenu, StyledMenuItem } from './Menu.styled';
 import theme from '../Theme/newTheme';
-import DashboardIcon from '@material-ui/icons/Dashboard'; //Exported Icons
 import PersonIcon from '@material-ui/icons/Person';
 import ForumIcon from '@material-ui/icons/Forum';
 import QueueIcon from '@material-ui/icons/Queue';

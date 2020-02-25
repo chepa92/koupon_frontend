@@ -55,7 +55,7 @@ const LineExample = props => {
         : ['No prices available'],
     datasets: [
       {
-        label: 'Coupon Price ',
+        label: 'Item Price',
         fill: false,
         lineTension: 0.1,
         backgroundColor: 'rgba(75,192,192,0.4)',
@@ -80,7 +80,7 @@ const LineExample = props => {
   return (
     <MuiThemeProvider theme={theme}>
       <div className="flex flex-col items-center w-full max-w-md" style={{ width: "400px" }}>
-        <Typography variant="subtitle1">Prices</Typography>
+        <Typography variant="subtitle1">Prices history</Typography>
         <Line data={data} options={options} />
       </div>
     </MuiThemeProvider>

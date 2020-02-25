@@ -1,9 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import CouponPage from '../Coupon/CouponPage';
-import CommentsList from '../Comments/comments';
-import axios from 'axios';
-import LineExample from '../Chart/Graph';
 import TextField from '@material-ui/core/TextField';
 import { useForm, Controller } from 'react-hook-form';
 import { StyledButton } from '../Theme/Button.styled';
@@ -11,7 +7,6 @@ import { StyledButton } from '../Theme/Button.styled';
 import api from '../../api/api';
 import qs from 'qs';
 import {
-  IconButton,
   Switch,
   Grid,
   CardMedia,
@@ -46,6 +41,8 @@ export default function Profile(props) {
   const [profile, setProfile] = useState([]);
   var id = qs.parse(props.location.search, { ignoreQueryPrefix: true }).id;
 
+  const { register, handleSubmit, errors, reset, control } = useForm();
+  
   useEffect(() => {
     api
       .getUser(id)
@@ -61,7 +58,7 @@ export default function Profile(props) {
       .catch(err => console.log(err));
   }, [reset]);
 
-  const { register, handleSubmit, errors, reset, control } = useForm();
+
 
   const onSubmit = data => {
     api

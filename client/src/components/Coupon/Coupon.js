@@ -9,7 +9,6 @@ import RateReviewIcon from '@material-ui/icons/RateReview';
 
 import {
   Card,
-  Container,
   CardActionArea,
   CardActions,
   Typography,
@@ -40,12 +39,11 @@ const useStyles = makeStyles(theme => ({
 
 export default function CouponCard(props) {
   const classes = useStyles();
-  const { onDelete, priceHistory, children, index, coupon } = props;
+  const { index, coupon } = props;
   const [editing, setEditing] = useState(false);
   const [likesCount, setLikes] = useState(0);
   const [commentCount, setComments] = useState(0);
   const [viewsCount, setViews] = useState(0);
-  const [data, setData] = useState([]);
 
   useEffect(() => {
     async function fetchData() {

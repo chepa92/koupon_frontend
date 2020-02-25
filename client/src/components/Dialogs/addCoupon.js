@@ -1,5 +1,4 @@
 import React, { Fragment, useState } from 'react';
-import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
 import { MuiThemeProvider } from '@material-ui/core/styles';
 import theme from '../Theme/newTheme';
@@ -12,7 +11,6 @@ import StatusDialog from '../Dialogs/Status';
 
 import {
   Dialog,
-  DialogActions,
   DialogContent,
   DialogContentText,
   IconButton,
@@ -33,18 +31,6 @@ export default function FormDialog(props) {
         console.log('SUCCESS!');
         setStatus('Coupon was added successfuly!');
         setOpenRespons(true);
-        // this.setState({
-        //   name: '',
-        //   capitals: '',
-        //   area: '',
-        //   description: '',
-        //   message: `Your coupon '${this.state.name}' has been created`,
-        // });
-        // setTimeout(() => {
-        //   this.setState({
-        //     message: null,
-        //   });
-        // }, 2000);
       })
       .catch(err => {
         this.setState({ message: err.toString() });

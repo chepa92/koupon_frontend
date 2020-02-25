@@ -6,7 +6,6 @@ import { useStyles } from './Header.styled';
 import { withStyles } from '@material-ui/core/styles';
 import MainMenu from '../Menu/Menu';
 import Menu from '@material-ui/core/Menu';
-import MenuItem from '@material-ui/core/MenuItem';
 import FormDialog from '../Dialogs/addCoupon';
 import Login from '../Login/Login';
 import {

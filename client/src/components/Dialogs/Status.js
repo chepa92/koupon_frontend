@@ -13,6 +13,12 @@ const useStyles = makeStyles(theme => ({
     flexGrow: 1,
     margin: 'auto',
   },
+  dialogtitle:{
+    textAlign: 'center',
+  },
+  actions:{
+    alignSelf: 'center',
+  }
 }));
 
 export default function StatusDialog(props) {
@@ -27,7 +33,7 @@ export default function StatusDialog(props) {
           open={open}
           onClose={onClose}
           aria-labelledby="form-dialog-title"
-          style={{ maxHeight: 450 }}
+
         >
           <Grid item container justify="center">
             <img
@@ -37,8 +43,8 @@ export default function StatusDialog(props) {
             />
           </Grid>
 
-          <DialogTitle id="form-dialog-title">{status}</DialogTitle>
-          <DialogActions>
+          <DialogTitle style={{textAlign: 'center'}} id="form-dialog-title">{status}</DialogTitle>
+          <DialogActions style={{alignSelf: 'center'}}>
             <StyledButton onClick={onClose} color="primary">
               Ok
             </StyledButton>

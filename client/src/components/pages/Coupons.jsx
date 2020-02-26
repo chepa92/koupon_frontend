@@ -44,7 +44,10 @@ export default function Coupons(props) {
 
   return (
     <Grid container className="Coupons">
-      {coupons.map(renderEachCoupon).slice(0, limit)}
+      {coupons
+        .map(renderEachCoupon)
+        .reverse()
+        .slice(0, limit)}
       {/* <Button size="small" onClick={showMore}>
         {' '}
         show more

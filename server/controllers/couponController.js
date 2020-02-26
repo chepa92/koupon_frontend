@@ -142,9 +142,7 @@ module.exports = {
       {
         $addToSet: {
           comments: {
-            userName: req.username,
             user_id: req.user._id,
-            img: req.user.img,
             comment: body.comment,
             date: new Date(),
           },
@@ -237,4 +235,3 @@ async function notifyNewCoupon(coupon) {
     );
   });
 }
-

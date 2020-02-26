@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Button, Grid } from '@material-ui/core';
+import { Grid } from '@material-ui/core';
 import CouponCard from '../Coupon/Coupon';
 import api from '../../api/api';
 
@@ -20,6 +20,7 @@ export default function Coupons(props) {
     fetchData();
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
+    // eslint-disable-next-line
   }, [edit]);
   const showMore = () => {
     setLimit(prevState => prevState + 8);

@@ -4,13 +4,10 @@ import { MuiThemeProvider } from '@material-ui/core/styles';
 import theme from '../Theme/newTheme';
 import api from '../../api/api';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
+import Comment from '../Comment/Comment'
 import {
   List,
-  ListItem,
   Button,
-  ListItemText,
-  ListItemAvatar,
-  Avatar,
   Typography,
   TextField,
   IconButton,
@@ -81,8 +78,6 @@ export default function CommentsList(props) {
       ...prevState,
       {
         comment: newComment,
-        img: api.getLocalStorageUser().img,
-        userName: api.getLocalStorageUser.userName,
         date: new Date(),
       },
     ]);
@@ -92,32 +87,7 @@ export default function CommentsList(props) {
 
   const renderEachComment = (item, i) => {
     return (
-      <ListItem
-        key={item.date}
-        alignItems="flex-start"
-        className={classes.comment}
-      >
-        <ListItemAvatar className={classes.avatar}>
-          <Avatar alt="Remy Sharp" src={item.img} />
-        </ListItemAvatar>
-        <ListItemText
-          primary={
-            <Typography component="span" variant="body2" color="textPrimary">
-              {item.userName}
-            </Typography>
-          }
-          secondary={
-            <React.Fragment>
-              <Typography className={classes.commentText} display="block" component="span" variant="body2" color="textPrimary">
-                {item.comment}
-              </Typography>
-              <Typography display="block" align="right" component="span" variant="body2" color="textSecondary">
-                {new Date(item.date).toUTCString().slice(0, 16)}
-              </Typography>
-            </React.Fragment>
-          }
-        />
-      </ListItem>
+     <Comment comments={item} key={i}/>
     );
   };
 

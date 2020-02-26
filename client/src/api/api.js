@@ -114,6 +114,13 @@ export default {
       .catch(errHandler);
   },
 
+  getUserPub(id) {
+    return service
+      .get('/user/getUserPub?id=' + id)
+      .then(res => res.data)
+      .catch(errHandler);
+  },
+
   likeCoupon(id) {
     return service
       .post('/coupon/likeCoupon?id=' + id)

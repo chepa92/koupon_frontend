@@ -34,15 +34,12 @@ export default function CouponPage(props) {
           (min, p) => (p.price < min ? p.price : min),
           coupon.priceHistory[0].price
         );
-        console.log(newPrice);
         setBestPrice(newPrice + '$');
       }
     }
   }, [coupon]);
 
   const handleDelete = () => {
-    console.log(api.getLocalStorageUser()._id);
-    console.log(coupon.publisher);
     setOpen(true);
     setStatus('Deleted coupon succesfully');
     try {
@@ -108,7 +105,7 @@ export default function CouponPage(props) {
 
       {api.isLoggedIn() && (
         <Grid item xs={4} lg={6}>
-          <IconButton onClick={console.log('LIKE!')}>
+          <IconButton onClick={ () => {api.likeCoupon(coupon._id)}}>
             <LikeIcon />
           </IconButton>
           <IconButton onClick={addAlert}>

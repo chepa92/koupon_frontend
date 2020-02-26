@@ -58,7 +58,6 @@ export default function CouponCard(props) {
   }, [editing]);
 
   const addLike = () => {
-    console.log(index);
     let newCount = likesCount + 1;
     api.likeCoupon(index);
     setLikes(newCount);

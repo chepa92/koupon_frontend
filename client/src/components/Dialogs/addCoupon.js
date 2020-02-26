@@ -40,7 +40,6 @@ export default function FormDialog(props) {
       });
   };
 
-
   const handleOpenForm = () => {
     setOpenForm(true);
   };
@@ -72,10 +71,18 @@ export default function FormDialog(props) {
             </DialogContentText>
             <form onSubmit={handleSubmit(onSubmit)}>
               <TextField
+                required
                 fullWidth
                 inputRef={register}
                 label="Item name"
                 name="title"
+              />
+              <TextField
+                required
+                fullWidth
+                inputRef={register}
+                label="Discount"
+                name="discount"
               />
               <TextField
                 fullWidth
@@ -84,12 +91,7 @@ export default function FormDialog(props) {
                 name="couponName"
               />
               <TextField
-                fullWidth
-                inputRef={register}
-                label="Discount"
-                name="discount"
-              />
-              <TextField
+                required
                 fullWidth
                 inputRef={register}
                 label="Link"

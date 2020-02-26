@@ -14,18 +14,13 @@ const errHandler = err => {
 module.exports = {
   service: service,
 
-  async getBestPrice(categoryId, brand, couponName, res) {
-    const words = couponName.split(' ');
-    console.log(words);
-
+  async getBestPrice(skuId) {
     try {
       return (data = await axios
         .get(
-          `https://api.bestbuy.com/v1/products((search=${brand}&search=${words[1]}&search=${words[2]})&onSale=true&(categoryPath.id=${categoryId}))?apiKey=${apiKey}&sort=name.asc&show=name,url,salePrice,regularPrice,percentSavings,onlineAvailability&facet=bestSellingRank&pageSize=10&format=json`
+          `https://api.bestbuy.com/v1/products/${skuId}.json?apiKey=${apiKey}`
         )
         .then(response => {
-          // handle success
-          console.log(response.data.products[0]);
           return response.data;
         })
         .catch(error => {

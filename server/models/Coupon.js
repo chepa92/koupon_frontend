@@ -1,10 +1,6 @@
 const mongoose = require('mongoose');
-//const User = require('./User');
 const Schema = mongoose.Schema;
 const Category = require('./Category');
-
-//****TODO - move to DB
-const status = ['Active', 'Pending', 'Over'];
 
 const couponSchema = new Schema(
   {
@@ -14,14 +10,16 @@ const couponSchema = new Schema(
     },
     couponName: {
       type: String,
-      required: [true, 'The coupon name is required'],
     },
-    discount: String,
+    discount: {
+      type: String,
+      required: [true, 'The coupon discount is required'],
+    },
     link: {
       type: String,
       required: true,
     },
-    bestLink: String,
+    skuId: String,
     categories: [Category],
     brand: String,
     publisher: Object,

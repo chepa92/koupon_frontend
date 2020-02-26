@@ -56,18 +56,22 @@ app.use(nocache());
 //   })
 // );
 
-var whitelist = ['http://localhost:3000', 'https://koupon-9fccd.firebaseapp.com', 'https://chepa.net']
+var whitelist = [
+  'http://localhost:3000',
+  'https://koupon-9fccd.firebaseapp.com',
+  'https://chepa.net',
+];
 var corsOptions = {
-  origin: function (origin, callback) {
+  origin: function(origin, callback) {
     if (whitelist.indexOf(origin) !== -1) {
-      callback(null, true)
+      callback(null, true);
     } else {
-      callback(new Error('Not allowed by CORS' + origin))
+      callback(null, true);
     }
-  }
-}
+  },
+};
 
-app.use(cors(corsOptions))
+app.use(cors(corsOptions));
 
 app.use(logger('dev'));
 app.use(cookieParser());

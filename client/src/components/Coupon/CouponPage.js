@@ -9,12 +9,7 @@ import AddAlertIcon from '@material-ui/icons/AddAlert';
 import LikeIcon from '@material-ui/icons/ThumbUp';
 import { StyledButton } from '../Theme/Button.styled';
 
-import {
-  IconButton,
-  Typography,
-  Grid,
-  Avatar,
-} from '@material-ui/core';
+import { IconButton, Typography, Grid, Avatar } from '@material-ui/core';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -97,27 +92,22 @@ export default function CouponPage(props) {
   };
 
   return (
-    <Grid container className={classes.root} spacing={2}>
+    <Grid container className={classes.root} spacing={3}>
       <Grid item>
         <Avatar src={coupon.publisherImg} alt="/images/userImg.png"></Avatar>
       </Grid>
-      <Grid item xs container spacing={2}>
-        <Grid item>
-          <Grid item>
-            <Typography variant="subtitle1">{coupon.title}</Typography>
-          </Grid>
-
-          <Typography variant="body2" gutterBottom>
-            {coupon.couponName}
-          </Typography>
-          <Typography variant="body2" color="textSecondary">
-            Discount: {coupon.discount}
-          </Typography>
-        </Grid>
+      <Grid item xs container>
+        <Typography variant="subtitle1">{coupon.title}</Typography>
+        <Typography variant="body2" gutterBottom>
+          {coupon.couponName}
+        </Typography>
+        <Typography variant="body2" color="textSecondary">
+          Discount: {coupon.discount}
+        </Typography>
       </Grid>
 
       {api.isLoggedIn() && (
-        <Grid item xs={3}>
+        <Grid item xs={4} lg={6}>
           <IconButton onClick={console.log('LIKE!')}>
             <LikeIcon />
           </IconButton>
@@ -137,9 +127,10 @@ export default function CouponPage(props) {
       {api.isLoggedIn() && (
         <Grid item container>
           <Typography>
-            Best price
+            Best price was
             <StyledButton
-              href={coupon.bestLink ? coupon.bestLink : '#'}
+              style={{ marginLeft: '50px' }}
+              href={coupon.link ? coupon.link : '#'}
               target="_blank"
             >
               <h2>{bestPrice}</h2>
@@ -147,9 +138,9 @@ export default function CouponPage(props) {
           </Typography>
         </Grid>
       )}
-      <StyledButton href={coupon.link} target="_blank">
+      {/* <StyledButton href={coupon.link} target="_blank">
         More info
-      </StyledButton>
+      </StyledButton> */}
       <StatusDialog open={open} status={status} onClose={handleClose} />
       <EditiDialog
         coupon={coupon}

@@ -1,6 +1,5 @@
 const Coupon = require('../models/Coupon');
-const mongoose = require('mongoose');
-
+const queryString = require('query-string');
 const bestBuyApi = require('../helpers/bestbuyHelper');
 
 process.env['NTBA_FIX_319'] = 1;
@@ -46,12 +45,7 @@ module.exports = {
   async updateCoupon(req, res, next) {
     const id = req.query.id;
     const body = req.body;
-
-    console.log(id);
-    console.log(body);
-
     const result = await Coupon.updateOne({ _id: id }, body);
-
     if (result.ok) {
       res.json({ response: 'done' });
     } else {
@@ -70,8 +64,10 @@ module.exports = {
       publisher = req.user._id,
       publisherImg = req.user.img,
       imgUrl,
+      skuId = queryString.parseUrl(link).query.skuId,
       active = true,
     } = req.body;
+
     Coupon.create({
       title,
       couponName,
@@ -83,9 +79,9 @@ module.exports = {
       publisherImg,
       imgUrl,
       active,
+      skuId,
     })
       .then(coupons => {
-        console.log(coupons._id);
         userController.addCoupontoUser(coupons._id, req.user._id);
         notifyNewCoupon(coupons);
         res.json({
@@ -186,30 +182,15 @@ module.exports = {
 
   async priceHistory(req, res, next) {
     const id = req.query.id;
-    var priceArr = [];
-    var elementArr = [];
-    const coupon = await Coupon.findOne(
-      { _id: id },
-      { _id: 0, title: 1, categories: 1, brand: 1, discount: 1 }
-    );
+    const coupon = await Coupon.findOne({ _id: id });
     if (coupon) {
-      const couponName = coupon.title;
-      const categoryId = coupon.categories[0].id;
-      const brand = coupon.brand;
-      const discount = coupon.discount;
-      console.log(coupon);
-
       bestBuyApi
-        .getBestPrice(categoryId, brand, couponName)
+        .getBestPrice(coupon.skuId)
         .then(data => {
-          data.products.forEach(element => {
-            elementArr.push(element);
-            priceArr.push(element.salePrice);
-          });
-          const result = addPriceToHistory(elementArr, id, discount);
+          const result = addPriceToHistory(id, data, coupon);
           res.json(data);
         })
-        .catch(err => next(err));
+        .catch(err => console.log(err));
     } else {
       res.status(404).send('{error: "Coupon not found"}');
     }
@@ -217,47 +198,32 @@ module.exports = {
 };
 
 //finding lowest price existing
-async function addPriceToHistory(elementArr, id, discount) {
-  let newUrl, newDiscount, lowestPrice;
-  console.log(typeof parseInt(elementArr[0].percentSavings));
-  let bestDiscount = parseInt(discount);
-  console.log(bestDiscount);
-  lowestPrice = parseInt(elementArr[0].salePrice);
-
-  for (let i = 0; i < elementArr.length; i++) {
-    console.log(' lowest price: ' + lowestPrice);
-    console.log('precent saving ' + parseInt(elementArr[i].percentSavings));
-
-    if (parseInt(elementArr[i].salePrice) < lowestPrice) {
-      bestDiscount = parseInt(elementArr[i].percentSavings);
-      lowestPrice = parseInt(elementArr[i].salePrice);
-      newUrl = elementArr[i].url;
-      newDiscount = elementArr[i].percentSavings;
-      console.log(`Lowest price found : ${lowestPrice} ${newDiscount} !!!`);
-      console.log(newUrl);
-    }
-
-    const result = await Coupon.update(
-      { _id: id },
-      {
-        $set: { bestLink: newUrl },
-        // { priceHistory.price: { $ne: elementArr[i].salePrice } },
-        $addToSet: {
-          priceHistory: {
-            price: elementArr[i].salePrice,
-            url: elementArr[i].url,
-            date: new Date( //to avoid duplicate prices from the same day
-              new Date().getFullYear(),
-              new Date().getMonth(),
-              new Date().getDate()
-            ),
-          },
+async function addPriceToHistory(id, data, coupon) {
+  // let historyPrice;
+  // try {
+  //   historyPrice = parseInt(coupon.priceHistory[0].price);
+  // } catch {
+  //   historyPrice = 99999;
+  // }
+  // if (parseInt(data.salePrice) < historyPrice) {
+  const result = await Coupon.updateOne(
+    { _id: id },
+    {
+      $set: { imgUrl: data.images[0].href },
+      $addToSet: {
+        priceHistory: {
+          price: data.salePrice,
+          date: new Date( //to avoid duplicate prices from the same day
+            new Date().getFullYear(),
+            new Date().getMonth(),
+            new Date().getDate()
+          ),
         },
-      }
-    ).catch(err => {
-      console.log(err);
-    });
-  }
+      },
+    }
+  ).catch(err => {
+    console.log(err);
+  });
 }
 
 async function notifyNewCoupon(coupon) {
@@ -271,3 +237,4 @@ async function notifyNewCoupon(coupon) {
     );
   });
 }
+

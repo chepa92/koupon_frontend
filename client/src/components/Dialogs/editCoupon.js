@@ -13,9 +13,8 @@ import {
 } from '@material-ui/core';
 import { StyledButton } from '../Theme/Button.styled';
 
-
 export default function EditDialog(props) {
-  const {coupon, open, onClose, onChange } = props;
+  const { coupon, open, onClose, onChange } = props;
   const [title, setTitle] = useState('');
   const [couponName, setCouponName] = useState('');
   const [link, setLink] = useState('');
@@ -25,7 +24,6 @@ export default function EditDialog(props) {
     event.preventDefault();
     console.log(coupon.title, title, couponName, link, discount);
     onChange(title, couponName, link, discount);
-    
   };
 
   return (
@@ -49,6 +47,7 @@ export default function EditDialog(props) {
               spacing={2}
             >
               <TextField
+                required
                 id="outlined-textarea"
                 label="Title"
                 size="small"
@@ -72,6 +71,7 @@ export default function EditDialog(props) {
                 defaultValue={coupon.couponName}
               />
               <TextField
+                required
                 id="outlined-textarea"
                 label="Link"
                 placeholder=" Link"

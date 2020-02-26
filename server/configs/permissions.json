@@ -8,7 +8,8 @@
     "/api/coupon/setCouponInactive",
     "/api/coupon/likeCoupon",
     "/api/coupon/commentCoupon",
-    "/api/coupon/notifyCoupon"
+    "/api/coupon/notifyCoupon",
+    "/api/coupon/priceHistory"
   ],
   "public": [
     "/api/coupon/getCoupon",

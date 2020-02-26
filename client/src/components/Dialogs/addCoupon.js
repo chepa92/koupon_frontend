@@ -31,6 +31,12 @@ export default function FormDialog(props) {
         console.log('SUCCESS!');
         setStatus('Coupon was added successfuly!');
         setOpenRespons(true);
+        api
+          .couponPriceHistory(result.coupons._id)
+          .then(data => {
+            console.log(data);
+          })
+          .catch(err => console.log(err));
       })
       .catch(err => {
         this.setState({ message: err.toString() });

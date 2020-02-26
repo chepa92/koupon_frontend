@@ -4,6 +4,7 @@ const userController = require('../controllers/userController');
 
 router.get('/getAllUsers', userController.getAll);
 router.get('/getUser', userController.getUser);
+router.get('/getUserPub', userController.getUserPub);
 router.put('/updateUser', userController.updateUser);
 router.put('/suspendUser', userController.suspendUser);
 router.post('/user', userController.addUser);

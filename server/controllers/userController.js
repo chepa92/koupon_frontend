@@ -15,7 +15,22 @@ module.exports = {
     const result = await User.findOne({ _id: id });
 
     if (result) res.json(result);
-    else res.status(404).send('error: Coupon not found');
+    else res.status(404).send('error: User not found');
+  },
+
+  async getUserPub(req, res, next) {
+    const id = req.query.id;
+    console.log(id);
+    const result = await User.findOne({ _id: id });
+
+    if (result) {
+      res.json({
+        id: result._id,
+        username: result.username,
+        img: result.img,
+        userLevel: result.userLevel,
+      });
+    } else res.status(404).send('error: User not found');
   },
 
   async updateUser(req, res, next) {

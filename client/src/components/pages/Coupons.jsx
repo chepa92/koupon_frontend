@@ -18,23 +18,36 @@ export default function Coupons(props) {
       setEdit(false);
     }
     fetchData();
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
   }, [edit]);
   const showMore = () => {
     setLimit(prevState => prevState + 8);
     setEdit(true);
   };
 
+  function handleScroll() {
+    if (
+      window.innerHeight + document.documentElement.scrollTop !==
+      document.documentElement.offsetHeight
+    )
+      return;
+    showMore();
+  }
+
   const renderEachCoupon = (item, i) => {
-    return <CouponCard index={item._id} coupon={item} key={item._id}></CouponCard>;
+    return (
+      <CouponCard index={item._id} coupon={item} key={item._id}></CouponCard>
+    );
   };
 
   return (
     <Grid container className="Coupons">
       {coupons.map(renderEachCoupon).slice(0, limit)}
-      <Button size="small" onClick={showMore}>
+      {/* <Button size="small" onClick={showMore}>
         {' '}
         show more
-      </Button>
+      </Button> */}
     </Grid>
   );
 }

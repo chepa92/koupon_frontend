@@ -8,6 +8,9 @@ import EditiDialog from '../Dialogs/editCoupon';
 import AddAlertIcon from '@material-ui/icons/AddAlert';
 import LikeIcon from '@material-ui/icons/ThumbUp';
 import { StyledButton } from '../Theme/Button.styled';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
+import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 
 import { IconButton, Typography, Grid, Avatar } from '@material-ui/core';
 
@@ -90,22 +93,25 @@ export default function CouponPage(props) {
 
   return (
     <Grid container className={classes.root} spacing={3}>
-      <Grid item>
-        <Avatar src={coupon.publisherImg} alt="/images/userImg.png"></Avatar>
-      </Grid>
-      <Grid item xs container>
-        <Typography variant="subtitle1">{coupon.title}</Typography>
-        <Typography variant="body2" gutterBottom>
-          {coupon.couponName}
-        </Typography>
-        <Typography variant="body2" color="textSecondary">
-          Discount: {coupon.discount}
-        </Typography>
+      <Grid item xs={12} lg={6}>
+        <ListItem>
+          <ListItemAvatar>
+            <Avatar
+              src={coupon.publisherImg}
+              alt="/images/userImg.png"
+            ></Avatar>
+          </ListItemAvatar>
+          <ListItemText primary={coupon.title} secondary={coupon.couponName} />
+        </ListItem>
       </Grid>
 
       {api.isLoggedIn() && (
-        <Grid item xs={4} lg={6}>
-          <IconButton onClick={ () => {api.likeCoupon(coupon._id)}}>
+        <Grid item xs={12} lg={6} justify="center">
+          <IconButton
+            onClick={() => {
+              api.likeCoupon(coupon._id);
+            }}
+          >
             <LikeIcon />
           </IconButton>
           <IconButton onClick={addAlert}>
@@ -120,24 +126,21 @@ export default function CouponPage(props) {
         </Grid>
       )}
 
-      {!api.isLoggedIn() && <Typography>Sign in to see best price</Typography>}
-      {api.isLoggedIn() && (
-        <Grid item container>
-          <Typography>
-            Best price was
-            <StyledButton
-              style={{ marginLeft: '50px' }}
-              href={coupon.link ? coupon.link : '#'}
-              target="_blank"
-            >
-              <h2>{bestPrice}</h2>
-            </StyledButton>
-          </Typography>
-        </Grid>
-      )}
-      {/* <StyledButton href={coupon.link} target="_blank">
-        More info
-      </StyledButton> */}
+      <Grid item container>
+        <Typography>
+          Best price was
+          <StyledButton
+            style={{ marginLeft: '50px' }}
+            href={coupon.link ? coupon.link : '#'}
+            target="_blank"
+          >
+            <h2>{bestPrice}</h2>
+          </StyledButton>
+        </Typography>
+      </Grid>
+      <Grid item container>
+        <Typography>Discount: {coupon.discount}</Typography>
+      </Grid>
       <StatusDialog open={open} status={status} onClose={handleClose} />
       <EditiDialog
         coupon={coupon}

@@ -4,7 +4,7 @@ import CouponCard from '../Coupon/Coupon';
 import api from '../../api/api';
 
 export default function Coupons(props) {
-  const [limit, setLimit] = useState(15);
+  const [limit, setLimit] = useState(12);
   const [coupons, setCoupons] = useState([]);
   const [edit, setEdit] = useState(false);
 
@@ -19,7 +19,6 @@ export default function Coupons(props) {
     }
     fetchData();
     window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
     // eslint-disable-next-line
   }, [edit]);
   const showMore = () => {
@@ -32,8 +31,7 @@ export default function Coupons(props) {
       window.innerHeight + document.documentElement.scrollTop !==
       document.documentElement.offsetHeight
     )
-      return;
-    showMore();
+      showMore();
   }
 
   const renderEachCoupon = (item, i) => {

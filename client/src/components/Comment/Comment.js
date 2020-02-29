@@ -22,7 +22,6 @@ const useStyles = makeStyles(theme => ({
     margin: '10px 0',
     backgroundColor: '#f9e7f6',
     borderRadius: '25px',
-    height: '100px',
   },
 
   commentText: {
@@ -67,36 +66,29 @@ export default function Comment(props) {
         <ListItemAvatar className={classes.avatar}>
           <Avatar alt="Remy Sharp" src={user.img} />
         </ListItemAvatar>
-        <ListItemText>
-          <Typography
-            display="block"
-            className={classes.commentUser}
-            component="span"
-            variant="body2"
-            color="textPrimary"
-          >
-            {user.username}
-          </Typography>
-
-          <Typography
-            className={classes.commentText}
-            component="span"
-            variant="body2"
-            color="textPrimary"
-          >
-            {comments.comment}
-          </Typography>
-
-          <Typography
-            display="block"
-            align="right"
-            component="span"
-            variant="body2"
-            color="textSecondary"
-          >
-            {new Date(comments.date).toUTCString().slice(0, 16)}
-          </Typography>
-        </ListItemText>
+        <ListItemText
+          secondary={
+            <React.Fragment>
+              <Typography
+                className={classes.commentText}
+                component="span"
+                variant="body2"
+                color="textPrimary"
+              >
+                <b>{user.username}</b> : {comments.comment}
+              </Typography>
+              <Typography
+                display="block"
+                align="right"
+                component="span"
+                variant="body2"
+                color="textSecondary"
+              >
+                {new Date(comments.date).toUTCString().slice(0, 16)}
+              </Typography>
+            </React.Fragment>
+          }
+        ></ListItemText>
       </ListItem>
     </MuiThemeProvider>
   );

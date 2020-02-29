@@ -63,7 +63,6 @@ export default function CommentsList(props) {
   };
 
   const saveComment = () => {
-    console.log(newComment);
     var body = {
       comment: newComment,
     };

@@ -24,7 +24,6 @@ export default function FormDialog(props) {
   const [status, setStatus] = useState([]);
   const [openRespons, setOpenRespons] = useState(false);
   const onSubmit = data => {
-    console.log(data);
     handleClose();
     api
       .addCoupon(data)

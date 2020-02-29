@@ -22,7 +22,6 @@ export default function EditDialog(props) {
 
   const saveCoupon = event => {
     event.preventDefault();
-    console.log(coupon.title, title, couponName, link, discount);
     onChange(title, couponName, link, discount);
   };
 

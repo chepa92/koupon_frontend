@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import MaterialTable from 'material-table';
 import { makeStyles } from '@material-ui/core/styles';
-import UserAvatar from '../Requests/userAvatar';
-import FormDialog from '../Dialogs/addCoupon';
+import UserAvatar from './UserAvatar';
 import { Redirect } from 'react-router-dom';
 
 import api from '../../api/api';
@@ -20,29 +19,6 @@ const useStyles = makeStyles(theme => ({
 export default function RequestsTable() {
   const classes = useStyles();
   const [clicked, setClicked] = useState(null);
-  const [open, setOpen] = useState(false);
-
-  // useEffect(()=>{
-  //   function getImg(){
-  //     new Promise((resolve, reject) => {
-  //       api
-  //         .getUser(rowData.publisher)
-  //         .then(result => {
-  //           console.log(result);
-  //           setImg(result.img);
-  //           resolve({});
-  //         })
-  //         .catch(err => console.log(err));
-  //     })
-  //   }
-  // })
-
-  function handleClick(rowData) {
-    if (rowData.couponRelated) {
-      setClicked(rowData.couponRelated);
-    }
-    setOpen(true);
-  }
 
   return (
     <div className={classes.root}>

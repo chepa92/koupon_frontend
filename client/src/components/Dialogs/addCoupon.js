@@ -7,7 +7,7 @@ import { useForm } from 'react-hook-form';
 import TextField from '@material-ui/core/TextField';
 import CancelIcon from '@material-ui/icons/Cancel';
 import { StyledButton } from '../Theme/Button.styled';
-import StatusDialog from '../Dialogs/Status';
+import StatusDialog from './Status';
 
 import {
   Dialog,

@@ -58,8 +58,8 @@ const theme = createMuiTheme({
     // Name of the component ⚛️ / style sheet
     MuiDialog: {
       paper: {
-        width: 350,
-        height: 480,
+        width: 400,
+        height: 510,
       },
     },
     MuiDialogContent: {
@@ -83,6 +83,11 @@ const theme = createMuiTheme({
       },
       body2: {
         fontFamily: 'Poppins, sans-serif',
+      },
+      body1: {
+        fontFamily: 'Poppins, sans-serif',
+        color: '#bdbdbd',
+        margin: '20px 50px',
       },
     },
     MuiDialogContentText: {

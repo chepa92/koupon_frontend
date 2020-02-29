@@ -110,7 +110,6 @@ export default function CommentsList(props) {
           <TextField
             id="outlined-textarea"
             label=""
-            size="large"
             placeholder="Write a comment..."
             multiline
             variant="outlined"

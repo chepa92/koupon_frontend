@@ -6,8 +6,9 @@ import { useStyles } from './Header.styled';
 import { withStyles } from '@material-ui/core/styles';
 import MainMenu from '../Menu/Menu';
 import Menu from '@material-ui/core/Menu';
-import FormDialog from '../Dialogs/addCoupon';
+import FormDialog from '../Dialogs/AddCoupon';
 import Login from '../Login/Login';
+import Rating from '@material-ui/lab/Rating';
 import {
   Button,
   IconButton,
@@ -86,12 +87,18 @@ function Header(props) {
             </Button>
           )}
           {api.isLoggedIn() && (
-            <Button
-              size="small"
-              style={{ marginLeft: 10, textTransform: 'upercase' }}
-            >
-              <NavLink to="/">{api.getLocalStorageUser().username}</NavLink>
-            </Button>
+            <Rating
+              name="read-only"
+              value={api.getLocalStorageUser().userLevel}
+              readOnly
+            ></Rating>
+
+            /* <Button
+                size="small"
+                style={{ marginLeft: 10, textTransform: 'upercase' }}
+              >
+                <NavLink to="/">{api.getLocalStorageUser().username}</NavLink>
+              </Button> */
           )}
           <IconButton
             aria-controls="fade-menu"

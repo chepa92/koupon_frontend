@@ -22,6 +22,7 @@ const useStyles = makeStyles(theme => ({
     margin: '10px 0',
     backgroundColor: '#f9e7f6',
     borderRadius: '25px',
+    height: '100px',
   },
 
   commentText: {

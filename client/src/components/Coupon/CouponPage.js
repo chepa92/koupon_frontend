@@ -4,7 +4,7 @@ import EditIcon from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/Delete';
 import api from '../../api/api';
 import StatusDialog from '../Dialogs/Status';
-import EditiDialog from '../Dialogs/editCoupon';
+import EditiDialog from '../Dialogs/EditCoupon';
 import AddAlertIcon from '@material-ui/icons/AddAlert';
 import LikeIcon from '@material-ui/icons/ThumbUp';
 import { StyledButton } from '../Theme/Button.styled';
@@ -106,7 +106,7 @@ export default function CouponPage(props) {
       </Grid>
 
       {api.isLoggedIn() && (
-        <Grid item xs={12} lg={6} justify="center">
+        <Grid item xs={12} lg={6}>
           <IconButton
             onClick={() => {
               api.likeCoupon(coupon._id);
@@ -134,7 +134,7 @@ export default function CouponPage(props) {
             href={coupon.link ? coupon.link : '#'}
             target="_blank"
           >
-            <h3>{bestPrice}</h3>
+            {bestPrice}
           </StyledButton>
         </Typography>
       </Grid>

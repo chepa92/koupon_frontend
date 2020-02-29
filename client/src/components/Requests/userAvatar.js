@@ -4,8 +4,6 @@ import { Avatar, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import Rating from '@material-ui/lab/Rating';
 
-import StarBorderIcon from '@material-ui/icons/StarBorder';
-
 const useStyles = makeStyles(theme => ({
   root: {
     display: 'inline',
@@ -16,7 +14,6 @@ const useStyles = makeStyles(theme => ({
 export default function UserAvatar(props) {
   const classes = useStyles;
   const { request } = props;
-  const [level, setLevel] = useState(0);
   const [user, setUser] = useState({
     img: './images/userImg.png',
     userName: 'user',

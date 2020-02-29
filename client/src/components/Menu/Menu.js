@@ -9,6 +9,7 @@ import ForumIcon from '@material-ui/icons/Forum';
 import QueueIcon from '@material-ui/icons/Queue';
 import SettingsIcon from '@material-ui/icons/Settings';
 import PowerSettingsNewIcon from '@material-ui/icons/PowerSettingsNew';
+import { Typography } from '@material-ui/core';
 
 export default function MainMenu(props) {
   const { onClose, onLogout, anchorel } = props;
@@ -28,7 +29,14 @@ export default function MainMenu(props) {
         open={Boolean(anchorel)}
         onClose={onClickClose}
       >
-        <img src="/images/logo2.png" alt="logo" style={{ width: 150 , marginTop: 10, marginLeft: 50}} />
+        <img
+          src="/images/logo2.png"
+          alt="logo"
+          style={{ width: 150, marginTop: 10, marginLeft: 50 }}
+        />
+        {api.isLoggedIn() && (
+          <Typography>Hi{api.getLocalStorageUser().username}</Typography>
+        )}
         {!api.isAdmin() && (
           <StyledMenuItem component={Link} to="/coupons" onClick={onClickClose}>
             <QueueIcon />
@@ -36,7 +44,11 @@ export default function MainMenu(props) {
           </StyledMenuItem>
         )}
         {api.isAdmin() && (
-          <StyledMenuItem component={Link} to="/admin/coupons" onClick={onClickClose}>
+          <StyledMenuItem
+            component={Link}
+            to="/admin/coupons"
+            onClick={onClickClose}
+          >
             <QueueIcon />
             Manage Coupons
           </StyledMenuItem>
@@ -78,7 +90,8 @@ export default function MainMenu(props) {
         {api.isLoggedIn() && (
           <StyledMenuItem>
             <PowerSettingsNewIcon />
-            <NavLink style={{marginLeft: 15}}
+            <NavLink
+              style={{ marginLeft: 15 }}
               to="/"
               onClick={e => {
                 onLogoutClick(e);

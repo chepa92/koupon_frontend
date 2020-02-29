@@ -35,7 +35,7 @@ export default function MainMenu(props) {
           style={{ width: 150, marginTop: 10, marginLeft: 50 }}
         />
         {api.isLoggedIn() && (
-          <Typography>Hi{api.getLocalStorageUser().username}</Typography>
+          <Typography>Hi {api.getLocalStorageUser().username}</Typography>
         )}
         {!api.isAdmin() && (
           <StyledMenuItem component={Link} to="/coupons" onClick={onClickClose}>

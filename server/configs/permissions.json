@@ -9,11 +9,13 @@
     "/api/coupon/likeCoupon",
     "/api/coupon/commentCoupon",
     "/api/coupon/notifyCoupon",
-    "/api/coupon/priceHistory"
+    "/api/coupon/priceHistory",
+    "/api/user/getUserPub"
   ],
   "public": [
     "/api/coupon/getCoupon",
     "/api/coupon/getAllCoupons",
-    "/api/coupon/searchCoupons"
+    "/api/coupon/searchCoupons",
+    "/api/user/getUserPub"
   ]
 }

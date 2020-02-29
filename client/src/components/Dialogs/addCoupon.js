@@ -5,7 +5,7 @@ import theme from '../Theme/newTheme';
 import api from '../../api/api';
 import { useForm } from 'react-hook-form';
 import TextField from '@material-ui/core/TextField';
-import CloseIcon from '@material-ui/icons/Close';
+import CancelIcon from '@material-ui/icons/Cancel';
 import { StyledButton } from '../Theme/Button.styled';
 import StatusDialog from '../Dialogs/Status';
 
@@ -15,6 +15,7 @@ import {
   DialogContentText,
   IconButton,
   DialogTitle,
+  Grid,
 } from '@material-ui/core';
 
 export default function FormDialog(props) {
@@ -69,8 +70,17 @@ export default function FormDialog(props) {
           onClose={handleClose}
           aria-labelledby="form-dialog-title"
         >
-          <CloseIcon className="button_close" onClick={handleClose} />
+          <Grid item style={{ textAlign: 'end' }}>
+            <IconButton
+              onClick={handleClose}
+              style={{ width: '35px', height: '35px', marginTop: 10 }}
+            >
+              <CancelIcon fontSize="large" />
+            </IconButton>
+          </Grid>
+
           <DialogTitle id="form-dialog-title">Create New Coupon</DialogTitle>
+
           <DialogContent>
             <DialogContentText>
               Please Fill Coupon Information

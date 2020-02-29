@@ -59,7 +59,7 @@ const theme = createMuiTheme({
     MuiDialog: {
       paper: {
         width: 350,
-        height: 450,
+        height: 480,
       },
     },
     MuiDialogContent: {

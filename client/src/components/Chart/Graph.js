@@ -44,7 +44,7 @@ const LineExample = props => {
         setCoupon(coupon);
       })
       .catch(err => console.log(err));
-      // eslint-disable-next-line
+    // eslint-disable-next-line
   }, []);
 
   var data = {
@@ -80,7 +80,10 @@ const LineExample = props => {
   };
   return (
     <MuiThemeProvider theme={theme}>
-      <div className="flex flex-col items-center w-full max-w-md" style={{ width: "400px" }}>
+      <div
+        className="flex flex-col items-center w-full max-w-md"
+        style={{ width: '400px', height: '250px' }}
+      >
         <Typography variant="subtitle1">Prices history</Typography>
         <Line data={data} options={options} />
       </div>

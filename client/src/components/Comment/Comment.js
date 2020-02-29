@@ -30,6 +30,11 @@ const useStyles = makeStyles(theme => ({
     color: 'black',
     fontSize: '0.95rem',
   },
+  commentUser: {
+    color: 'black',
+    fontSize: '0.80rem',
+    textTransform: 'capitalize',
+  },
   avatar: {
     marginTop: '6px',
   },
@@ -63,31 +68,36 @@ export default function Comment(props) {
         <ListItemAvatar className={classes.avatar}>
           <Avatar alt="Remy Sharp" src={user.img} />
         </ListItemAvatar>
-        <ListItemText
-          secondary={
-            <React.Fragment>
-              <Typography
-                className={classes.commentText}
-                display="inline"
-                component="span"
-                variant="body2"
-                color="textPrimary"
-              >
-                <b>{user.username}</b> : {comments.comment}
-              </Typography>
+        <ListItemText>
+          <Typography
+            display="block"
+            className={classes.commentUser}
+            component="span"
+            variant="body2"
+            color="textPrimary"
+          >
+            {user.username}
+          </Typography>
 
-              <Typography
-                display="block"
-                align="right"
-                component="span"
-                variant="body2"
-                color="textSecondary"
-              >
-                {new Date(comments.date).toUTCString().slice(0, 16)}
-              </Typography>
-            </React.Fragment>
-          }
-        />
+          <Typography
+            className={classes.commentText}
+            component="span"
+            variant="body2"
+            color="textPrimary"
+          >
+            {comments.comment}
+          </Typography>
+
+          <Typography
+            display="block"
+            align="right"
+            component="span"
+            variant="body2"
+            color="textSecondary"
+          >
+            {new Date(comments.date).toUTCString().slice(0, 16)}
+          </Typography>
+        </ListItemText>
       </ListItem>
     </MuiThemeProvider>
   );

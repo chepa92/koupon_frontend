@@ -4,7 +4,7 @@ import CouponCard from '../Coupon/Coupon';
 import api from '../../api/api';
 
 export default function Coupons(props) {
-  const [limit, setLimit] = useState(12);
+  const [limit, setLimit] = useState(14);
   const [coupons, setCoupons] = useState([]);
   const [edit, setEdit] = useState(false);
 

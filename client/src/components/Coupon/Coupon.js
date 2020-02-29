@@ -88,7 +88,7 @@ export default function CouponCard(props) {
               </IconButton>
             }
             title={coupon.title}
-            subheader={'#' + coupon.brand}
+            subheader={coupon.discount + ' off'}
           />
           <CardActionArea>
             <CardMedia

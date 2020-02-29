@@ -106,7 +106,6 @@ export default {
       .catch(errHandler);
   },
 
-
   updateUser(id, body) {
     return service
       .put('/user/updateUser?id=' + id, body)
@@ -181,6 +180,48 @@ export default {
           'Content-Type': 'multipart/form-data',
         },
       })
+      .then(res => res.data)
+      .catch(errHandler);
+  },
+
+  //Requests Functions
+  getRequests() {
+    return service
+      .get('/request/getAllReqst')
+      .then(res => res.data)
+      .catch(errHandler);
+  },
+
+  getRequest(id) {
+    return service
+      .get('/request/getReqst?id=' + id)
+      .then(res => res.data)
+      .catch(errHandler);
+  },
+
+  addRequest(body) {
+    return service
+      .post('/request/addRequest', body)
+      .then(res => res.data)
+      .catch(errHandler);
+  },
+
+  deleteRequest(id) {
+    return service
+      .delete('/request/deleteRequest?id=' + id)
+      .then(res => res.data)
+      .catch(errHandler);
+  },
+
+  updateRequest(id, body) {
+    return service
+      .put('/request/updateRequest?id=' + id, body)
+      .then(res => res.data)
+      .catch(errHandler);
+  },
+  closeRequest(id) {
+    return service
+      .put('/request/closeRqst?id=' + id)
       .then(res => res.data)
       .catch(errHandler);
   },

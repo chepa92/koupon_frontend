@@ -17,8 +17,6 @@ export default class Secret extends Component {
   render() {
     return (
       <div className="Admin">
-        <h2>This is admin page</h2>
-
         {api.isLoggedIn() && (
           <Switch>
             <Route path="/admin" exact component={AdminDashboard} />

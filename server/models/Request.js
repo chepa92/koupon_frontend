@@ -30,6 +30,7 @@ const requestSchema = new Schema(
       },
     ],
     brand: String,
+    couponRelated: String,
     publisher: String,
     status: {
       type: String,
@@ -45,10 +46,11 @@ const requestSchema = new Schema(
       default: 0,
     },
   },
-  { timestamps: {
-    createdAt: 'created_at',
-    updatedAt: 'updated_at',
-    }
+  {
+    timestamps: {
+      createdAt: 'created_at',
+      updatedAt: 'updated_at',
+    },
   },
   { collection: 'requests' }
 );

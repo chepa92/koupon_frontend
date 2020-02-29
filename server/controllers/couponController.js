@@ -197,13 +197,6 @@ module.exports = {
 
 //finding lowest price existing
 async function addPriceToHistory(id, data, coupon) {
-  // let historyPrice;
-  // try {
-  //   historyPrice = parseInt(coupon.priceHistory[0].price);
-  // } catch {
-  //   historyPrice = 99999;
-  // }
-  // if (parseInt(data.salePrice) < historyPrice) {
   const result = await Coupon.updateOne(
     { _id: id },
     {

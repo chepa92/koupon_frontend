@@ -135,11 +135,50 @@ module.exports = {
         },
       }
     );
+    updateUser(id);
     //TODO user ranking func
 
     console.log(result);
 
     if (result) return result;
     else console.log('error: Faild adding coupon to user coupon list.');
+  },
+
+  async updateUserLevel(id) {
+    const result = await User.find({ _id: id });
+    let level;
+    console.log(result);
+    if (result.postedCoupons.lenght > 3) {
+      level = 1;
+    }
+
+    if (result.postedCoupons.lenght > 10) {
+      level = 2;
+    }
+
+    if (result.postedCoupons.lenght > 50) {
+      level = 3;
+    }
+
+    if (result.postedCoupons.lenght > 70) {
+      level = 4;
+    }
+    if (result.postedCoupons.lenght > 90) {
+      level = 5;
+    }
+    const result2 = await User.updateOne(
+      { _id: id },
+      { $set: { userLevel: level } }
+    )
+      .then(users => {
+        res.json({
+          success: true,
+          users,
+        });
+      })
+      .catch(err => next(err));
+
+    if (result2) return result2;
+    else console.log('error: No result');
   },
 };

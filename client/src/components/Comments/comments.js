@@ -4,7 +4,7 @@ import { MuiThemeProvider } from '@material-ui/core/styles';
 import theme from '../Theme/newTheme';
 import api from '../../api/api';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
-import Comment from '../Comment/Comment'
+import Comment from '../Comment/Comment';
 import {
   List,
   Button,
@@ -25,16 +25,14 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: '#f9e7f6',
     borderRadius: '25px',
   },
-  textfield:{
-    width: '88%',
-  },
-  commentText:{
+
+  commentText: {
     color: 'black',
-    fontSize: '0.95rem'
+    fontSize: '0.95rem',
   },
   avatar: {
     marginTop: '6px',
-  }
+  },
 }));
 
 export default function CommentsList(props) {
@@ -86,9 +84,7 @@ export default function CommentsList(props) {
   };
 
   const renderEachComment = (item, i) => {
-    return (
-     <Comment comments={item} key={i}/>
-    );
+    return <Comment comments={item} key={i} />;
   };
 
   return (
@@ -112,10 +108,9 @@ export default function CommentsList(props) {
       {api.isLoggedIn() && (
         <div>
           <TextField
-            className={classes.textfield}
             id="outlined-textarea"
             label=""
-            size="small"
+            size="large"
             placeholder="Write a comment..."
             multiline
             variant="outlined"

@@ -27,12 +27,10 @@ const useStyles = makeStyles(theme => ({
     margin: '30px 60px',
   },
   gridpadL: {
-    padding: '3% 5% 0 10% !important',
-
+    padding: '3% 5% 0 8% !important',
   },
   gridpadR: {
     padding: '3% 0% 0 5% !important',
-
   },
 }));
 
@@ -48,7 +46,7 @@ export default function Coupon(props) {
         setCoupon(coupon);
       })
       .catch(err => console.log(err));
-      // eslint-disable-next-line
+    // eslint-disable-next-line
   }, []);
 
   return (

@@ -130,15 +130,15 @@ export default function CouponPage(props) {
         <Typography>
           Best price was
           <StyledButton
-            style={{ marginLeft: '50px' }}
+            style={{ marginLeft: '40px', height: 40 }}
             href={coupon.link ? coupon.link : '#'}
             target="_blank"
           >
-            <h2>{bestPrice}</h2>
+            <h3>{bestPrice}</h3>
           </StyledButton>
         </Typography>
       </Grid>
-      <Grid item container>
+      <Grid item>
         <Typography>Discount: {coupon.discount}</Typography>
       </Grid>
       <StatusDialog open={open} status={status} onClose={handleClose} />

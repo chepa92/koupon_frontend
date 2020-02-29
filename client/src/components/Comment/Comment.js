@@ -23,9 +23,7 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: '#f9e7f6',
     borderRadius: '25px',
   },
-  textfield: {
-    width: '88%',
-  },
+
   commentText: {
     color: 'black',
     fontSize: '0.95rem',
